@@ -2038,7 +2038,6 @@ describe('MISC CKL. ', () => {
         location: 'Scan-Windows10_Checks'
       }
     }
-
     expect(review.checklists[0].reviews[0].resultEngine).to.deep.equal(
       expectedResultEngine
     )
