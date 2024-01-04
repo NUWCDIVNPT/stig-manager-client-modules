@@ -912,10 +912,7 @@ export function reviewsFromCklb(
           location: evalStigResultEngine.module?.name ?? ''
         }
       }
-      
-
     }
-
 
     const status = bestStatusForReview(review)
     if (status) {
