@@ -862,6 +862,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
       comment: 'xyz',
       detail: 'There is no detail provided for the assessment'
     }
+
     expect(review.checklists[0].reviews[0]).to.include(expectedReview)
   })
   it("'emptyDetail = ignore' testing that if there is no detail provided it will retaing exisiting, if no exisitng then we will set to null", async () => {

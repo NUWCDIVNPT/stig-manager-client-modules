@@ -51,7 +51,7 @@ export function reviewsFromCkl(
   if (!parsed.CHECKLIST[0].STIGS) throw (new Error("No STIGS element"))
 
   const comments = parsed['__comment']
-  // const resultEngineCommon = comments?.length ? processRootXmlComments(comments) : null
+  const resultEngineCommon = comments?.length ? processRootXmlComments(comments) : null
 
   let returnObj = {}
   returnObj.target = processAsset(parsed.CHECKLIST[0].ASSET[0])
@@ -215,14 +215,10 @@ export function reviewsFromCkl(
       comment
     }
 
-    let resultEngine
+    const iStigCommentProcessed = iStigComment ? processIstigXmlComments(iStigComment) : null;
 
-
-    resultEngine = iStigComment ? processIstigXmlComments(iStigComment, comments) : processRootXmlComments(comments);
-
-
-    if (resultEngine) {
-      review.resultEngine = { ...resultEngine }
+    if (resultEngineCommon) {
+      review.resultEngine = { ...resultEngineCommon, ...iStigCommentProcessed }
       if (vuln['__comment']) {
         const overrides = []
         for (const comment of vuln['__comment']) {
@@ -329,27 +325,20 @@ export function reviewsFromCkl(
     }
     return status
   }
-  function processIstigXmlComments(iStigComment, comments) {
-    let resultEngineRoot
-    for (let i = 0; i < comments.length && i < iStigComment.length; i++) {
-      let comment = comments[i];
-      let istig = iStigComment[i];
+  function processIstigXmlComments(iStigComment) {
+    let resultEngineIStig
+    for (const comment of iStigComment) {
+
       if (comment.toString().startsWith('<Evaluate-STIG>')) {
-        let esRootComment
         let esIStigComment
         try {
-          esRootComment = parser.parse(comment)['Evaluate-STIG'][0]
-          esIStigComment = parser.parse(istig)['Evaluate-STIG'][0]
+          esIStigComment = parser.parse(comment)['Evaluate-STIG'][0]
         }
         catch (e) {
           console.log('Failed to parse Evaluate-STIG root XML comment')
         }
-        esRootComment = normalizeKeys(esRootComment)
         esIStigComment = normalizeKeys(esIStigComment)
-        resultEngineRoot = {
-          type: 'script',
-          product: 'Evaluate-STIG',
-          version: esRootComment?.version,
+        resultEngineIStig = {
           time: esIStigComment?.time,
           checkContent: {
             location: esIStigComment?.module?.[0]?.name ?? ''
@@ -357,9 +346,8 @@ export function reviewsFromCkl(
         }
       }
     }
-    return resultEngineRoot || null
+    return resultEngineIStig || null
   }
-
 
 
   function processRootXmlComments(comments) {
@@ -377,7 +365,7 @@ export function reviewsFromCkl(
         resultEngineRoot = {
           type: 'script',
           product: 'Evaluate-STIG',
-          version: esRootComment?.global?.[0]?.version,
+          version: esRootComment?.global?.[0]?.version || esRootComment?.version,
           time: esRootComment?.global?.[0]?.time,
           checkContent: {
             location: esRootComment?.module?.[0]?.name ?? ''
@@ -755,8 +743,8 @@ export function reviewsFromCklb(
     throw (new Error(`Invalid CKLB object: ${validationResult.error}`))
   }
 
-  // const resultEngineCommon = cklb.stig_manager_engine || null
-  const evalStigVersion = cklb["evaluate-stig"]?.version || null
+  const resultEngineCommon = cklb['evaluate-stig'] ? processRootEvalStigModule(cklb['evaluate-stig']) : null
+  //const evalStigVersion = cklb["evaluate-stig"]?.version || null
   let returnObj = {}
   returnObj.target = processTargetData(cklb.target_data)
   if (!returnObj.target.name) {
@@ -902,16 +890,14 @@ export function reviewsFromCklb(
       comment
     }
 
-    if(evalStigResultEngine && evalStigVersion){
-      review.resultEngine = {
-        type: 'script',
-        product: 'Evaluate-STIG',
-        version: evalStigVersion,
-        time: evalStigResultEngine.time,
-        checkContent: {
-          location: evalStigResultEngine.module?.name ?? ''
-        }
-      }
+    const iStigCommentProcessed = evalStigResultEngine ? processStigEvalStigModule(evalStigResultEngine) : null;
+
+    if(resultEngineCommon){
+      review.resultEngine = {...resultEngineCommon,...iStigCommentProcessed}
+    } 
+    else 
+    {
+      review.resultEngine = null
     }
 
     const status = bestStatusForReview(review)
@@ -976,6 +962,32 @@ export function reviewsFromCklb(
       status = 'saved'
     }
     return status
+  }
+ function processStigEvalStigModule(stigModule){
+    let resultEngineIStig
+    if(stigModule){
+      resultEngineIStig = {
+        time: stigModule.time,
+        checkContent: {
+          location: stigModule.module?.name ?? ''
+        }
+      }
+    }
+    return resultEngineIStig || null
+  }
+ 
+
+  function processRootEvalStigModule(module){
+    let resultEngineCommon
+    
+    if(module){
+      resultEngineCommon = {
+        type: 'script',
+        product: 'Evaluate-STIG',
+        version: module.version,
+      }
+    }
+    return resultEngineCommon || null
   }
 
 

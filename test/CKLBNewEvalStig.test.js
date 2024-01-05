@@ -1,18 +1,8 @@
 import chai from 'chai';
 import { reviewsFromCklb } from '../ReviewParser.js';  
-import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
-import he from 'he';
 const expect = chai.expect
-const valueProcessor = function (
-  tagName,
-  tagValue,
-  jPath,
-  hasAttributes,
-  isLeafNode
-) {
-  he.decode(tagValue)
-}
+
 
 // Create a helper function to read the file and generate the review object
 async function generateReviewObject (
@@ -24,11 +14,9 @@ async function generateReviewObject (
   const data = await fs.readFile(filePath, 'utf8')
   return reviewsFromCklb({
     data,
-    importOptions,
     fieldSettings,
     allowAccept,
-    valueProcessor,
-    XMLParser
+    importOptions
   })
 }
 
@@ -68,7 +56,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
       allowAccept
     )
 
-    console.log(JSON.stringify(review, null, 2))
+   console.log(JSON.stringify(review, null, 2))
   })
 
  

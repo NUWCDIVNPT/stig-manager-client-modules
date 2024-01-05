@@ -567,7 +567,7 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
       fieldSettings,
       allowAccept
     )
-
+      
     // check that review has a comment or detail and exisits
     expect(review.checklists[0].reviews).to.be.empty
   })
