@@ -1,0 +1,163 @@
+{
+    "evaluate-stig": {
+      "version": "1.2310.1"
+    },
+    "title": "Evaluate-STIG_COMBINED",
+    "id": "0c2f6518-abaa-49aa-a56b-c032d99c0f7a",
+    "stigs": [
+      {
+        "evaluate-stig": {
+          "time": "2023-12-11T12:56:14.3576272-05:00",
+          "module": {
+            "name": "Scan-GoogleChrome_Checks",
+            "version": "1.2023.7.24"
+          }
+        },
+        "stig_name": "Google Chrome Current Windows Security Technical Implementation Guide",
+        "display_name": "Google Chrome Current Windows",
+        "stig_id": "Google_Chrome_Current_Windows",
+        "release_info": "Release: 8 Benchmark Date: 26 Jan 2023",
+        "uuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+        "reference_identifier": "4081",
+        "size": 12,
+        "rules": [
+          {
+            "uuid": "3afb61cf-9635-4f68-a5fe-1e7a1b503dec",
+            "stig_uuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+            "target_key": "null",
+            "stig_ref": "null",
+            "group_id": "V-221558",
+            "rule_id": "SV-221558r769351",
+            "rule_id_src": "SV-221558r769351_rule",
+            "weight": "10.0",
+            "classification": "UNCLASSIFIED",
+            "severity": "medium",
+            "rule_version": "DTBC-0001",
+            "group_title": "Firewall traversal from remote host must be disabled.",
+            "rule_title": "Firewall traversal from remote host must be disabled.",
+            "fix_text": "Windows group policy:\n 1. Open the group policy editor tool with gpedit.msc \n 2. Navigate to Policy Path: Computer Configuration\\Administrative\\Templates\\Google\\Google Chrome\\Remote Access\n Policy Name: Enable firewall traversal from remote access host\n Policy State: Disabled\n Policy Value: N/A",
+            "false_positives": "",
+            "false_negatives": "",
+            "discussion": "Remote connections should never be allowed that bypass the firewall, as there is no way to verify if they can be trusted. Enables usage of STUN and relay servers when remote clients are trying to establish a connection to this machine. If this setting is enabled, then remote clients can discover and connect to this machine even if they are separated by a firewall. If this setting is disabled and outgoing UDP connections are filtered by the firewall, then this machine will only allow connections from client machines within the local network. If this policy is left not set the setting will be enabled.\t",
+            "check_content": "Universal method:        \n   1. In the omnibox (address bar) type chrome://policy        \n   2. If RemoteAccessHostFirewallTraversal is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.\n\nWindows registry:\n   1. Start regedit\n   2. Navigate to HKLM\\Software\\Policies\\Google\\Chrome\\\n   3. If the RemoteAccessHostFirewallTraversal value name does not exist or its value data is not set to 0, then this is a finding.  \n",
+            "documentable": "false",
+            "mitigations": "",
+            "potential_impacts": "",
+            "third_party_tools": "",
+            "mitigation_control": "",
+            "responsibility": "",
+            "security_override_guidance": "",
+            "ia_controls": "",
+            "check_content_ref": {
+              "href": "Google_Chrome_Current_Windows_STIG.xml",
+              "name": "M"
+            },
+            "legacy_ids": [
+              "SV-57545",
+              "V-44711"
+            ],
+            "ccis": [
+              "CCI-001414"
+            ],
+            "group_tree": [
+              {
+                "id": "V-221558",
+                "title": "SRG-APP-000039",
+                "description": "<GroupDescription></GroupDescription>"
+              }
+            ],
+            "createdAt": "2023-12-11T12:56:14.3576272-05:00",
+            "updatedAt": "2023-12-11T12:56:14.3576272-05:00",
+            "STIGUuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+            "status": "not_a_finding",
+            "overrides": {},
+            "comments": "",
+            "finding_details": "test"
+          }
+        ]
+      },
+      {
+        
+        "stig_name": "Microsoft Edge Security Technical Implementation Guide",
+        "display_name": "MS Edge STIG",
+        "stig_id": "MS_Edge_STIG",
+        "release_info": "Release: 7 Benchmark Date: 26 Jul 2023",
+        "uuid": "8d083706-9320-4638-b49e-00ed99882afe",
+        "reference_identifier": "5280",
+        "size": 12,
+        "rules": [
+          {
+            "uuid": "11455555-7142-4ae7-b846-e8e0980cf6b0",
+            "stig_uuid": "8d083706-9320-4638-b49e-00ed99882afe",
+            "target_key": "null",
+            "stig_ref": "null",
+            "group_id": "V-235719",
+            "rule_id": "SV-235719r917469",
+            "rule_id_src": "SV-235719r917469_rule",
+            "weight": "10.0",
+            "classification": "UNCLASSIFIED",
+            "severity": "low",
+            "rule_version": "EDGE-00-000001",
+            "group_title": "User control of proxy settings must be disabled.",
+            "rule_title": "User control of proxy settings must be disabled.",
+            "fix_text": "Set the policy value for \"Computer Configuration/Administrative Templates/Microsoft Edge/Proxy server/Proxy Settings\" to \"ProxyMode\", \"ProxyPacUrl\", \"ProxyServer\", or \"ProxyBypassList\".\n\nIf \"ProxyMode\" is selected, one of the following must also be set: \"direct\", \"system\", \"auto_detect\", \"fixed_servers\", or \"pac_script\".\n\nExample policy text:\nSOFTWARE\\Policies\\Microsoft\\Edge\\ProxySettings = {\n  \"ProxyBypassList\": \"https://www.example1.com,https://www.example2.com,https://internalsite/\",\n  \"ProxyMode\": \"pac_script\",\n  \"ProxyPacMandatory\": false,\n  \"ProxyPacUrl\": \"https://internal.site/example.pac\",\n  \"ProxyServer\": \"123.123.123.123:8080\"\n}",
+            "false_positives": "",
+            "false_negatives": "",
+            "discussion": "This action configures the proxy settings for Microsoft Edge.\n\nIf this policy is enabled, Microsoft Edge ignores all proxy-related options specified from the command line.\n\nIf this policy is not configured, users can choose their own proxy settings.\n\nThis policy overrides the following individual policies:\n- ProxyMode \n- ProxyPacUrl \n- ProxyServer \n- ProxyBypassList\n\nSetting the ProxySettings policy accepts the following fields:\n- ProxyMode, which allows for the proxy server used by Microsoft Edge to be specified and prevents users from changing proxy settings.\n- ProxyPacUrl, a URL to a proxy .pac file.\n- ProxyServer, a URL for the proxy server.\n- ProxyBypassList, a list of proxy hosts that Microsoft Edge bypasses.\n\nFor ProxyMode, the following values have the noted impact:\n- direct, a proxy is never used and all other fields are ignored.\n- system, the system's proxy is used and all other fields are ignored.\n- auto_detect, all other fields are ignored.\n- fixed_servers, the ProxyServer and ProxyBypassList fields are used.\n- pac_script, the ProxyPacUrl and ProxyBypassList fields are used.",
+            "check_content": "The policy value for \"Computer Configuration/Administrative Templates/Microsoft Edge/Proxy server/Proxy Settings\" must be set to one of the following options: \"ProxyMode\", \"ProxyPacUrl\", \"ProxyServer\", or \"ProxyBypassList\".\n\nIf \"ProxyMode\" is used, one of the following must be set: \"direct\", \"system\", \"auto_detect\", \"fixed_servers\", or \"pac_script\".\n\nUse the Windows Registry Editor to navigate to the following key:\nHKLM\\SOFTWARE\\Policies\\Microsoft\\Edge\n\nIf the REG_SZ value for \"ProxySettings\" is not set to one of the above selections, this is a finding.",
+            "documentable": "false",
+            "mitigations": "",
+            "potential_impacts": "",
+            "third_party_tools": "",
+            "mitigation_control": "",
+            "responsibility": "",
+            "security_override_guidance": "",
+            "ia_controls": "",
+            "check_content_ref": {
+              "href": "Microsoft_Edge_STIG.xml",
+              "name": "M"
+            },
+            "legacy_ids": [
+              ""
+            ],
+            "ccis": [
+              "CCI-001414"
+            ],
+            "group_tree": [
+              {
+                "id": "V-235719",
+                "title": "SRG-APP-000039",
+                "description": "<GroupDescription></GroupDescription>"
+              }
+            ],
+            "createdAt": "2023-12-11T12:56:34.9155152-05:00",
+            "updatedAt": "2023-12-11T12:56:34.9155152-05:00",
+            "STIGUuid": "8d083706-9320-4638-b49e-00ed99882afe",
+            "status": "not_a_finding",
+            "overrides": {},
+            "comments": "",
+            "finding_details": "test"
+          }
+        ]
+      }
+    ],
+    "active": false,
+    "mode": 1,
+    "has_path": true,
+    "target_data": {
+      "target_type": "Computing",
+      "host_name": "CA1294WK16078",
+      "ip_address": "130.163.x.x, 192.168.x.x",
+      "mac_address": "00:05:9A:3C:7A:00, 2C:DB:07:3D:E5:9B",
+      "fqdn": "ca1294wk16078.cranrdte.navy.mil",
+      "comments": "",
+      "role": "Workstation",
+      "is_web_database": false,
+      "technology_area": "None",
+      "web_db_site": "",
+      "web_db_instance": ""
+    },
+    "cklb_version": "1.0"
+  
+  }
+  

@@ -1,0 +1,90 @@
+{
+  "evaluate-stig": {
+    "version": "1.2310.1"
+  },
+  "title": "Evaluate-STIG_COMBINED",
+  "id": "0c2f6518-abaa-49aa-a56b-c032d99c0f7a",
+  "stigs": [
+    {
+      "stig_name": "Google Chrome Current Windows Security Technical Implementation Guide",
+      "display_name": "Google Chrome Current Windows",
+      "stig_id": "Google_Chrome_Current_Windows",
+      "release_info": "Release: 8 Benchmark Date: 26 Jan 2023",
+      "uuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+      "reference_identifier": "4081",
+      "size": 12,
+      "rules": [
+        {
+          "uuid": "3afb61cf-9635-4f68-a5fe-1e7a1b503dec",
+          "stig_uuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+          "target_key": "null",
+          "stig_ref": "null",
+          "group_id": "V-221558",
+          "rule_id": "SV-221558r769351",
+          "rule_id_src": "SV-221558r769351_rule",
+          "weight": "10.0",
+          "classification": "UNCLASSIFIED",
+          "severity": "medium",
+          "rule_version": "DTBC-0001",
+          "group_title": "Firewall traversal from remote host must be disabled.",
+          "rule_title": "Firewall traversal from remote host must be disabled.",
+          "fix_text": "Windows group policy:\n 1. Open the group policy editor tool with gpedit.msc \n 2. Navigate to Policy Path: Computer Configuration\\Administrative\\Templates\\Google\\Google Chrome\\Remote Access\n Policy Name: Enable firewall traversal from remote access host\n Policy State: Disabled\n Policy Value: N/A",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Remote connections should never be allowed that bypass the firewall, as there is no way to verify if they can be trusted. Enables usage of STUN and relay servers when remote clients are trying to establish a connection to this machine. If this setting is enabled, then remote clients can discover and connect to this machine even if they are separated by a firewall. If this setting is disabled and outgoing UDP connections are filtered by the firewall, then this machine will only allow connections from client machines within the local network. If this policy is left not set the setting will be enabled.\t",
+          "check_content": "Universal method:        \n   1. In the omnibox (address bar) type chrome://policy        \n   2. If RemoteAccessHostFirewallTraversal is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.\n\nWindows registry:\n   1. Start regedit\n   2. Navigate to HKLM\\Software\\Policies\\Google\\Chrome\\\n   3. If the RemoteAccessHostFirewallTraversal value name does not exist or its value data is not set to 0, then this is a finding.  \n",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "check_content_ref": {
+            "href": "Google_Chrome_Current_Windows_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [
+            "SV-57545",
+            "V-44711"
+          ],
+          "ccis": [
+            "CCI-001414"
+          ],
+          "group_tree": [
+            {
+              "id": "V-221558",
+              "title": "SRG-APP-000039",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-12-11T12:56:14.3576272-05:00",
+          "updatedAt": "2023-12-11T12:56:14.3576272-05:00",
+          "STIGUuid": "697cae4e-cbce-4a9e-9378-e6db74f7abe2",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "test"
+        }
+      ]
+    }
+  ],
+  "active": false,
+  "mode": 1,
+  "has_path": true,
+  "target_data": {
+    "target_type": "Computing",
+    "host_name": "CA1294WK16078",
+    "ip_address": "130.163.x.x, 192.168.x.x",
+    "mac_address": "00:05:9A:3C:7A:00, 2C:DB:07:3D:E5:9B",
+    "fqdn": "ca1294wk16078.cranrdte.navy.mil",
+    "comments": "",
+    "role": "Workstation",
+    "is_web_database": false,
+    "technology_area": "None",
+    "web_db_site": "",
+    "web_db_instance": ""
+  },
+  "cklb_version": "1.0"
+}
