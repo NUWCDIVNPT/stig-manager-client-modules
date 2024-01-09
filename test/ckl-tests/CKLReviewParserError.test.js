@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { reviewsFromCkl } from '../ReviewParser.js';  
+import { reviewsFromCkl } from '../../ReviewParser.js';  
 import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
 import he from 'he';
@@ -59,7 +59,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoCHECKLISTelement.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-checklist-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -97,7 +97,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoASSETelement.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/No-Asset-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -135,7 +135,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoSTIGSelement.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-Stigs-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -173,7 +173,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/noHost_NameElement.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-Host_Name-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -211,7 +211,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoSID_DATAforStigId.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-SID_DATA-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 

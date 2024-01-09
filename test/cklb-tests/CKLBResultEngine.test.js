@@ -1,5 +1,5 @@
 import chai from 'chai'
-import { reviewsFromCklb } from '../ReviewParser.js'
+import { reviewsFromCklb } from '../../ReviewParser.js'
 import fs from 'fs/promises'
 const expect = chai.expect
 
@@ -44,7 +44,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoRootEvalStigModule.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/cklb/no-root-result-engine-object.cklb'
 
     const review = await generateReviewObject(
       filePath,

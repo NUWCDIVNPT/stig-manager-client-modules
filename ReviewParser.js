@@ -51,6 +51,7 @@ export function reviewsFromCkl(
   if (!parsed.CHECKLIST[0].STIGS) throw (new Error("No STIGS element"))
 
   const comments = parsed['__comment']
+  // extract the root ES comment 
   const resultEngineCommon = comments?.length ? processRootXmlComments(comments) : null
 
   let returnObj = {}
@@ -215,9 +216,11 @@ export function reviewsFromCkl(
       comment
     }
 
+    // if the current checklist contrains a comment from ES, process it and add it to the review
     const iStigCommentProcessed = iStigComment ? processIstigXmlComments(iStigComment) : null;
 
     if (resultEngineCommon) {
+      // combining the root ES comment and the checklist ES comment
       review.resultEngine = { ...resultEngineCommon, ...iStigCommentProcessed }
       if (vuln['__comment']) {
         const overrides = []
@@ -325,6 +328,8 @@ export function reviewsFromCkl(
     }
     return status
   }
+
+// process the Evaluate-STIG XML coments for each "Checklist" (iSTIG)
   function processIstigXmlComments(iStigComment) {
     let resultEngineIStig
     for (const comment of iStigComment) {
@@ -349,7 +354,7 @@ export function reviewsFromCkl(
     return resultEngineIStig || null
   }
 
-
+  // process the Evaluate-STIG ROOT XML comments
   function processRootXmlComments(comments) {
     let resultEngineRoot
     for (const comment of comments) {
@@ -371,7 +376,7 @@ export function reviewsFromCkl(
             location: esRootComment?.module?.[0]?.name ?? ''
           }
         }
-      }
+      }  
     }
     return resultEngineRoot || null
   }
@@ -742,9 +747,8 @@ export function reviewsFromCklb(
   if (!validationResult.valid) {
     throw (new Error(`Invalid CKLB object: ${validationResult.error}`))
   }
-
+  // extract root evaluate-stig object
   const resultEngineCommon = cklb['evaluate-stig'] ? processRootEvalStigModule(cklb['evaluate-stig']) : null
-  //const evalStigVersion = cklb["evaluate-stig"]?.version || null
   let returnObj = {}
   returnObj.target = processTargetData(cklb.target_data)
   if (!returnObj.target.name) {
@@ -963,6 +967,8 @@ export function reviewsFromCklb(
     }
     return status
   }
+
+ // process evaluate-stig module for each "Checklist" (STIGs array)
  function processStigEvalStigModule(stigModule){
     let resultEngineIStig
     if(stigModule){
@@ -976,10 +982,9 @@ export function reviewsFromCklb(
     return resultEngineIStig || null
   }
  
-
+  // process root evaluate-stig object
   function processRootEvalStigModule(module){
     let resultEngineCommon
-    
     if(module){
       resultEngineCommon = {
         type: 'script',

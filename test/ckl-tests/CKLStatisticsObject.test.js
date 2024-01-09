@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { reviewsFromCklb } from '../ReviewParser.js';  
+import { reviewsFromCkl } from '../../ReviewParser.js';  
 import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
 import he from 'he';
@@ -22,7 +22,7 @@ async function generateReviewObject (
   allowAccept
 ) {
   const data = await fs.readFile(filePath, 'utf8')
-  return reviewsFromCklb({
+  return reviewsFromCkl({
     data,
     importOptions,
     fieldSettings,
@@ -33,7 +33,7 @@ async function generateReviewObject (
 }
 
 
-describe('Testing that the CKLb Review Parser will return the correct figures in the Statistics object', () => {
+describe('Testing that the CKL Review Parser will return the correct figures in the Statistics object', () => {
   it('unreviewed: commented, unreviewedCommented: informational, has comments/detail', async () => {
     // will import commented unreviewed findings as informational
     // expecting to see 1 informational finding
@@ -59,7 +59,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -107,7 +107,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -155,7 +155,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -202,7 +202,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -249,7 +249,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -297,7 +297,7 @@ describe('Testing that the CKLb Review Parser will return the correct figures in
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/GoodStatistics.cklb'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,

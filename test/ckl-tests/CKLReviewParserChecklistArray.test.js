@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { reviewsFromCkl } from '../ReviewParser.js'; 
+import { reviewsFromCkl } from '../../ReviewParser.js'; 
 import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
 import he from 'he';

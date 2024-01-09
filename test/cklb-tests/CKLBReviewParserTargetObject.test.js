@@ -1,5 +1,5 @@
 import chai from 'chai'
-import { reviewsFromCklb } from '../ReviewParser.js'
+import { reviewsFromCklb } from '../../ReviewParser.js'
 
 import fs from 'fs/promises'
 
