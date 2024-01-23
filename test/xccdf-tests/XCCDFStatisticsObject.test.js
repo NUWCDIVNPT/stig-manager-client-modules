@@ -1,8 +1,9 @@
 import chai from 'chai';
-import { reviewsFromCkl } from '../ReviewParser.js';  
+import { reviewsFromXccdf } from '../../ReviewParser.js'; 
 import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
 import he from 'he';
+
 const expect = chai.expect
 const valueProcessor = function (
   tagName,
@@ -14,6 +15,25 @@ const valueProcessor = function (
   he.decode(tagValue)
 }
 
+const dataArray = [
+  {
+    scapBenchmarkId: 'CAN_Ubuntu_18-04_STIG',
+    benchmarkId: 'U_CAN_Ubuntu_18-04_STIG'
+  },
+  { scapBenchmarkId: 'Mozilla_Firefox_RHEL', benchmarkId: 'Mozilla_Firefox' },
+  {
+    scapBenchmarkId: 'Mozilla_Firefox_Windows',
+    benchmarkId: 'Mozilla_Firefox'
+  },
+  { scapBenchmarkId: 'MOZ_Firefox_Linux', benchmarkId: 'MOZ_Firefox_STIG' },
+  { scapBenchmarkId: 'MOZ_Firefox_Windows', benchmarkId: 'MOZ_Firefox_STIG' },
+  { scapBenchmarkId: 'Solaris_10_X86_STIG', benchmarkId: 'Solaris_10_X86' }
+]
+
+const scapBenchmarkMap = new Map(
+  dataArray.map(item => [item.scapBenchmarkId, item])
+)
+
 // Create a helper function to read the file and generate the review object
 async function generateReviewObject (
   filePath,
@@ -22,21 +42,20 @@ async function generateReviewObject (
   allowAccept
 ) {
   const data = await fs.readFile(filePath, 'utf8')
-  return reviewsFromCkl({
+  return reviewsFromXccdf({
     data,
-    importOptions,
     fieldSettings,
     allowAccept,
+    importOptions,
     valueProcessor,
+    scapBenchmarkMap,
     XMLParser
   })
 }
 
 
-describe('Testing that the CKL Review Parser will return the correct figures in the Statistics object', () => {
+describe('Testing that the xccdf Review Parser will return the correct figures in the Statistics object', () => {
   it('unreviewed: commented, unreviewedCommented: informational, has comments/detail', async () => {
-    // will import commented unreviewed findings as informational
-    // expecting to see 1 informational finding
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'commented',
@@ -59,7 +78,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -74,7 +93,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
       notapplicable: 2,
       notchecked: 0,
       notselected: 0,
-      informational: 1,
+      informational: 0,
       error: 0,
       fixed: 0,
       unknown: 0
@@ -84,7 +103,6 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   })
 
   it('unreviewed: commented, unreviewedCommented: notchecked, has comments/detail', async () => {
-     // will import commented unreviewed findings as notchecked
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'commented',
@@ -107,7 +125,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -120,7 +138,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
       pass: 2,
       fail: 2,
       notapplicable: 2,
-      notchecked: 1,
+      notchecked: 0,
       notselected: 0,
       informational: 0,
       error: 0,
@@ -132,7 +150,6 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   })
 
   it('unreviewed: always, unreviewedCommented: informational, has comments/detail', async () => {
-    // will always import unreviewed findings and unreviewed with a commment/detail is informational
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'always',
@@ -155,7 +172,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -167,9 +184,9 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
       pass: 2,
       fail: 2,
       notapplicable: 2,
-      notchecked: 1,
+      notchecked: 2,
       notselected: 0,
-      informational: 1,
+      informational: 0,
       error: 0,
       fixed: 0,
       unknown: 0
@@ -179,7 +196,6 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   })
 
   it('unreviewed: always, unreviewedCommented: notchecked, has comments/detail', async () => {
-      // will always import unreviewed findings and unreviewed with a commment/detail is notchecked
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'always',
@@ -202,7 +218,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -226,7 +242,6 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   })
 
   it(' unreviewed: never, unreviewedCommented: informational, has comments/detail', async () => {
-    // will never import unreviewed findings
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'never',
@@ -249,7 +264,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -274,7 +289,6 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   })
 
   it(' unreviewed: never, unreviewedCommented: notchecked', async () => {
-    // will never import unreviewed findings
     const importOptions = {
       autoStatus: 'saved',
       unreviewed: 'never',
@@ -297,7 +311,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,

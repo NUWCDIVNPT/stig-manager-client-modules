@@ -1,0 +1,150 @@
+{ 
+  "evaluate-stig": {
+    "version": "1.2310.1"
+  },
+  "title": "Evaluate-STIG_Chrome",
+  "id": "4c351439-c84e-42a6-a835-1d81e84e811c",
+  "stigs": [
+    {
+      "evaluate-stig": {
+        "time": "2023-12-11T12:56:14.3576272-05:00",
+        "module": {
+          "name": "Scan-GoogleChrome_Checks",
+          "version": "1.2023.7.24"
+        }
+      },
+      "stig_name": "Google Chrome Current Windows Security Technical Implementation Guide",
+      "display_name": "Google Chrome Current Windows",
+      "stig_id": "Google_Chrome_Current_Windows",
+      "release_info": "Release: 8 Benchmark Date: 26 Jan 2023",
+      "uuid": "42bea96a-3170-48ed-b6c1-d17841ed69a3",
+      "reference_identifier": "4081",
+      "size": 12,
+      "rules": [
+        {
+          "uuid": "438d468d-8b12-4331-8761-fb7901825d45",
+          "stig_uuid": "42bea96a-3170-48ed-b6c1-d17841ed69a3",
+          "target_key": "null",
+          "stig_ref": "null",
+          "group_id": "V-221558",
+          "rule_id": "SV-221558r769351",
+          "rule_id_src": "SV-221558r769351_rule",
+          "weight": "10.0",
+          "classification": "UNCLASSIFIED",
+          "severity": "medium",
+          "rule_version": "DTBC-0001",
+          "group_title": "Firewall traversal from remote host must be disabled.",
+          "rule_title": "Firewall traversal from remote host must be disabled.",
+          "fix_text": "Windows group policy:\n 1. Open the group policy editor tool with gpedit.msc \n 2. Navigate to Policy Path: Computer Configuration\\Administrative\\Templates\\Google\\Google Chrome\\Remote Access\n Policy Name: Enable firewall traversal from remote access host\n Policy State: Disabled\n Policy Value: N/A",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Remote connections should never be allowed that bypass the firewall, as there is no way to verify if they can be trusted. Enables usage of STUN and relay servers when remote clients are trying to establish a connection to this machine. If this setting is enabled, then remote clients can discover and connect to this machine even if they are separated by a firewall. If this setting is disabled and outgoing UDP connections are filtered by the firewall, then this machine will only allow connections from client machines within the local network. If this policy is left not set the setting will be enabled.\t",
+          "check_content": "Universal method:        \n   1. In the omnibox (address bar) type chrome://policy        \n   2. If RemoteAccessHostFirewallTraversal is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.\n\nWindows registry:\n   1. Start regedit\n   2. Navigate to HKLM\\Software\\Policies\\Google\\Chrome\\\n   3. If the RemoteAccessHostFirewallTraversal value name does not exist or its value data is not set to 0, then this is a finding.  \n",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "check_content_ref": {
+            "href": "Google_Chrome_Current_Windows_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [
+            "SV-57545",
+            "V-44711"
+          ],
+          "ccis": [
+            "CCI-001414"
+          ],
+          "group_tree": [
+            {
+              "id": "V-221558",
+              "title": "SRG-APP-000039",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-12-11T12:56:14.3576272-05:00",
+          "updatedAt": "2023-12-11T12:56:14.3576272-05:00",
+          "STIGUuid": "42bea96a-3170-48ed-b6c1-d17841ed69a3",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "detail"
+        },
+        {
+          "uuid": "35d5a016-938f-4e1f-ab05-b2dcd5f20a5e",
+          "stig_uuid": "42bea96a-3170-48ed-b6c1-d17841ed69a3",
+          "target_key": "null",
+          "stig_ref": "null",
+          "group_id": "V-221559",
+          "rule_id": "SV-221559r615937",
+          "rule_id_src": "SV-221559r615937_rule",
+          "weight": "10.0",
+          "classification": "UNCLASSIFIED",
+          "severity": "medium",
+          "rule_version": "DTBC-0002",
+          "group_title": "Site tracking users location must be disabled.",
+          "rule_title": "Site tracking users location must be disabled.",
+          "fix_text": "Windows group policy:    \n   1. Open the group policy editor tool with gpedit.msc   \n   2. Navigate to Policy Path: Computer Configuration\\Administrative Templates\\Google\\Google Chrome\\Content Settings\\    \n   Policy Name: Default geolocation setting    \n   Policy State: Enabled    \n   Policy Value: Do not allow any site to track the users' physical location\n\n",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Website tracking is the practice of gathering information as to which websites were accesses by a browser. The common method of doing this is to have a website create a tracking cookie on the browser.   If the information of what sites are being accessed is made available to unauthorized persons, this violates confidentiality requirements, and over time poses a significant OPSEC issue. This policy setting allows you to set whether websites are allowed to track the userâ€™s physical location. Tracking the userâ€™s physical location can be allowed by default, denied by default or the user can be asked every time a website requests the physical location.\t\n   1 = Allow sites to track the userâ€™s physical location\t\n   2 = Do not allow any site to track the userâ€™s physical location\t\n   3 = Ask whenever a site wants to track the userâ€™s physical location",
+          "check_content": "Universal method:               \n   1. In the omnibox (address bar) type chrome://policy             \n   2. If DefaultGeolocationSetting is not displayed under the Policy Name column or it is not set to 2, then this is a finding.\n\nWindows method:\n   1. Start regedit\n   2. Navigate to HKLM\\Software\\Policies\\Google\\Chrome\\\n   3. If the DefaultGeolocationSetting value name does not exist or its value data is not set to 2, then this is a finding.\n",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "check_content_ref": {
+            "href": "Google_Chrome_Current_Windows_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [
+            "SV-57557",
+            "V-44723"
+          ],
+          "ccis": [
+            "CCI-001166"
+          ],
+          "group_tree": [
+            {
+              "id": "V-221559",
+              "title": "SRG-APP-000206",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-12-11T12:56:14.3576272-05:00",
+          "updatedAt": "2023-12-11T12:56:14.3576272-05:00",
+          "STIGUuid": "42bea96a-3170-48ed-b6c1-d17841ed69a3",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "test"
+        }
+      ]
+    }
+  ],
+  "active": false,
+  "mode": 1,
+  "has_path": true,
+  "target_data": {
+    "target_type": "Computing",
+    "host_name": "CA1294WK16078",
+    "ip_address": "130.163.x.x, 192.168.x.x",
+    "mac_address": "00:05:9A:3C:7A:00, 2C:DB:07:3D:E5:9B",
+    "fqdn": "ca1294wk16078.cranrdte.navy.mil",
+    "comments": "",
+    "role": "Workstation",
+    "is_web_database": false,
+    "technology_area": "None",
+    "web_db_site": "",
+    "web_db_instance": ""
+  },
+  "cklb_version": "1.0"
+}

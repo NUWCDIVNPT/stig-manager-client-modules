@@ -5,7 +5,7 @@ JavaScript modules for STIG Manager clients. This README and other documentation
 In the root of a project, open a terminal and execute:
 
 ```
-$ npm install git+https://github.com/nuwcdivnpt/stig-manager-client-modules#rc-1
+$ npm install git+https://github.com/nuwcdivnpt/stig-manager-client-modules#semver:^1.4.0
 ```
 
 Importing all modules into ESM code

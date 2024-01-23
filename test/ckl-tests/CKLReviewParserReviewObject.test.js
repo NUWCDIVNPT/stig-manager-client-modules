@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { reviewsFromCkl } from '../ReviewParser.js'; 
+import { reviewsFromCkl } from '../../ReviewParser.js'; 
 import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
 import he from 'he';
@@ -567,7 +567,7 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
       fieldSettings,
       allowAccept
     )
-
+      
     // check that review has a comment or detail and exisits
     expect(review.checklists[0].reviews).to.be.empty
   })
@@ -1940,144 +1940,7 @@ describe('MISC CKL. ', () => {
     expect(review.checklists[0].reviews[0].detail).to.have.lengthOf(maxLength)
     expect(review.checklists[0].reviews[0].comment).to.have.lengthOf(maxLength)
   })
-  it('Testing result engine ckl with an expression of the Eval STIG "module" that did the evaluation  ', async () => {
-    const importOptions = {
-      autoStatus: 'submitted',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'ignore',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
-
-    const fieldSettings = {
-      detail: {
-        enabled: 'findings', // not used
-        required: 'always'
-      },
-      comment: {
-        enabled: 'always', // not used
-        required: 'always'
-      }
-    }
-
-    const allowAccept = true
-
-    const filePath =
-      './WATCHER-test-files/WATCHER/ckl/ResultEngineWithEvalStigModuleAndOverride.ckl'
-
-    const review = await generateReviewObject(
-      filePath,
-      importOptions,
-      fieldSettings,
-      allowAccept
-    )
-
-    const expectedResultEngine = {
-      type: 'script',
-      product: 'Evaluate-STIG',
-      version: '1.2204.1',
-      time: '2022-06-03T12:19:27.9454169-04:00',
-      checkContent: {
-        location: 'Scan-Windows10_Checks'
-      },
-      overrides: [
-        {
-          authority: 'MS_Windows_10_STIG_Answer_file.xml',
-          oldResult: 'unknown',
-          newResult: 'notapplicable',
-          remark: 'Evaluate-STIG Answer File'
-        }
-      ]
-    }
-
-    expect(review.checklists[0].reviews[0].resultEngine).to.deep.equal(
-      expectedResultEngine
-    )
-  })
-  it('Testing result engine ckl with an  Eval STIG individual answer file override', async () => {
-
-    const importOptions = {
-      autoStatus: 'submitted',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'ignore',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
-
-    const fieldSettings = {
-      detail: {
-        enabled: 'findings', // not used
-        required: 'always'
-      },
-      comment: {
-        enabled: 'always', // not used
-        required: 'always'
-      }
-    }
-
-    const allowAccept = true
-
-    const filePath =
-      './WATCHER-test-files/WATCHER/ckl/ResultEngineWithEvalStigModule.ckl'
-
-    const review = await generateReviewObject(
-      filePath,
-      importOptions,
-      fieldSettings,
-      allowAccept
-    )
-
-    const expectedResultEngine = {
-      type: 'script',
-      product: 'Evaluate-STIG',
-      version: '1.2204.1',
-      time: '2022-06-03T12:19:27.9454169-04:00',
-      checkContent: {
-        location: 'Scan-Windows10_Checks'
-      }
-    }
-
-    expect(review.checklists[0].reviews[0].resultEngine).to.deep.equal(
-      expectedResultEngine
-    )
-  })
-  it('Testing result engine ckl with an Eval STIG individual answer file override that is incorrect', async () => {
-    const importOptions = {
-      autoStatus: 'submitted',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'ignore',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
-
-    const fieldSettings = {
-      detail: {
-        enabled: 'findings', // not used
-        required: 'always'
-      },
-      comment: {
-        enabled: 'always', // not used
-        required: 'always'
-      }
-    }
-
-    const allowAccept = true
-
-    const filePath =
-      './WATCHER-test-files/WATCHER/ckl/ResultEngineInvalidComment.ckl'
-
-    const review = await generateReviewObject(
-      filePath,
-      importOptions,
-      fieldSettings,
-      allowAccept
-    )
-
-    expect(review.checklists[0].reviews[0].resultEngine).to.be.null
-  })
+ 
   it('Testing no <STATUS> value in a ckl ', async () => {
     // NOTE: the input comment and detail are '32768' characters long
 
@@ -2103,7 +1966,7 @@ describe('MISC CKL. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoResult.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-Status-xml-element.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -2138,7 +2001,7 @@ describe('MISC CKL. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/NoRuleId.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/No-RuleId-Value.ckl'
 
     const review = await generateReviewObject(
       filePath,

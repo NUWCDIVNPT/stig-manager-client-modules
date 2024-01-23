@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--<Evaluate-STIG><global><version>1.2204.1</version><time>2022-06-03T12:19:27.9454169-04:00</time></global><module><name>Scan-Windows10_Checks</name><version>1.2022.6.2</version></module><stiglist><name>Windows 10</name><shortname>Win10</shortname><template>Win10.ckl</template></stiglist></Evaluate-STIG>--><CHECKLIST>
+<!--<Evaluate-STIG><global><version>1.2204.1</version><time>2022-06-03T12:19:27.9454169-04:00</time></global><module><name>Scan-Windows10_Checks</name><version>1.2022131232.6.2</version></module><stiglist><name>Winadawdwaddows 10</name><shortname>Win10</shortname><template>Win10.ckl</template></stiglist></Evaluate-STIG>-->
+<CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
 		<ASSET_TYPE>Computing</ASSET_TYPE>

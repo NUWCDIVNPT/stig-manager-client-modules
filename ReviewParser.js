@@ -21,6 +21,7 @@ export function reviewsFromCkl(
       return newObj;
     }, {});
   }
+
   const resultMap = {
     NotAFinding: 'pass',
     Open: 'fail',
@@ -50,6 +51,7 @@ export function reviewsFromCkl(
   if (!parsed.CHECKLIST[0].STIGS) throw (new Error("No STIGS element"))
 
   const comments = parsed['__comment']
+  // extract the root ES comment 
   const resultEngineCommon = comments?.length ? processRootXmlComments(comments) : null
 
   let returnObj = {}
@@ -107,9 +109,9 @@ export function reviewsFromCkl(
       const stigRelease = stigReleaseInfo.match(/Release:\s*(.+?)\s/)?.[1]
       const stigRevisionStr = stigVersion && stigRelease ? `V${stigVersion}R${stigRelease}` : null
       checklist.revisionStr = stigRevisionStr
-
+     
       if (checklist.benchmarkId) {
-        let x = processVuln(iStig.VULN)
+        let x = processVuln(iStig.VULN, iStig.__comment)
         checklist.reviews = x.reviews
         checklist.stats = x.stats
         checklistArray.push(checklist)
@@ -118,7 +120,7 @@ export function reviewsFromCkl(
     return checklistArray
   }
 
-  function processVuln(vulnElements) {
+  function processVuln(vulnElements,iStigComment) {
     // vulnElements is an array of this object:
     // {
     //     COMMENTS
@@ -142,7 +144,7 @@ export function reviewsFromCkl(
       unknown: 0
     }
     vulnElements?.forEach(vuln => {
-      const review = generateReview(vuln, resultEngineCommon)
+      const review = generateReview(vuln, iStigComment)
       if (review) {
         vulnArray.push(review)
         resultStats[review.result]++
@@ -155,7 +157,7 @@ export function reviewsFromCkl(
     }
   }
 
-  function generateReview(vuln, resultEngineCommon) {
+  function generateReview(vuln, iStigComment) {
     let result = resultMap[vuln.STATUS]
     if (!result) return
     const ruleId = getRuleIdFromVuln(vuln)
@@ -214,8 +216,12 @@ export function reviewsFromCkl(
       comment
     }
 
+    // if the current checklist contrains a comment from ES, process it and add it to the review
+    const iStigCommentProcessed = processIstigXmlComments(iStigComment)
+
     if (resultEngineCommon) {
-      review.resultEngine = { ...resultEngineCommon }
+      // combining the root ES comment and the checklist ES comment
+      review.resultEngine = { ...resultEngineCommon, ...iStigCommentProcessed }
       if (vuln['__comment']) {
         const overrides = []
         for (const comment of vuln['__comment']) {
@@ -313,7 +319,7 @@ export function reviewsFromCkl(
           status = 'submitted'
           break
         case 'accepted':
-          status = allowAccept ? 'accepted' : 'submitted'
+        status = allowAccept ? 'accepted' : 'submitted'
           break
       }
     }
@@ -323,6 +329,37 @@ export function reviewsFromCkl(
     return status
   }
 
+// process the Evaluate-STIG XML coments for each "Checklist" (iSTIG)
+  function processIstigXmlComments(iStigComment) {
+
+    if(!iStigComment) return null
+
+    let resultEngineIStig
+    for (const comment of iStigComment) {
+
+      if (comment.toString().startsWith('<Evaluate-STIG>')) {
+        let esIStigComment
+        try {
+          esIStigComment = parser.parse(comment)['Evaluate-STIG'][0]
+        }
+        catch (e) {
+          console.log('Failed to parse Evaluate-STIG root XML comment')
+        }
+        esIStigComment = normalizeKeys(esIStigComment)
+        resultEngineIStig = {
+          time: esIStigComment?.time,
+          checkContent: {
+            location: (esIStigComment?.module?.[0]?.name ?? '') + 
+                      ((esIStigComment?.module?.[0]?.name && esIStigComment?.module?.[0]?.version) ? ':' : '') + 
+                      (esIStigComment?.module?.[0]?.version ?? '')  
+          }
+        }
+      }
+    }
+    return resultEngineIStig || null
+  }
+
+  // process the Evaluate-STIG ROOT XML comments
   function processRootXmlComments(comments) {
     let resultEngineRoot
     for (const comment of comments) {
@@ -338,13 +375,16 @@ export function reviewsFromCkl(
         resultEngineRoot = {
           type: 'script',
           product: 'Evaluate-STIG',
-          version: esRootComment?.global?.[0]?.version,
+          version: esRootComment?.global?.[0]?.version || esRootComment?.version,
           time: esRootComment?.global?.[0]?.time,
           checkContent: {
-            location: esRootComment?.module?.[0]?.name ?? ''
+            location: (esRootComment?.module?.[0]?.name ?? '') + 
+                      ((esRootComment?.module?.[0]?.name && esRootComment?.module?.[0]?.version) ? ':' : '') + 
+                      (esRootComment?.module?.[0]?.version ?? '') 
+
           }
         }
-      }
+      }  
     }
     return resultEngineRoot || null
   }
@@ -715,8 +755,9 @@ export function reviewsFromCklb(
   if (!validationResult.valid) {
     throw (new Error(`Invalid CKLB object: ${validationResult.error}`))
   }
+  // extract root evaluate-stig object
+  const resultEngineCommon = processRootEvalStigModule(cklb['evaluate-stig'])
 
-  const resultEngineCommon = cklb.stig_manager_engine || null
   let returnObj = {}
   returnObj.target = processTargetData(cklb.target_data)
   if (!returnObj.target.name) {
@@ -772,7 +813,7 @@ export function reviewsFromCklb(
       checklist.revisionStr = checklist.benchmarkId && stigRelease ? `V${stigVersion}R${stigRelease}` : null
 
       if (checklist.benchmarkId) {
-        const result = processRules(stig.rules)
+        const result = processRules(stig.rules, stig['evaluate-stig'])
         checklist.reviews = result.reviews
         checklist.stats = result.stats
         checklistArray.push(checklist)
@@ -781,7 +822,7 @@ export function reviewsFromCklb(
     }
     return checklistArray
   }
-  function processRules(rules) {
+  function processRules(rules, evalStigResultEngine) {
     const stats = {
       pass: 0,
       fail: 0,
@@ -795,7 +836,7 @@ export function reviewsFromCklb(
     }
     const reviews = []
     for (const rule of rules) {
-      const review = generateReview(rule, resultEngineCommon)
+      const review = generateReview(rule, evalStigResultEngine)
       if (review) {
         reviews.push(review)
         stats[review.result]++
@@ -803,7 +844,7 @@ export function reviewsFromCklb(
     }
     return { reviews, stats }
   }
-  function generateReview(rule, resultEngineCommon) {
+  function generateReview(rule, evalStigResultEngine) {
     let result = resultMap[rule.status]
     if (!result) return
     const ruleId = rule.rule_id_src
@@ -862,38 +903,15 @@ export function reviewsFromCklb(
       comment
     }
 
-    // if (resultEngineCommon) {
-    //   review.resultEngine = {...resultEngineCommon}
-    //   if (rule.stig_manager_engine) {
-    //     const overrides = []
-    //     for (const comment of vuln['__comment']) {
-    //       if (comment.toString().startsWith('<Evaluate-STIG>')) {
-    //         let override
-    //         try {
-    //           override = parser.parse(comment)['Evaluate-STIG'][0]
-    //         }
-    //         catch(e) {
-    //           console.log(`Failed to parse Evaluate-STIG VULN XML comment for ${ruleId}`)
-    //         }
-    //         override = normalizeKeys(override)
-    //         if (override.afmod?.toLowerCase() === 'true') {
-    //           overrides.push({
-    //             authority: override.answerfile,
-    //             oldResult: resultMap[override.oldstatus] ?? 'unknown',
-    //             newResult: result,
-    //             remark: 'Evaluate-STIG Answer File'
-    //           })
-    //         }
-    //       } 
-    //     }
-    //     if (overrides.length) {
-    //       review.resultEngine.overrides = overrides
-    //     }  
-    //   }
-    // }
-    // else {
-    //   review.resultEngine = null
-    // }
+    const iStigCommentProcessed = processStigEvalStigModule(evalStigResultEngine)
+
+    if(resultEngineCommon){
+      review.resultEngine = {...resultEngineCommon,...iStigCommentProcessed}
+    } 
+    else 
+    {
+      review.resultEngine = null
+    }
 
     const status = bestStatusForReview(review)
     if (status) {
@@ -957,6 +975,33 @@ export function reviewsFromCklb(
       status = 'saved'
     }
     return status
+  }
+
+ // process evaluate-stig module for each "Checklist" (STIGs array)
+ function processStigEvalStigModule(stigModule){
+    let resultEngineIStig
+    if(!stigModule) return null
+    resultEngineIStig = {
+      time: stigModule.time,
+      checkContent: {
+        location: (stigModule.module?.name ?? '') + 
+                  ((stigModule.module?.name && stigModule.module?.version) ? ':' : '') + 
+                  (stigModule.module?.version ?? '')
+      }
+    }
+    return resultEngineIStig
+  }
+ 
+  // process root evaluate-stig object
+  function processRootEvalStigModule(module){
+    let resultEngineCommon
+    if(!module) return null
+    resultEngineCommon = {
+      type: 'script',
+      product: 'Evaluate-STIG',
+      version: module.version,
+    }
+    return resultEngineCommon
   }
 
 

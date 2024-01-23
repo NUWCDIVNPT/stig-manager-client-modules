@@ -17,9 +17,7 @@
     "c8": "^8.0.1",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "rollup": "^4.8.0"
-  },
-  "dependencies": {
+    "rollup": "^4.8.0",
     "fast-xml-parser": "^4.3.2"
   }
 }
