@@ -89,6 +89,8 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
       allowAccept
     )
 
+
+
     const expectedResultEngines = [
       {
         type: 'script',
@@ -96,7 +98,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
         version: '1.2310.1',
         time: '2023-12-11T12:56:14.3576272-05:00',
         checkContent: {
-          location: 'Scan-GoogleChrome_Checks'
+          location: 'Scan-GoogleChrome_Checks:1.2023.7.24'
         }
       },
       {
@@ -105,7 +107,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
         version: '1.2310.1',
         time: '2023-12-11T12:56:34.9155152-05:00',
         checkContent: {
-          location: 'Scan-MicrosoftEdge_Checks'
+          location: 'Scan-MicrosoftEdge_Checks:1.2023.7.24'
         }
       }
     ]
@@ -158,7 +160,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
         version: '1.2310.1',
         time: '2023-12-11T12:56:14.3576272-05:00',
         checkContent: {
-          location: 'Scan-GoogleChrome_Checks'
+          location: 'Scan-GoogleChrome_Checks:1.2023.7.24'
         }
       },
       {
@@ -167,7 +169,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
         version: '1.2310.1'
       }
     ]
-
+    
     expect(review.checklists[0].reviews[0].resultEngine).to.deep.equal(
       expectedResultEngines[0]
     )

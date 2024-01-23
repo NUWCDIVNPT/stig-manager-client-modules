@@ -74,7 +74,7 @@ describe('CKL result engine tests', () => {
       version: '1.2204.1',
       time: '2022-06-03T12:19:27.9454169-04:00',
       checkContent: {
-        location: 'Scan-Windows10_Checks'
+        location: 'Scan-Windows10_Checks:1.2022.6.2'
       },
       overrides: [
         {
@@ -129,7 +129,7 @@ describe('CKL result engine tests', () => {
       version: '1.2204.1',
       time: '2022-06-03T12:19:27.9454169-04:00',
       checkContent: {
-        location: 'Scan-Windows10_Checks'
+        location: 'Scan-Windows10_Checks:1.2022131232.6.2'
       }
     }
     expect(review.checklists[0].reviews[0].resultEngine).to.deep.equal(
@@ -247,7 +247,7 @@ describe('CKL result engine tests', () => {
         version: '1.2310.1',
         time: '2026-12-11T12:56:14.3576272-05:00',
         checkContent: {
-          location: 'Test1'
+          location: 'Test1:1.2.3.4'
         }
       },
       {
@@ -309,7 +309,7 @@ describe('CKL result engine tests', () => {
         version: '1.2310.1',
         time: '2026-12-11T12:56:14.3576272-05:00',
         checkContent: {
-          location: 'Test1'
+          location: 'Test1:1'
         }
       },
       {
@@ -418,7 +418,7 @@ describe('CKL result engine tests', () => {
       time: '2026-12-11T12:56:14.3576272-05:00',
       version: undefined,
       checkContent: {
-        location: 'Test1'
+        location: 'Test1:1'
       }
     }
 
