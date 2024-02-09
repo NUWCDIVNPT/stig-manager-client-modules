@@ -1,78 +1,51 @@
-/**
- * @typedef {Object} apiCollectionBasic
- * @property {string} collectionId
- * @property {string} name
- */
-/**
- * @typedef {Object} apiCollectionStig
- * @property {string} benchmarkId
- * @property {string} revisionStr
- * @property {string} benchmarkDate
- * @property {boolean} revisionPinned
- * @property {number} ruleCount
- */
-/**
- * @typedef {Object} apiAsset
- * @property {string} assetId
- * @property {string} name
- * @property {string} fqdn
- * @property {string} description
- * @property {string} ip
- * @property {string} mac
- * @property {boolean} noncomputing
- * @property {Object} metadata
- * @property {apiCollectionBasic} collection
- * @property {string[]} labelIds
- * @property {apiCollectionStig[]} stigs
- */
-/**
- * @typedef {Object} apiStig
- * @property {string} benchmarkId
- * @property {string} revisionStr
- * @property {string} version
- * @property {string} release
- * @property {string} benchmarkDate
- * @property {string} status
- * @property {string} statusDate
- * @property {string} ruleCount
- * @property {string[]} collectionIds
- */
+
+const addItemToMapArrayValue = (map, key, item) => {
+  const arr = map.get(key) ?? []
+  arr.push(item)
+  map.set(key, arr)
+}
 
 export default class TaskObject {
   /**
    * @param {Object} TaskObjectParam
-   * @param {apiAsset[]} TaskObjectParam.apiAssets
-   * @param {apiStig[]} TaskObjectParam.apiStigs
+   * @param {ApiAsset[]} TaskObjectParam.apiAssets
+   * @param {ApiStig[]} TaskObjectParam.apiStigs
+   * @param {ParseResult[]} TaskObjectParam.parsedResults
+   * @param {TaskObjectOptions} TaskObjectParam.options
    */
   constructor({ apiAssets = [], apiStigs = [], parsedResults = [], options = {} }) {
     // An array of results from the parsers
+    /** @type {ParseResult[]} */
     this.parsedResults = parsedResults
+
     // An array of assets from the API
+    /** @type {ApiAsset[]} */
     this.apiAssets = apiAssets
-    // Create Maps of the assets by assetName and metadata.cklHostName
+
+    // Create Map for the assets, key:apiAsset.name, value: apiAsset
+    /** @type {Map<string, ApiAsset>} */
     this.mappedAssetNames = new Map()
+
+    // Create Map for the cklHostnames, key:apiAsset.metadata.cklHostName, value:apiAsset[]
+    /** @type {Map<string, ApiAsset[]} */
     this.mappedCklHostnames = new Map()
+
     for (const apiAsset of apiAssets) {
-      // Update .stigs to an array of benchmarkId strings
+      // Change apiAsset.stigs from an array of stig objects to an array of benchmarkId strings
       apiAsset.stigs = apiAsset.stigs.map(stig => stig.benchmarkId)
       this.mappedAssetNames.set(apiAsset.name.toLowerCase(), apiAsset)
       if (apiAsset.metadata?.cklHostName) {
-        const v = this.mappedCklHostnames.get(apiAsset.metadata.cklHostName.toLowerCase())
-        if (v) {
-          v.push(apiAsset)
-        }
-        else {
-          this.mappedCklHostnames.set(apiAsset.metadata.cklHostName.toLowerCase(), [apiAsset])
-        }
+        addItemToMapArrayValue(
+          this.mappedCklHostnames, 
+          apiAsset.metadata.cklHostName.toLowerCase(), 
+          apiAsset
+        )
       }
     }
 
     // A Map() of the installed benchmarkIds return by the API
     // key: benchmarkId, value: array of revisionStr
-    this.mappedStigs = new Map()
-    for (const apiStig of apiStigs) {
-      this.mappedStigs.set(apiStig.benchmarkId, apiStig.revisionStrs)
-    }
+    this.mappedStigs = new Map(apiStigs.map(stig => [stig.benchmarkId, stig.revisionStrs]))
 
     // An array of accumulated errors
     this.errors = []
@@ -82,11 +55,17 @@ export default class TaskObject {
   }
 
   _findAssetFromParsedTarget(target) {
+    // If there's no target.metadata.cklHostName, return the apiAsset (if any) matching the target.name
     if (!target.metadata.cklHostName) {
       return this.mappedAssetNames.get(target.name.toLowerCase())
     }
+
+    // get the array of apiAssets (if any) having the given target.metadata.cklHostName
     const matchedByCklHostname = this.mappedCklHostnames.get(target.metadata.cklHostName.toLowerCase())
+    // return null if no matches
     if (!matchedByCklHostname) return null
+    
+    // find the first apiAsset that matches all the CKL metadata , or null
     const matchedByAllCklMetadata = matchedByCklHostname.find(
       asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
         && asset.metadata.cklWebDbSite?.toLowerCase() === target.metadata.cklWebDbSite?.toLowerCase())
@@ -107,6 +86,7 @@ export default class TaskObject {
     // }
 
 
+    /** @type {Map<string, TaskAssetValue} */
     const taskAssets = new Map()
 
     for (const parsedResult of this.parsedResults) {
@@ -119,10 +99,10 @@ export default class TaskObject {
         mapKey = `${tMeta.cklHostName}-${tMeta.cklWebDbSite ?? 'NA'}-${tMeta.cklWebDbInstance ?? 'NA'}`
       }
 
-      // Try to find the asset in the API response
+      // Try to find the asset in apiAssets
       const apiAsset = this._findAssetFromParsedTarget(parsedResult.target)
       if (!apiAsset && !options.createObjects) {
-        // Bail if the asset doesn't exist and we won't create it
+        // Bail if the asset doesn't exist and we shouldn't create it
         this.errors.push({
           file: parsedResult.file,
           message: `asset does not exist for target`,
@@ -194,6 +174,7 @@ export default class TaskObject {
         }
       }
 
+
       // Vet the checklists in this parseResult 
       for (const checklist of parsedResult.checklists) {
         checklist.file = parsedResult.file
@@ -208,7 +189,7 @@ export default class TaskObject {
             addToTaskAssetChecklistMapArray(taskAsset, checklist)
           }
           else {
-            checklist.ignored = `Not mapped to Asset`
+            checklist.ignored = `Not mapped to Asset and I can't change that`
             taskAsset.checklistsIgnored.push(checklist)
           }
         }
