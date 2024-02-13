@@ -5,7 +5,8 @@ export function reviewsFromCkl(
     allowAccept,
     importOptions,
     valueProcessor,
-    XMLParser
+    XMLParser,
+    sourceRef
   }) {
 
   const maxCommentLength = 32767
@@ -54,7 +55,9 @@ export function reviewsFromCkl(
   // extract the root ES comment 
   const resultEngineCommon = comments?.length ? processRootXmlComments(comments) : null
 
-  let returnObj = {}
+  let returnObj = {
+    sourceRef
+  }
   returnObj.target = processAsset(parsed.CHECKLIST[0].ASSET[0])
   if (!returnObj.target.name) {
     throw (new Error("No host_name in ASSET"))
@@ -98,7 +101,7 @@ export function reviewsFromCkl(
   function processIStig(iStigElement) {
     let checklistArray = []
     iStigElement.forEach(iStig => {
-      let checklist = {}
+      let checklist = { sourceRef }
       // get benchmarkId
       let stigIdElement = iStig.STIG_INFO[0].SI_DATA.filter(d => d.SID_NAME === 'stigid')?.[0]
       checklist.benchmarkId = stigIdElement.SID_DATA.replace('xccdf_mil.disa.stig_benchmark_', '')
@@ -312,7 +315,7 @@ export function reviewsFromCkl(
 
     const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
 
-    let status = undefined
+    let status
     if (detailSubmittable && commentSubmittable && resultSubmittable) {
       switch (importOptions.autoStatus) {
         case 'submitted':
@@ -398,7 +401,8 @@ export function reviewsFromXccdf(
     importOptions,
     valueProcessor,
     scapBenchmarkMap,
-    XMLParser
+    XMLParser,
+    sourceRef
   }) {
 
   // Parse the XML
@@ -457,7 +461,7 @@ export function reviewsFromXccdf(
   let DEFAULT_RESULT_TIME = testResult['end-time'] //required by XCCDF 1.2 rev 4 spec
 
   // Process parsed data
-  if (scapBenchmarkMap && scapBenchmarkMap.has(benchmarkId)) {
+  if (scapBenchmarkMap?.has(benchmarkId)) {
     benchmarkId = scapBenchmarkMap.get(benchmarkId)
   }
   const target = processTarget(testResult)
@@ -468,10 +472,10 @@ export function reviewsFromXccdf(
   // resultEngine info
   const testSystem = testResult['test-system']
   // SCC injects a CPE WFN bound to a URN
-  const m = testSystem.match(/[c][pP][eE]:\/[AHOaho]?:(.*)/)
-  let vendor, product, version
+  const m = testSystem.match(/[cC][pP][eE]:\/[AHOaho]?:(.*)/)
+  let product, version
   if (m?.[1]) {
-    ;[vendor, product, version] = m[1].split(':')
+    ;[, product, version] = m[1].split(':')
   }
   else {
     ;[product, version] = testSystem.split(':') // e.g. PAAuditEngine:6.5.3
@@ -490,8 +494,10 @@ export function reviewsFromXccdf(
       benchmarkId: benchmarkId,
       revisionStr: null,
       reviews: r.reviews,
-      stats: r.stats
-    }]
+      stats: r.stats,
+      sourceRef
+    }],
+    sourceRef
   })
 
   function processRuleResults(ruleResults, resultEngineTpl) {
@@ -649,7 +655,7 @@ export function reviewsFromXccdf(
 
     const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
 
-    let status = undefined
+    let status
     if (commentsSubmittable && resultSubmittable) {
       switch (importOptions.autoStatus) {
         case 'submitted':
@@ -715,7 +721,8 @@ export function reviewsFromCklb(
     data,
     fieldSettings,
     allowAccept,
-    importOptions
+    importOptions,
+    sourceRef
   }) {
 
   const maxCommentLength = 32767
@@ -735,10 +742,10 @@ export function reviewsFromCklb(
   const validateCklb = (obj) => {
     try {
       if (!obj.target_data?.host_name) {
-        throw ('No target_data.host_name found')
+        throw new Error('No target_data.host_name found')
       }
       if (!Array.isArray(obj.stigs)) {
-        throw ('No stigs array found')
+        throw new Error('No stigs array found')
       }
       return { valid: true }
     }
@@ -758,7 +765,7 @@ export function reviewsFromCklb(
   // extract root evaluate-stig object
   const resultEngineCommon = processRootEvalStigModule(cklb['evaluate-stig'])
 
-  let returnObj = {}
+  let returnObj = { sourceRef }
   returnObj.target = processTargetData(cklb.target_data)
   if (!returnObj.target.name) {
     throw (new Error("No host_name in target_data"))
@@ -806,7 +813,7 @@ export function reviewsFromCklb(
       //   reviews: [],
       //   stats: {}
       // }
-      const checklist = {}
+      const checklist = { sourceRef }
       checklist.benchmarkId = typeof stig?.stig_id === 'string' ? stig.stig_id.replace('xccdf_mil.disa.stig_benchmark_', '') : ''
       const stigVersion = '0'
       const stigRelease = typeof stig?.release_info === 'string' ? stig.release_info.match(/Release:\s*(.+?)\s/)?.[1] : ''
@@ -960,7 +967,7 @@ export function reviewsFromCklb(
 
     const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
 
-    let status = undefined
+    let status
     if (detailSubmittable && commentSubmittable && resultSubmittable) {
       switch (importOptions.autoStatus) {
         case 'submitted':
@@ -1003,8 +1010,6 @@ export function reviewsFromCklb(
     }
     return resultEngineCommon
   }
-
-
 }
 
 export const reviewsFromScc = reviewsFromXccdf

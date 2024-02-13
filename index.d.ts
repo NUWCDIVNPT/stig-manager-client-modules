@@ -95,11 +95,13 @@ interface ParsedChecklist {
     reviews: ParsedReview[];
     revisionStr: string;
     stats: ParsedChecklistStats;
+    sourceRef: any;
 }
 
 interface ParseResult {
     target: ParsedTarget;
     checklists: ParsedChecklist[];
+    sourceRef: any;
 }
 
 interface TaskObjectOptions {
@@ -121,7 +123,6 @@ interface TaskObjectParams {
 }
 
 interface TaskAssetChecklist extends ParsedChecklist {
-    file: string;
     newAssignment: boolean;
     ignored?: boolean;
 }
@@ -133,17 +134,18 @@ interface TaskAssetValue {
     hasNewAssignment: boolean;
     knownAsset: boolean;
     newAssignments: string[];
-    reviews: ParsedReview[];
+    sourceRefs: any[];
 }
 
 declare class TaskObject {
     constructor (options: TaskObjectParams);
     apiAssets: ApiAsset[];
+    apiStigs: ApiStig[];
+    #assetNameMap: Map<string, ApiAsset>;
+    #benchmarkIdMap: Map<string, string[]>;
+    #cklHostnameMap: Map<string, ApiAsset[]>;
     errors: array;
-    mappedAssetNames: Map<string, ApiAsset>;
-    mappedCklHostnames: Map<string, ApiAsset[]>;
-    mappedStigs: Map<string, string[]>
     parsedResults: TaskObjectParseResult[];
+    sourceRefs: any[];
     taskAssets: Map<string, TaskAssetValue>;
-
 }
