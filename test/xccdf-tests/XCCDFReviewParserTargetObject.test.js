@@ -1,18 +1,7 @@
 import chai from 'chai';
 import { reviewsFromXccdf } from '../../ReviewParser.js'; 
-import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
-import he from 'he';
 const expect = chai.expect
-const valueProcessor = function (
-  tagName,
-  tagValue,
-  jPath,
-  hasAttributes,
-  isLeafNode
-) {
-  he.decode(tagValue)
-}
 
 const dataArray = [
   {
@@ -46,34 +35,8 @@ async function generateReviewObject (
     fieldSettings,
     allowAccept,
     importOptions,
-    valueProcessor,
-    scapBenchmarkMap,
-    XMLParser
+    scapBenchmarkMap
   })
-}
-
-// Parse the XML
-const parseOptions = {
-  allowBooleanAttributes: false,
-  attributeNamePrefix: '',
-  cdataPropName: '__cdata', //default is 'false'
-  ignoreAttributes: false,
-  parseTagValue: false,
-  removeNSPrefix: true,
-  trimValues: true,
-  tagValueProcessor: valueProcessor,
-  commentPropName: '__comment',
-  isArray: (name, jpath, isLeafNode, isAttribute) => {
-    const arrayElements = [
-      'override',
-      'overrides',
-      'target',
-      'target-address',
-      'fact',
-      'rule-result' // made the change here!!
-    ]
-    return arrayElements.includes(name)
-  }
 }
 
 describe('Target Object Tests xccdf', () => {

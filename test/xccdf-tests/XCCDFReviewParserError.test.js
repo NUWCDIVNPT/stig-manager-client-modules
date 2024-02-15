@@ -1,20 +1,8 @@
 import chai from 'chai';
 import { reviewsFromXccdf } from '../../ReviewParser.js'; 
-import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
-import he from 'he';
 
 const expect = chai.expect
-const valueProcessor = function (
-  tagName,
-  tagValue,
-  jPath,
-  hasAttributes,
-  isLeafNode
-) {
-  he.decode(tagValue)
-}
-
 const dataArray = [
   {
     scapBenchmarkId: 'CAN_Ubuntu_18-04_STIG',
@@ -68,9 +56,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
         fieldSettings,
         allowAccept,
         importOptions,
-        valueProcessor,
-        scapBenchmarkMap,
-        XMLParser
+        scapBenchmarkMap
       })
     ).to.throw('No Benchmark or TestResult element')
   })
@@ -108,9 +94,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
         fieldSettings,
         allowAccept,
         importOptions,
-        valueProcessor,
-        scapBenchmarkMap,
-        XMLParser
+        scapBenchmarkMap
       })
     ).to.throw('No Benchmark.TestResult element')
   })
@@ -147,9 +131,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
         fieldSettings,
         allowAccept,
         importOptions,
-        valueProcessor,
-        scapBenchmarkMap,
-        XMLParser
+        scapBenchmarkMap
       })
     ).to.throw('No Benchmark.TestResult.target element')
   })
@@ -186,9 +168,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
         fieldSettings,
         allowAccept,
         importOptions,
-        valueProcessor,
-        scapBenchmarkMap,
-        XMLParser
+        scapBenchmarkMap
       })
     ).to.throw('No Benchmark.TestResult.rule-result element')
   })

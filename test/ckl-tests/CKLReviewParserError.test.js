@@ -1,20 +1,8 @@
 import chai from 'chai';
 import { reviewsFromCkl } from '../../ReviewParser.js';  
-import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
-import he from 'he';
 
 const expect = chai.expect;
-
-const valueProcessor = function (
-  tagName,
-  tagValue,
-  jPath,
-  hasAttributes,
-  isLeafNode
-) {
-  he.decode(tagValue)
-}
 
 // Create a helper function to read the file and generate the review object
 async function generateReviewObject (
@@ -28,9 +16,7 @@ async function generateReviewObject (
     data,
     importOptions,
     fieldSettings,
-    allowAccept,
-    valueProcessor,
-    XMLParser
+    allowAccept
   })
 }
 
@@ -68,9 +54,7 @@ describe('testing CKL XML element errors', () => {
         data,
         importOptions,
         fieldSettings,
-        allowAccept,
-        valueProcessor,
-        XMLParser
+        allowAccept
       })
     ).to.throw('No CHECKLIST element')
   })
@@ -106,9 +90,7 @@ describe('testing CKL XML element errors', () => {
         data,
         importOptions,
         fieldSettings,
-        allowAccept,
-        valueProcessor,
-        XMLParser
+        allowAccept
       })
     ).to.throw('No ASSET element')
   })
@@ -144,9 +126,7 @@ describe('testing CKL XML element errors', () => {
         data,
         importOptions,
         fieldSettings,
-        allowAccept,
-        valueProcessor,
-        XMLParser
+        allowAccept
       })
     ).to.throw('No STIGS element')
   })
@@ -182,9 +162,7 @@ describe('testing CKL XML element errors', () => {
         data,
         importOptions,
         fieldSettings,
-        allowAccept,
-        valueProcessor,
-        XMLParser
+        allowAccept
       })
     ).to.throw('No host_name in ASSET')
   })
@@ -220,9 +198,7 @@ describe('testing CKL XML element errors', () => {
         data,
         importOptions,
         fieldSettings,
-        allowAccept,
-        valueProcessor,
-        XMLParser
+        allowAccept
       })
     ).to.throw('STIG_INFO element has no SI_DATA for SID_NAME == stigId')
   })

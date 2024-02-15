@@ -1,18 +1,7 @@
 import chai from 'chai';
 import { reviewsFromXccdf } from '../../ReviewParser.js'; 
-import { XMLParser } from 'fast-xml-parser';
 import fs from 'fs/promises';
-import he from 'he';
 const expect = chai.expect
-const valueProcessor = function (
-  tagName,
-  tagValue,
-  jPath,
-  hasAttributes,
-  isLeafNode
-) {
-  he.decode(tagValue)
-}
 
 const dataArray = [
   {
@@ -46,9 +35,7 @@ async function generateReviewObject (
     fieldSettings,
     allowAccept,
     importOptions,
-    valueProcessor,
-    scapBenchmarkMap,
-    XMLParser
+    scapBenchmarkMap
   })
 }
 
