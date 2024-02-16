@@ -57,12 +57,6 @@ describe('CKL html decoding tests', () => {
     const hi =
       '&amp; &lt; &gt; &quot; &#039; &#x26; &#60; &amp; &lt; &gt; &quot; &#039;'
 
-    // & < > " ' & < & < > " '
-
-    // '& < > " \' & < & < > " \''
-
-    //  '& < > " \' & < & < > " \' '
-
     const expectedDecodedString = '& < > " \' & < & < > " \''
 
     expect(tagValueProcessor(null, hi)).to.equal(expectedDecodedString)

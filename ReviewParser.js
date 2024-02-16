@@ -31,7 +31,7 @@ import decode from './he-stigman.js'
 
 export const tagValueProcessor = function () {
   const text = arguments[1]
-  return decode(text, { isAttributeValue: true })
+  return decode(text)
 }
 
 export function reviewsFromCkl(
