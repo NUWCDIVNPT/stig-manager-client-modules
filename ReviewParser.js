@@ -1,9 +1,8 @@
 import {XMLParser} from './fxp.esm.js'
-import decode from './he.esm.js'
+import decode from './decode.js'
 
 const decodeHTML = function () {
-  const text = arguments[1]
-  return decode(text)
+  return decode(arguments[1])
 }
 
 export function reviewsFromCkl(
