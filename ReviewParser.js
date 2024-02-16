@@ -1,31 +1,37 @@
 import {XMLParser} from './fxp.esm.js'
+import decode from './he.js'
 
-const tagValueProcessor = function () {
+// export const tagValueProcessor = function () {
+//   const text = arguments[1]
+//   const entities = {
+//     '&amp;': '&',
+//     '&lt;': '<',
+//     '&gt;': '>',
+//     '&quot;': '"',
+//     '&#039;': "'"
+//   }
+
+//   return text.replace(/&([^;]+);/g, function (entity, entityCode) {
+//     let match
+
+//     if (entity in entities) {
+//       return entities[entity]
+//     } 
+//     else if (match = entityCode.match(/^#x([\da-fA-F]+)$/)) {
+//       return String.fromCharCode(parseInt(match[1], 16))
+//     } 
+//     else if (match = entityCode.match(/^#(\d+)$/)) {
+//       return String.fromCharCode(~~match[1])
+//     } 
+//     else {
+//       return entity
+//     }
+//   })
+// }
+
+export const tagValueProcessor = function () {
   const text = arguments[1]
-  const entities = {
-    '&amp;': '&',
-    '&lt;': '<',
-    '&gt;': '>',
-    '&quot;': '"',
-    '&#039;': "'"
-  }
-
-  return text.replace(/&([^;]+);/g, function (entity, entityCode) {
-    let match
-
-    if (entityCode in entities) {
-      return entities[entityCode]
-    } 
-    else if (match = entityCode.match(/^#x([\da-fA-F]+)$/)) {
-      return String.fromCharCode(parseInt(match[1], 16))
-    } 
-    else if (match = entityCode.match(/^#(\d+)$/)) {
-      return String.fromCharCode(~~match[1])
-    } 
-    else {
-      return entity
-    }
-  })
+  return decode(text, { isAttributeValue: true })
 }
 
 export function reviewsFromCkl(
