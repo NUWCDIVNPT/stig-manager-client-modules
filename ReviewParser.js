@@ -1,35 +1,7 @@
 import {XMLParser} from './fxp.esm.js'
-import decode from './he-stigman.js'
+import decode from './he.esm.js'
 
-// export const tagValueProcessor = function () {
-//   const text = arguments[1]
-//   const entities = {
-//     '&amp;': '&',
-//     '&lt;': '<',
-//     '&gt;': '>',
-//     '&quot;': '"',
-//     '&#039;': "'"
-//   }
-
-//   return text.replace(/&([^;]+);/g, function (entity, entityCode) {
-//     let match
-
-//     if (entity in entities) {
-//       return entities[entity]
-//     } 
-//     else if (match = entityCode.match(/^#x([\da-fA-F]+)$/)) {
-//       return String.fromCharCode(parseInt(match[1], 16))
-//     } 
-//     else if (match = entityCode.match(/^#(\d+)$/)) {
-//       return String.fromCharCode(~~match[1])
-//     } 
-//     else {
-//       return entity
-//     }
-//   })
-// }
-
-export const tagValueProcessor = function () {
+const decodeHTML = function () {
   const text = arguments[1]
   return decode(text)
 }
@@ -72,7 +44,7 @@ export function reviewsFromCkl(
     parseAttributeValue: false,
     removeNSPrefix: true,
     trimValues: true,
-    tagValueProcessor,
+    tagValueProcessor: decodeHTML,
     commentPropName: "__comment",
     isArray: (name, jpath, isLeafNode, isAttribute) => {
       return name === '__comment' || !isLeafNode
@@ -446,7 +418,7 @@ export function reviewsFromXccdf(
     parseTagValue: false,
     removeNSPrefix: true,
     trimValues: true,
-    tagValueProcessor,
+    tagValueProcessor: decodeHTML,
     commentPropName: "__comment",
     isArray: (name, jpath, isLeafNode, isAttribute) => {
       const arrayElements = [
