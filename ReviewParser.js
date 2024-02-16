@@ -1,5 +1,5 @@
 import {XMLParser} from './fxp.esm.js'
-import decode from './he.js'
+import decode from './he-stigman.js'
 
 // export const tagValueProcessor = function () {
 //   const text = arguments[1]
