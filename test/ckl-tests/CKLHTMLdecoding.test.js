@@ -51,9 +51,7 @@ describe('CKL html decoding tests', () => {
       fieldSettings,
       allowAccept
     )
-    const expectedDecodedString = '& < > " \' & < & < > " \''
-
-    console.log(JSON.stringify(review, null, 2))
+    const expectedDecodedString = '& < > " \' & < & < > " \' A . % , ~'
 
     expect(review.checklists[0].reviews[0].detail).to.equal(
       expectedDecodedString
