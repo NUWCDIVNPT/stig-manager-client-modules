@@ -14,6 +14,8 @@ export function reviewsFromCkl(
     sourceRef
   }) {
 
+  const errorMessages = []
+
   const maxCommentLength = 32767
 
   const normalizeKeys = function (input) {
@@ -71,6 +73,8 @@ export function reviewsFromCkl(
   if (returnObj.checklists.length === 0) {
     throw (new Error("STIG_INFO element has no SI_DATA for SID_NAME == stigId"))
   }
+  returnObj.error = errorMessages
+  
   return (returnObj)
 
   function processAsset(assetElement) {
@@ -239,7 +243,7 @@ export function reviewsFromCkl(
               override = parser.parse(comment)['Evaluate-STIG'][0]
             }
             catch (e) {
-              console.log(`Failed to parse Evaluate-STIG VULN XML comment for ${ruleId}`)
+              errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment for ${ruleId}`)
             }
             override = normalizeKeys(override)
             if (override.afmod?.toLowerCase() === 'true') {
@@ -351,7 +355,7 @@ export function reviewsFromCkl(
           esIStigComment = parser.parse(comment)['Evaluate-STIG'][0]
         }
         catch (e) {
-          console.log('Failed to parse Evaluate-STIG root XML comment')
+          errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment  ${comment}`)         
         }
         esIStigComment = normalizeKeys(esIStigComment)
         resultEngineIStig = {
@@ -377,7 +381,7 @@ export function reviewsFromCkl(
           esRootComment = parser.parse(comment)['Evaluate-STIG'][0]
         }
         catch (e) {
-          console.log('Failed to parse Evaluate-STIG root XML comment')
+          errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment for ${comment}`)
         }
         esRootComment = normalizeKeys(esRootComment)
         resultEngineRoot = {
