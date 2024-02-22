@@ -243,7 +243,7 @@ export function reviewsFromCkl(
               override = parser.parse(comment)['Evaluate-STIG'][0]
             }
             catch (e) {
-              errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment for ${ruleId}`)
+              errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment for ${ruleId}, comment: ${comment}`)
             }
             override = normalizeKeys(override)
             if (override.afmod?.toLowerCase() === 'true') {
@@ -355,7 +355,7 @@ export function reviewsFromCkl(
           esIStigComment = parser.parse(comment)['Evaluate-STIG'][0]
         }
         catch (e) {
-          errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment  ${comment}`)         
+          errorMessages.push(`Failed to parse Evaluate-STIG ISTIG XML comment  ${comment}`)         
         }
         esIStigComment = normalizeKeys(esIStigComment)
         resultEngineIStig = {
@@ -381,7 +381,7 @@ export function reviewsFromCkl(
           esRootComment = parser.parse(comment)['Evaluate-STIG'][0]
         }
         catch (e) {
-          errorMessages.push(`Failed to parse Evaluate-STIG VULN XML comment for ${comment}`)
+          errorMessages.push(`Failed to parse Evaluate-STIG root XML comment for ${comment}`)
         }
         esRootComment = normalizeKeys(esRootComment)
         resultEngineRoot = {
