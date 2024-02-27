@@ -119,11 +119,15 @@ export default class TaskObject {
       const apiAsset = this.#findAssetFromParsedTarget(parsedResult.target)
       if (!apiAsset && !options.createObjects) {
         // Bail if the asset doesn't exist and we shouldn't create it
-        this.errors.push({
-          message: `asset does not exist for target and createObjects is false`,
-          target: parsedResult.target,
-          sourceRef: parsedResult.sourceRef
-        })
+
+        /** @type {TaskObjectError} */
+        const error = {
+            message: `asset does not exist for target and createObjects is false`,
+            target: parsedResult.target,
+            sourceRef: parsedResult.sourceRef
+        };
+        
+        this.errors.push(error);
         continue
       }
       // Try to find the target in our Map()

@@ -138,6 +138,12 @@ interface TaskAssetValue {
     sourceRefs: any[];
 }
 
+interface TaskObjectError { 
+  message: string;
+  target: ParsedTarget,
+  sourceRef: any
+}
+
 declare class TaskObject {
     constructor (options: TaskObjectParams);
     apiAssets: ApiAsset[];
@@ -145,7 +151,7 @@ declare class TaskObject {
     #assetNameMap: Map<string, ApiAsset>;
     #benchmarkIdMap: Map<string, string[]>;
     #cklHostnameMap: Map<string, ApiAsset[]>;
-    errors: array;
+    errors: TaskObjectError[];
     parsedResults: TaskObjectParseResult[];
     sourceRefs: any[];
     taskAssets: Map<string, TaskAssetValue>;
