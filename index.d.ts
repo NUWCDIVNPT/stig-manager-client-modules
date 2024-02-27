@@ -94,13 +94,13 @@ interface ParsedChecklist {
     benchmarkId: string;
     reviews: ParsedReview[];
     revisionStr: string;
-    errors: string[];
     stats: ParsedChecklistStats;
     sourceRef: any;
 }
 
 interface ParseResult {
     target: ParsedTarget;
+    errors: string[];
     checklists: ParsedChecklist[];
     sourceRef: any;
 }
@@ -149,4 +149,69 @@ declare class TaskObject {
     parsedResults: TaskObjectParseResult[];
     sourceRefs: any[];
     taskAssets: Map<string, TaskAssetValue>;
+}
+
+type AutoStatus = 'null' | 'saved' | 'submitted' | 'accepted'
+type Unreviewed = 'commented' | 'never' | 'always'
+type UnreviewedCommented = 'informational' | 'notchecked'
+type EmptyCommentDetailType = 'replace' | 'ignore' | 'import'
+type RequiredType = 'always' | 'findings' | 'optional'
+type EnabledType = 'always' | 'findings'
+
+interface FieldSettings {
+  detail: {
+    enabled: EnabledType
+    required: RequiredType
+  }
+  comment: {
+    enabled: EnabledType
+    required: RequiredType
+  }
+}
+
+interface ImportOptions {
+  autoStatus: AutoStatus
+  unreviewed: Unreviewed
+  unreviewedCommented: UnreviewedCommented
+  emptyDetail: EmptyCommentDetailType
+  emptyComment: EmptyCommentDetailType
+  allowCustom: boolean
+}
+
+interface ReviewsFromCklParams {
+  data: string
+  fieldSettings: FieldSettings
+  allowAccept: boolean
+  importOptions: ImportOptions
+  sourceRef: any
+}
+
+interface ImportOptions {
+  autoStatus: AutoStatus
+  unreviewed: Unreviewed
+  unreviewedCommented: UnreviewedCommented
+  emptyDetail: EmptyCommentDetailType
+  emptyComment: EmptyCommentDetailType
+  allowCustom: boolean
+}
+
+interface ScapBenchmarkMap {
+  [key: string]: string
+}
+
+interface ReviewsFromXccdfParams {
+  data: string
+  fieldSettings: FieldSettings
+  allowAccept: boolean
+  importOptions: ImportOptions
+  scapBenchmarkMap: ScapBenchmarkMap
+  sourceRef: any
+}
+
+interface ReviewsFromCklbParams {
+  data: string
+  fieldSettings: FieldSettings
+  allowAccept: boolean
+  importOptions: ImportOptions
+  sourceRef: any
 }
