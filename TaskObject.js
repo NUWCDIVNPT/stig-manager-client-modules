@@ -125,9 +125,9 @@ export default class TaskObject {
             message: `asset does not exist for target and createObjects is false`,
             target: parsedResult.target,
             sourceRef: parsedResult.sourceRef
-        };
+        }
         
-        this.errors.push(error);
+        this.errors.push(error)
         continue
       }
       // Try to find the target in our Map()

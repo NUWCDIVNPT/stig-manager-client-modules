@@ -73,7 +73,7 @@ interface ParsedReview {
     comment: string;
     detail: string;
     result: ReviewResult;
-    resultEngine: ResultEngine | null
+    resultEngine: ResultEngine | null;
     ruleId: string;
     status: ReviewStatus;
 }
@@ -100,7 +100,7 @@ interface ParsedChecklist {
 
 interface ParseResult {
     target: ParsedTarget;
-    errors: string[];
+    errors?: string[]; // only used in the ckl parser
     checklists: ParsedChecklist[];
     sourceRef: any;
 }
@@ -140,8 +140,8 @@ interface TaskAssetValue {
 
 interface TaskObjectError { 
   message: string;
-  target: ParsedTarget,
-  sourceRef: any
+  target: ParsedTarget;
+  sourceRef: any;
 }
 
 declare class TaskObject {
@@ -157,67 +157,53 @@ declare class TaskObject {
     taskAssets: Map<string, TaskAssetValue>;
 }
 
-type AutoStatus = 'null' | 'saved' | 'submitted' | 'accepted'
-type Unreviewed = 'commented' | 'never' | 'always'
-type UnreviewedCommented = 'informational' | 'notchecked'
-type EmptyCommentDetailType = 'replace' | 'ignore' | 'import'
-type RequiredType = 'always' | 'findings' | 'optional'
-type EnabledType = 'always' | 'findings'
+type AutoStatus = 'null' | 'saved' | 'submitted' | 'accepted';
+type Unreviewed = 'commented' | 'never' | 'always';
+type UnreviewedCommented = 'informational' | 'notchecked';
+type EmptyCommentDetailType = 'replace' | 'ignore' | 'import';
+type RequiredType = 'always' | 'findings' | 'optional';
+type EnabledType = 'always' | 'findings';
+
+interface FieldOptions {
+  enabled: EnabledType;
+  required: RequiredType;
+};
 
 interface FieldSettings {
-  detail: {
-    enabled: EnabledType
-    required: RequiredType
-  }
-  comment: {
-    enabled: EnabledType
-    required: RequiredType
-  }
+  detail: FieldOptions;
+  comment: FieldOptions;
 }
 
 interface ImportOptions {
-  autoStatus: AutoStatus
-  unreviewed: Unreviewed
-  unreviewedCommented: UnreviewedCommented
-  emptyDetail: EmptyCommentDetailType
-  emptyComment: EmptyCommentDetailType
-  allowCustom: boolean
+  autoStatus: AutoStatus;
+  unreviewed: Unreviewed;
+  unreviewedCommented: UnreviewedCommented;
+  emptyDetail: EmptyCommentDetailType;
+  emptyComment: EmptyCommentDetailType;
+  allowCustom: boolean;
 }
 
-interface ReviewsFromCklParams {
-  data: string
-  fieldSettings: FieldSettings
-  allowAccept: boolean
-  importOptions: ImportOptions
-  sourceRef: any
+interface ParserParams {
+  data: string;
+  fieldSettings: FieldSettings;
+  allowAccept: boolean;
+  importOptions: ImportOptions;
+  sourceRef: any;
 }
 
 interface ImportOptions {
-  autoStatus: AutoStatus
-  unreviewed: Unreviewed
-  unreviewedCommented: UnreviewedCommented
-  emptyDetail: EmptyCommentDetailType
-  emptyComment: EmptyCommentDetailType
-  allowCustom: boolean
+  autoStatus: AutoStatus;
+  unreviewed: Unreviewed;
+  unreviewedCommented: UnreviewedCommented;
+  emptyDetail: EmptyCommentDetailType;
+  emptyComment: EmptyCommentDetailType;
+  allowCustom: boolean;
 }
 
 interface ScapBenchmarkMap {
-  [key: string]: string
+  [key: string]: string;
 }
 
-interface ReviewsFromXccdfParams {
-  data: string
-  fieldSettings: FieldSettings
-  allowAccept: boolean
-  importOptions: ImportOptions
-  scapBenchmarkMap: ScapBenchmarkMap
-  sourceRef: any
-}
-
-interface ReviewsFromCklbParams {
-  data: string
-  fieldSettings: FieldSettings
-  allowAccept: boolean
-  importOptions: ImportOptions
-  sourceRef: any
+interface ParserXccdfParams extends ParserParams{
+  scapBenchmarkMap: ScapBenchmarkMap;
 }

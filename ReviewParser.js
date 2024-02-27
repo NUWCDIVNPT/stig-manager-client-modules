@@ -7,7 +7,7 @@ const decodeHTML = function () {
 /**
  * Parses data from a CKL format into a format suitable for further processing.
  * 
- * @param {ReviewsFromCklParams} ReviewsFromCklParams - The parameters object containing:
+ * @param {ParserParams} ReviewsFromCklParams - The parameters object containing:
  * @param {string} ReviewsFromCklParams.data - The CKL data to be processed.
  * @param {FieldSettings} ReviewsFromCklParams.fieldSettings - Settings related to detail and comment fields.
  * @param {boolean} ReviewsFromCklParams.allowAccept - Flag indicating whether accepting a review is allowed.
@@ -419,7 +419,7 @@ export function reviewsFromCkl(
 /**
  * Parses data from a XCCDF format into a format suitable for further processing.
  * 
- * @param {ReviewsFromXccdfParams} ReviewsFromXccdfParams - The parameters object containing:
+ * @param {ParserXccdfParams} ReviewsFromXccdfParams - The parameters object containing:
  * @param {string} ReviewsFromXccdfParams.data - The xccdf data to be processed.
  * @param {FieldSettings} ReviewsFromXccdfParams.fieldSettings - Settings related to detail and comment fields.
  * @param {boolean} ReviewsFromXccdfParams.allowAccept - Flag indicating whether accepting a review is allowed.
@@ -757,7 +757,7 @@ export function reviewsFromXccdf(
 /**
  * Parses data from a cklb format into a format suitable for further processing.
  * 
- * @param {ReviewsFromCklbParams} ReviewsFromCklbParams - The parameters object containing:
+ * @param {ParserParams} ReviewsFromCklbParams - The parameters object containing:
  * @param {string} ReviewsFromCklbParams.data - The cklb data to be processed.
  * @param {FieldSettings} ReviewsFromCklbParams.fieldSettings - Settings related to detail and comment fields.
  * @param {boolean} ReviewsFromCklbParams.allowAccept - Flag indicating whether accepting a review is allowed.
