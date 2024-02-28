@@ -293,7 +293,7 @@ export function reviewsFromCkl(
         if (!stigDatum.ATTRIBUTE_DATA) {
           return false
         }
-        ruleId = stigDatum.ATTRIBUTE_DATA?.endsWith('_rule') ? stigDatum.ATTRIBUTE_DATA : stigDatum.ATTRIBUTE_DATA + '_rule'
+        ruleId = stigDatum.ATTRIBUTE_DATA.endsWith('_rule') ? stigDatum.ATTRIBUTE_DATA : stigDatum.ATTRIBUTE_DATA + '_rule'
         return true
       }
     })
