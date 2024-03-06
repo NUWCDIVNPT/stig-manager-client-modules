@@ -11,6 +11,7 @@ on:
         - "TaskObject.js"
         - "test/**"
         - "WATCHER-test-files/**"
+        - '.github/workflows/unit-testing.yml'
   pull_request:
     branches:
         - main
@@ -20,7 +21,7 @@ on:
         - "TaskObject.js"
         - "test/**"
         - "WATCHER-test-files/**"
-
+        - '.github/workflows/unit-testing.yml'
 jobs:
   build_test:
     runs-on: ubuntu-latest
