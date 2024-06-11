@@ -123,4 +123,42 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
       )
     }
   })
+  it('Validating that parser truncates checklist values to their max oas spec', async () => {
+    // values tested: checklist[i].benchmarkId
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath =
+      './WATCHER-test-files/WATCHER/ckl/Target-Object-Long-Properties'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+    
+    expect(review.checklists[0].benchmarkId).to.have.lengthOf(255)
+
+    
+  })
 })

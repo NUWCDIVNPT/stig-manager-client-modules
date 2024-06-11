@@ -412,4 +412,43 @@ describe('CKL result engine tests', () => {
       expectedResultEngine
     )
   })
+  it('Validating that parser truncates result engine values to their max oas spec', async () => {
+    // values tested: overrides: authority, resultEngine: version. 
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath =
+      './WATCHER-test-files/WATCHER/ckl/Target-Object-Long-Properties'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+    
+    // expect(review.checklists[0].reviews[0].resultEngine.overrides[0].authority).to.have.lengthOf(255)
+    expect(review.checklists[0].reviews[0].resultEngine.version).to.have.lengthOf(255)
+
+    
+  })
 })

@@ -1939,5 +1939,43 @@ describe('MISC CKLb. ', () => {
     expect(review.checklists[0].reviews[0].detail).to.have.lengthOf(maxLength)
     expect(review.checklists[0].reviews[0].comment).to.have.lengthOf(maxLength)
   })
+  it('Validating that parser truncates review values to their max oas spec', async () => {
+    // values tested: ruleId
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath =
+      './WATCHER-test-files/WATCHER/cklb/Truncate-Tests.cklb'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+    
+    expect(review.checklists[0].reviews[0].ruleId).to.have.lengthOf(45)
+
+    
+  })
   
 })

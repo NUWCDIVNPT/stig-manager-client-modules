@@ -176,4 +176,45 @@ describe('Target Object Tests xccdf', () => {
     }
     expect(review.target).to.deep.equal(expectedTarget)
   })
+  it('Validating that parser truncates asset target values to their max oas spec', async () => {
+    // values tested: target.description, target.ip, target.fqdn, target.mac
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath =
+      './WATCHER-test-files/WATCHER/xccdf/Target-Object-Long-Properties-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+    
+    expect(review.target.ip).to.have.lengthOf(255)
+    expect(review.target.fqdn).to.have.lengthOf(255)
+    expect(review.target.mac).to.have.lengthOf(255)
+    expect(review.target.description).to.have.lengthOf(255)
+
+    
+  })
 })

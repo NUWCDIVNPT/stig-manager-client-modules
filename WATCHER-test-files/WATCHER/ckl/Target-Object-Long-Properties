@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<Evaluate-STIG><global><version>1.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11..2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.11.2204.1</version><time>2022-06-03T12:19:27.9454169-04:00</time></global><module><name>Scan-Windows10_Checks</name><version>1.2022.6.2</version></module><stiglist><name>Windows 10</name><shortname>Win10</shortname><template>Win10.ckl</template></stiglist></Evaluate-STIG>-->
+<CHECKLIST>
+  <ASSET>
+    <ROLE>MyRole</ROLE>
+    <ASSET_TYPE>Non-Computing</ASSET_TYPE>
+    <MARKING>MyMarking</MARKING>
+    <HOST_NAME>LlllloooooooooooooooooooonnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnggggggggggggggggggggggggggggggNaaaaaaaaaaaaaaaaaaaaaammmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmeeeeeeeeeeeeeeeeeeee</HOST_NAME>
+    <HOST_IP>10.10.10.10..10.10.10.10.10.10..10.10.10.10.10.10.10.10.10..10.10.10..10.10.10..10.10.10..10.10.10..10.10.10..10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.1010.10.10.10.10.10.1010.10.10.10.10.10.1010.10.10.10.10.10.1010.10.10.10.10.10.1010.10.10.10.10.10.1010.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10.10</HOST_IP>
+    <HOST_MAC>00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E00:1A:2B:3C:4D:5E</HOST_MAC>
+    <HOST_GUID/>
+    <HOST_FQDN>MyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldvMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.worldMyAsset.hello.world</HOST_FQDN>
+    <TECH_AREA/>
+    <TARGET_KEY>2777</TARGET_KEY>
+    <WEB_OR_DATABASE>false</WEB_OR_DATABASE>
+    <WEB_DB_SITE/>
+    <WEB_DB_INSTANCE/>
+  </ASSET>
+  <STIGS>
+    <iSTIG>
+      <STIG_INFO>
+        <SI_DATA>
+          <SID_NAME>version</SID_NAME>
+          <SID_DATA>1</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>classification</SID_NAME>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>customname</SID_NAME>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>stigid</SID_NAME>
+          <SID_DATA>RHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATEDRHEL_9_TRUNCATED</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>description</SID_NAME>
+          <SID_DATA>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>filename</SID_NAME>
+          <SID_DATA>stig-manager-oss</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>releaseinfo</SID_NAME>
+          <SID_DATA>Release: 1 Benchmark Date: 22 Sep 2023</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>title</SID_NAME>
+          <SID_DATA>Red Hat Enterprise Linux 9 TRUNCATED</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>uuid</SID_NAME>
+          <SID_DATA>391aad33-3cc3-4d9a-b5f7-0d7538b7b5a2</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>notice</SID_NAME>
+          <SID_DATA>terms-of-use</SID_DATA>
+        </SI_DATA>
+        <SI_DATA>
+          <SID_NAME>source</SID_NAME>
+        </SI_DATA>
+      </STIG_INFO>
+      <VULN>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>V-207191</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>SRG-NET-000063</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>SV-207191r803418_rV-207191r803418_rulV-207191r803418_rulV-207191r803418_rulV-207191r803418_rulule</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>SRG-NET-000063-VPN-000210</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>The remote access VPN Gateway must use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of TLS remote access sessions.</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>Without integrity protection, unauthorized changes may be made to the log files and reliable forensic analysis and discovery of the source of malicious system activity may be degraded.
+
+Remote access (e.g., RDP) is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include broadband and wireless.
+
+Integrity checks include cryptographic checksums, digital signatures, or hash functions. Federal Information Processing Standard (FIPS) 186-4, Digital Signature Standard (DSS), specifies three NIST-approved algorithms: DSA, RSA, and ECDSA. All three are used to generate and verify digital signatures in conjunction with an approved hash function.</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>Verify the remote access VPN Gateway uses a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions.
+
+If the remote access VPN Gateway does not use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions, this is a finding.</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>Configure the remote access VPN Gateway to use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions.</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA/>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>Virtual Private Network (VPN) TRUNCATED :: Version 2, Release: 5 Benchmark Date: 07 Jun 2023</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STIG_DATA>
+          <VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>CCI-001453</ATTRIBUTE_DATA>
+        </STIG_DATA>
+        <STATUS>NotAFinding</STATUS>
+         <FINDING_DETAILS/>
+        <COMMENTS/>
+        <SEVERITY_OVERRIDE/>
+        <SEVERITY_JUSTIFICATION/>
+        <!--<Evaluate-STIG><AnswerFile>MS_Windows_10_STIG_Answer_fMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlMS_Windows_10_STIG_Answer_file.xmlile.xml</AnswerFile><afmod>True</afmod></Evaluate-STIG>-->
+      </VULN>
+    </iSTIG>
+  </STIGS>
+</CHECKLIST>

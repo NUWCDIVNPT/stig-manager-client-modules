@@ -1856,4 +1856,42 @@ describe('MISC. xccdf ', () => {
       expectedOveride
     )
   })
+  it('Validating that parser truncates review values to their max oas spec', async () => {
+    // values tested: ruleId
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath =
+      './WATCHER-test-files/WATCHER/xccdf/Target-Object-Long-Properties-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+    
+    expect(review.checklists[0].reviews[0].ruleId).to.have.lengthOf(45)
+
+    
+  })
 })

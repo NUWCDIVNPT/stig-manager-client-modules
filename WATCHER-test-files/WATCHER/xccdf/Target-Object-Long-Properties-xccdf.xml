@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- STIG Manager 1.3.13 -->
+<!-- Classification: NONE -->
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sm="http://github.com/nuwcdivnpt/stig-manager" id="xccdf_mil.disa.test">
+    <status date="2023-09-13">accepted</status>
+    <title>MyStigTitle</title>
+    <description>Test Description</description>
+    <version>V1R1</version>
+    <metadata>
+        <dc:creator>DISA</dc:creator>
+        <dc:publisher>STIG Manager OSS</dc:publisher>
+    </metadata>
+    <Group id="xccdf_mil.disa.stig_group_V-2">
+        <title>MyStigGroup</title>
+        <Rule id="xccdf_mil.disa.stig_rule_SV-2" weight="10.0" severity="high">
+            <title>MyRuleTitle</title>
+            <check>
+                <check-content>MyCheckContent</check-content>
+            </check>
+        </Rule>
+    </Group>
+    <TestResult id="xccdf_mil.navy.nuwcdivnpt.test"
+        test-system="cpe:/a:nuwcdivnpt:stig-manager:1.3.13" end-time="2023-11-13T16:43:01.598Z"
+        version="1.0">
+        <title>MyTitleForTestResult</title>
+        <target>MyAsset</target>
+        <target-address></target-address>
+        <target-facts>
+
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:name" type="string">
+                MyMyAsssetMyAsset</fact>
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:description"
+                type="string">DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescripptionDescripptionDescripptionDescripptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription</fact>
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:fqdn" type="string">
+                MyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.comMyAsset.domain.com</fact>
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:ip" type="string">
+                1.1.1.11.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.1.1.11.1.1.11.1.1.11.1.1.11.1.1.1</fact>
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:mac" type="string">
+                fe80::8c33fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3fe80::8c33:57ff:fe94:2b3:57ff:fe94:2b33</fact>
+            <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:noncomputing"
+                type="bool">false</fact>
+        </target-facts>
+        <rule-result idref="xccdf_mil.disa.stig_rule_SwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwV-V-V-V-V-V-V-2" time="2023-11-13T16:41:49.000Z">
+            <result>pass</result>
+            <check>
+                <check-content>
+
+                </check-content>
+            </check>
+        </rule-result>
+        <score>1.0</score>
+    </TestResult>
+</Benchmark>
