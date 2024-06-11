@@ -1891,7 +1891,10 @@ describe('MISC. xccdf ', () => {
     )
     
     expect(review.checklists[0].reviews[0].ruleId).to.have.lengthOf(45)
-
+    expect(review.checklists[0].benchmarkId).to.have.lengthOf(255)
+    expect(review.checklists[0].reviews[0].resultEngine.overrides[0].authority).to.have.lengthOf(255)
+    expect(review.checklists[0].reviews[0].resultEngine.overrides[0].remark).to.have.lengthOf(255)
+    expect(review.checklists[0].reviews[0].resultEngine.checkContent.component).to.have.lengthOf(255)
     
   })
 })

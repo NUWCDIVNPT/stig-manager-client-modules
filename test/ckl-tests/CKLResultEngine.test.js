@@ -446,9 +446,8 @@ describe('CKL result engine tests', () => {
       allowAccept
     )
     
-    // expect(review.checklists[0].reviews[0].resultEngine.overrides[0].authority).to.have.lengthOf(255)
     expect(review.checklists[0].reviews[0].resultEngine.version).to.have.lengthOf(255)
-
+    expect(review.checklists[0].reviews[0].resultEngine.overrides[0].authority).to.have.lengthOf(255)
     
   })
 })

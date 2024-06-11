@@ -199,7 +199,6 @@ describe('Testing that the Target object returned by the cklb review parser is a
     expect(review.target.ip).to.have.lengthOf(255)
     expect(review.target.fqdn).to.have.lengthOf(255)
     expect(review.target.mac).to.have.lengthOf(255)
-
-    
+    expect(review.target.description).to.have.lengthOf(255)
   })
 })
