@@ -541,7 +541,7 @@ export function reviewsFromXccdf(
   // resultEngine info
   const testSystem = testResult['test-system']
   // SCC injects a CPE WFN bound to a URN
-  const m = testSystem.match(/[cC][pP][eE]:\/[AHOaho]?:(.*)/)
+  const m = testSystem.match(/^cpe:(?:\/|2\.3:)[aho]:(.*)/i)
   let product, version
   if (m?.[1]) {
     ;[, product, version] = m[1].split(':')
@@ -549,11 +549,11 @@ export function reviewsFromXccdf(
   else {
     ;[product, version] = testSystem.split(':') // e.g. PAAuditEngine:6.5.3
   }
-  const resultEngineTpl = {
-    type: 'scap',
-    product,
-    version
-  }
+const resultEngineTpl = {
+  type: 'scap',
+  product,
+  version
+}
   
   resultEngineTpl.version = truncateString(resultEngineTpl.version, 255)
   resultEngineTpl.product = truncateString(resultEngineTpl.product, 255)
@@ -621,7 +621,7 @@ export function reviewsFromXccdf(
 
     let resultEngine
     if (resultEngineCommon) {
-      if (resultEngineCommon.product === 'stig-manager') {
+      if (resultEngineCommon.product === 'stig-manager' || resultEngineCommon.product === 'evaluate-stig') {
         resultEngine = ruleResult.check?.['check-content']?.resultEngine
       }
       else {
