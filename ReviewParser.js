@@ -549,11 +549,11 @@ export function reviewsFromXccdf(
   else {
     ;[product, version] = testSystem.split(':') // e.g. PAAuditEngine:6.5.3
   }
-const resultEngineTpl = {
-  type: 'scap',
-  product,
-  version
-}
+  const resultEngineTpl = {
+    type: 'scap',
+    product,
+    version
+  }
   
   resultEngineTpl.version = truncateString(resultEngineTpl.version, 255)
   resultEngineTpl.product = truncateString(resultEngineTpl.product, 255)
