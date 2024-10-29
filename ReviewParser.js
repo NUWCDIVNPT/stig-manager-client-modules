@@ -661,7 +661,7 @@ const resultEngineTpl = {
     const replacementText = `Result was reported by product "${resultEngine?.product}" version ${resultEngine?.version} at ${resultEngine?.time} using check content "${resultEngine?.checkContent?.location}"`
 
     let detail = ruleResult.check?.['check-content']?.detail
-    if (!detail && ruleResult.message['#text']) {
+    if (!detail && ruleResult?.message?.['#text']) {
       detail = ruleResult.message['#text']
     }
     if (!detail) {

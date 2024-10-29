@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cdf:Benchmark xmlns:cdf="http://checklists.nist.gov/xccdf/1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sm="http://github.com/nuwcdivnpt/stig-manager" id="xccdf_mil.disa.stig_benchmark_Google_Chrome_Current_Windows">
+    <cdf:status date="2024-01-24">accepted</cdf:status>
+    <cdf:title>Google Chrome Current Windows Security Technical Implementation Guide</cdf:title>
+    <cdf:description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address:............</cdf:description>
+    <cdf:reference href="https://cyber.mil">
+        <dc:publisher>DISA</dc:publisher>
+        <dc:source>STIG.DOD.MIL</dc:source>
+    </cdf:reference>
+    <cdf:plain-text id="release-info">Release: 9 Benchmark Date: 24 Jan 2024</cdf:plain-text>
+    <cdf:plain-text id="generator">3.4.1.22916</cdf:plain-text>
+    <cdf:plain-text id="conventionsVersion">1.10.0</cdf:plain-text>
+    <cdf:platform idref="cpe:2.3:a:disa:stig" />
+    <cdf:version>V2R9</cdf:version>
+    <cdf:metadata>
+        <dc:creator>Evaluate-STIG 1.2407.1</dc:creator>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:source>STIG.DOD.MIL</dc:source>
+    </cdf:metadata>
+    <cdf:TestResult id="xccdf_mil.navy.navsea.Evaluate-STIG_testresult_Scan-GoogleChrome_Checks-1.2024.5.14" test-system="cpe:2.3:a:navsea:evaluate-stig:1.2407.1" start-time="2024-09-11T15:08:51-04:00" end-time="2024-09-11T15:08:59-04:00">
+        <cdf:organization>Naval Sea Systems Command (NAVSEA)</cdf:organization>
+        <cdf:target>CA1294WK16078-trimmed-no-detail</cdf:target>
+        <cdf:target-address>130.163.104.41</cdf:target-address>
+        <cdf:target-address>192.168.1.231</cdf:target-address>
+        <cdf:target-facts>
+            <cdf:fact type="string" name="fact:asset:identifier:hostname">host-123456</cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:fqdn">host-123456.mil</cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:macaddress">1C:1B:17:1D:15:1B</cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:ipaddress">30.13.04.41, 12.68.12.2</cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:role">Workstation</cdf:fact>
+            <cdf:fact type="boolean" name="fact:asset:identifier:webordatabase">false</cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:instance"></cdf:fact>
+            <cdf:fact type="string" name="fact:asset:identifier:site"></cdf:fact>
+        </cdf:target-facts>
+        <cdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-221558r879534_rule" weight="10.0" severity="medium" time="2024-09-11T15:08:51-04:00" version="DTBC-0001">
+            <cdf:result>pass</cdf:result>
+            <cdf:ident system="http://cyber.mil/legacy">SV-57545</cdf:ident>
+            <cdf:ident system="http://cyber.mil/legacy">V-44711</cdf:ident>
+            <cdf:ident system="http://cyber.mil/cci">CCI-001414</cdf:ident>
+            <cdf:message severity="info">Evaluate-STIG 1.2407.1 (Scan-GoogleChrome_Checks) found this to be NOT A FINDING on 09/11/2024:
+This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address:............
+
+
+Evaluate-STIG Answer File        [ValidTrueComment]:
+        1 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        2 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        3 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        4 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        5 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        6 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+</cdf:message>
+            <cdf:fix id="F-23262r769350_fix" />
+            <cdf:check system="Evaluate-STIG">
+                <cdf:check-content-ref name="Get-V221558" href="Scan-GoogleChrome_Checks" />
+                <cdf:check-content>
+                    <sm:resultEngine>
+                        <sm:time>2023-12-11T12:56:14.3576272-05:00</sm:time>
+                        <sm:type>script</sm:type>
+                        <sm:product>Evaluate-STIG</sm:product>
+                        <sm:version>1.2310.1</sm:version>
+                        <sm:overrides>
+                            <sm:remark>Evaluate-STIG Answer File        [ValidTrueComment]:
+        1 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        2 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        3 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        4 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        5 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.
+        6 Google Chrome is fully managed by a configuration management tool to ensure the latest version is deployed to clients.</sm:remark>
+                            <sm:authority>Google_Chrome_Current_Windows_AnswerFile.xml</sm:authority>
+                            <sm:newResult>pass</sm:newResult>
+                            <sm:oldResult>unknown</sm:oldResult>
+                        </sm:overrides>
+                        <sm:checkContent>
+                            <sm:location>Scan-GoogleChrome_Checks:1.2023.7.24</sm:location>
+                        </sm:checkContent>
+                    </sm:resultEngine>
+                </cdf:check-content>                
+            </cdf:check>
+        </cdf:rule-result>
+        <cdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-221559r879627_rule" weight="10.0" severity="medium" time="2024-09-11T15:08:51-04:00" version="DTBC-0002">
+            <cdf:result>pass</cdf:result>
+            <cdf:ident system="http://cyber.mil/legacy">SV-57557</cdf:ident>
+            <cdf:ident system="http://cyber.mil/legacy">V-44723</cdf:ident>
+            <cdf:ident system="http://cyber.mil/cci">CCI-001166</cdf:ident>
+            <cdf:message severity="info">Evaluate-STIG 1.2407.1 (Scan-GoogleChrome_Checks) found this to be NOT A FINDING on 09/11/2024:
+This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address:............
+
+</cdf:message>
+            <cdf:fix id="F-23263r478200_fix" />
+            <cdf:check system="Evaluate-STIG">
+                <cdf:check-content-ref name="Get-V221559" href="Scan-GoogleChrome_Checks" />
+                 <cdf:check-content>
+                    <sm:resultEngine>
+                        <sm:time>2023-12-11T12:56:14.3576272-05:00</sm:time>
+                        <sm:type>script</sm:type>
+                        <sm:product>Evaluate-STIG</sm:product>
+                        <sm:version>1.2310.1</sm:version>
+                        <sm:checkContent>
+                            <sm:location>Scan-GoogleChrome_Checks:1.2023.7.24</sm:location>
+                        </sm:checkContent>
+                    </sm:resultEngine>
+                </cdf:check-content>                       
+            </cdf:check>
+        </cdf:rule-result>
+        <cdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-221561r879587_rule" weight="10.0" severity="medium" time="2024-09-11T15:08:51-04:00" version="DTBC-0004">
+            <cdf:result>pass</cdf:result>
+            <cdf:ident system="http://cyber.mil/legacy">SV-57553</cdf:ident>
+            <cdf:ident system="http://cyber.mil/legacy">V-44719</cdf:ident>
+            <cdf:ident system="http://cyber.mil/cci">CCI-000381</cdf:ident>
+            <cdf:message severity="info">Evaluate-STIG 1.2407.1 (Scan-GoogleChrome_Checks) found this to be NOT A FINDING on 09/11/2024:
+This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address:............
+
+
+</cdf:message>
+            <cdf:fix id="F-23265r478203_fix" />
+            <cdf:check system="Evaluate-STIG">
+                <cdf:check-content-ref name="Get-V221561" href="Scan-GoogleChrome_Checks" />
+                 <cdf:check-content>
+                    <sm:resultEngine>
+                        <sm:time>2023-12-11T12:56:14.3576272-05:00</sm:time>
+                        <sm:type>script</sm:type>
+                        <sm:product>Evaluate-STIG</sm:product>
+                        <sm:version>1.2310.1</sm:version>
+                        <sm:checkContent>
+                            <sm:location>Scan-GoogleChrome_Checks:1.2023.7.24</sm:location>
+                        </sm:checkContent>
+                    </sm:resultEngine>
+                </cdf:check-content>                      
+            </cdf:check>
+        </cdf:rule-result>
+        <cdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-221562r879559_rule" weight="10.0" severity="medium" time="2024-09-11T15:08:51-04:00" version="DTBC-0005">
+            <cdf:result>pass</cdf:result>
+            <cdf:ident system="http://cyber.mil/legacy">SV-57561</cdf:ident>
+            <cdf:ident system="http://cyber.mil/legacy">V-44727</cdf:ident>
+            <cdf:ident system="http://cyber.mil/cci">CCI-000169</cdf:ident>
+            <cdf:message severity="info">Evaluate-STIG 1.2407.1 (Scan-GoogleChrome_Checks) found this to be NOT A FINDING on 09/11/2024:
+This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address:............
+
+
+</cdf:message>
+            <cdf:fix id="F-23266r684814_fix" />
+            <cdf:check system="Evaluate-STIG">
+                <cdf:check-content-ref name="Get-V221562" href="Scan-GoogleChrome_Checks" />
+                 <cdf:check-content>
+                    <sm:resultEngine>
+                        <sm:time>2023-12-11T12:56:14.3576272-05:00</sm:time>
+                        <sm:type>script</sm:type>
+                        <sm:product>Evaluate-STIG</sm:product>
+                        <sm:version>1.2310.1</sm:version>
+                        <sm:checkContent>
+                            <sm:location>Scan-GoogleChrome_Checks:1.2023.7.24</sm:location>
+                        </sm:checkContent>
+                    </sm:resultEngine>
+                </cdf:check-content>                      
+            </cdf:check>
+        </cdf:rule-result>
+        <cdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-221563r879630_rule" weight="10.0" severity="medium" time="2024-09-11T15:08:51-04:00" version="DTBC-0006">
+            <cdf:result>fail</cdf:result>
+            <cdf:ident system="http://cyber.mil/legacy">SV-57563</cdf:ident>
+            <cdf:ident system="http://cyber.mil/legacy">V-44729</cdf:ident>
+            <cdf:ident system="http://cyber.mil/cci">CCI-001170</cdf:ident>
+            <cdf:message severity="info"></cdf:message>
+            <cdf:fix id="F-23267r684817_fix" />
+            <cdf:check system="Evaluate-STIG">
+                <cdf:check-content-ref name="Get-V221563" href="Scan-GoogleChrome_Checks" />
+                 <cdf:check-content>
+                    <sm:resultEngine>
+                        <sm:time>2023-12-11T12:56:14.3576272-05:00</sm:time>
+                        <sm:type>script</sm:type>
+                        <sm:product>Evaluate-STIG</sm:product>
+                        <sm:version>1.2310.1</sm:version>
+                        <sm:checkContent>
+                            <sm:location>Scan-GoogleChrome_Checks:1.2023.7.24</sm:location>
+                        </sm:checkContent>
+                    </sm:resultEngine>
+                </cdf:check-content>                      
+            </cdf:check>
+        </cdf:rule-result>
+        <cdf:score maximum="100">97.62</cdf:score>
+    </cdf:TestResult>
+</cdf:Benchmark>
