@@ -713,11 +713,6 @@ export function reviewsFromXccdf(
           o.remark = "Evaluate-STIG Answer File"
         }
       }
-      else {
-        for (const o of resultEngine.overrides) {
-          if (o.remark?.length > 255) o.remark = o.remark.slice(0, 255)
-        }  
-      }
     }
 
     const review = {
