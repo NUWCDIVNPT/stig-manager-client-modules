@@ -59,7 +59,7 @@ describe('CKLB Checklist tests', () => {
     expect(review.checklists).to.be.an('array')
     expect(review.checklists.length).to.equal(1)
     expect(review.checklists[0].benchmarkId).to.equal('VPN_TRUNCATED')
-    expect(review.checklists[0].revisionStr).to.equal('V0R5')
+    expect(review.checklists[0].revisionStr).to.equal('V2R5')
   })
 
   it('A multi-stig Checklist array testing for correct benchmarkId and revisionStr', async () => {
@@ -97,15 +97,15 @@ describe('CKLB Checklist tests', () => {
     const expectedChecklists = [
       {
         benchmarkId: 'RHEL_8_TRUNCATED',
-        revisionStr: 'V0R12'
+        revisionStr: 'V1R12'
       },
       {
         benchmarkId: 'RHEL_9_TRUNCATED',
-        revisionStr: 'V0R1'
+        revisionStr: 'V1R1'
       },
       {
         benchmarkId: 'VPN_TRUNCATED',
-        revisionStr: 'V0R5'
+        revisionStr: 'V2R5'
       }
     ]
 
