@@ -932,7 +932,7 @@ export function reviewsFromCklb(
       const checklist = { sourceRef }
       checklist.benchmarkId = typeof stig?.stig_id === 'string' ? stig.stig_id.replace('xccdf_mil.disa.stig_benchmark_', '') : ''
       checklist.benchmarkId = truncateString(checklist.benchmarkId, 255)
-      const stigVersion = stig.version
+      const stigVersion = stig.version ?? '0'
       const stigRelease = typeof stig?.release_info === 'string' ? stig.release_info.match(/Release:\s*(.+?)\s/)?.[1] : ''
       checklist.revisionStr = checklist.benchmarkId && stigRelease ? `V${stigVersion}R${stigRelease}` : null
 
