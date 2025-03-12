@@ -45,7 +45,7 @@ describe('Testing that the Target object returned by the cklb review parser is a
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/TargetObjectBasic.cklb'
+    const filePath = './test-files/parsers/cklb/TargetObjectBasic.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -90,7 +90,7 @@ describe('Testing that the Target object returned by the cklb review parser is a
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/TargetObjectMinimal.cklb'
+      './test-files/parsers/cklb/TargetObjectMinimal.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -135,7 +135,7 @@ describe('Testing that the Target object returned by the cklb review parser is a
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/TargetObjectMetaData.cklb'
+      './test-files/parsers/cklb/TargetObjectMetaData.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -187,7 +187,7 @@ describe('Testing that the Target object returned by the cklb review parser is a
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Truncate-Tests.cklb'
+      './test-files/parsers/cklb/Truncate-Tests.cklb'
 
     const review = await generateReviewObject(
       filePath,

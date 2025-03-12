@@ -64,7 +64,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -111,7 +111,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -158,7 +158,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -204,7 +204,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -250,7 +250,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -297,7 +297,7 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/GoodStatistics-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/GoodStatistics-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,

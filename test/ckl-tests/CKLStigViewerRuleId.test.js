@@ -43,7 +43,7 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-suffix_rule.ckl'
+    const filePath = './test-files/parsers/ckl/no-suffix_rule.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -77,7 +77,7 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/has-suffix_rule.ckl'
+    const filePath = './test-files/parsers/ckl/has-suffix_rule.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -111,7 +111,7 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/vuln_attribute-no-Rule_ID.ckl'
+    const filePath = './test-files/parsers/ckl/vuln_attribute-no-Rule_ID.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -144,7 +144,7 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/vuln_attribute-no-Attribute_data.ckl'
+    const filePath = './test-files/parsers/ckl/vuln_attribute-no-Attribute_data.ckl'
 
     const review = await generateReviewObject(
       filePath,

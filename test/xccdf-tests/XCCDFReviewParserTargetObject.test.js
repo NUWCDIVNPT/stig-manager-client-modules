@@ -64,7 +64,7 @@ describe('Target Object Tests xccdf', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/TargetObjectMinimal-xccdf.xml'
+      './test-files/parsers/xccdf/TargetObjectMinimal-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -109,7 +109,7 @@ describe('Target Object Tests xccdf', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/TargetObjectMetaData-xccdf.xml'
+      './test-files/parsers/xccdf/TargetObjectMetaData-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -157,7 +157,7 @@ describe('Target Object Tests xccdf', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/TargetObjectBasic-xccdf.xml'
+      './test-files/parsers/xccdf/TargetObjectBasic-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -201,7 +201,7 @@ describe('Target Object Tests xccdf', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Target-Object-Long-Properties-xccdf.xml'
+      './test-files/parsers/xccdf/Target-Object-Long-Properties-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,

@@ -9,7 +9,7 @@ on:
         - "ReviewParser.js"
         - "TaskObject.js"
         - "test/**"
-        - "WATCHER-test-files/**"
+        - "test-files/**"
         - '.github/workflows/unit-testing.yml'
   pull_request:
     branches:
@@ -18,7 +18,7 @@ on:
         - "ReviewParser.js"
         - "TaskObject.js"
         - "test/**"
-        - "WATCHER-test-files/**"
+        - "test-files/**"
         - '.github/workflows/unit-testing.yml'
 jobs:
   build_test:

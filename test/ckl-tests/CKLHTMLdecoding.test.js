@@ -43,7 +43,7 @@ describe('CKL html decoding tests', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/html-decode.ckl'
+    const filePath = './test-files/parsers/ckl/html-decode.ckl'
 
     const review = await generateReviewObject(
       filePath,

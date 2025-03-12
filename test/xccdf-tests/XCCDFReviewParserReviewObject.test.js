@@ -70,7 +70,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
     const review = await generateReviewObject(
       filePath,
       importOptions,
@@ -110,7 +110,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -151,7 +151,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
+      './test-files/parsers/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -235,7 +235,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -279,7 +279,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
 
     const allowAccept = true
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
+      './test-files/parsers/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -368,7 +368,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
 
     const allowAccept = false
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
+      './test-files/parsers/xccdf/Asset_a-VPN_TRUNCATED-V2R5-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -455,7 +455,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -497,7 +497,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -540,7 +540,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -590,7 +590,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -638,7 +638,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -678,7 +678,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -718,7 +718,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Commented-Detailed-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -758,7 +758,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -805,7 +805,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -852,7 +852,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -900,7 +900,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -947,7 +947,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -996,7 +996,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1043,7 +1043,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1090,7 +1090,7 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1140,7 +1140,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1191,7 +1191,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1242,7 +1242,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1292,7 +1292,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1341,7 +1341,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1391,7 +1391,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-With-Detail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-With-Detail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1441,7 +1441,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1491,7 +1491,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1540,7 +1540,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-with-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-with-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1589,7 +1589,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1639,7 +1639,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1688,7 +1688,7 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-fail-with-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-fail-with-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1740,7 +1740,7 @@ describe('Tests where fieldSettings and importOptions overlap xccdf. ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-notReviewed-Empty-CommentDetail-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1778,7 +1778,7 @@ describe('MISC. xccdf ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
+      './test-files/parsers/xccdf/Single-Vuln-Pass-With-Comment-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1835,7 +1835,7 @@ describe('MISC. xccdf ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/ReviewOverrides-xccdf.xml'
+      './test-files/parsers/xccdf/ReviewOverrides-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1881,7 +1881,7 @@ describe('MISC. xccdf ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/Target-Object-Long-Properties-xccdf.xml'
+      './test-files/parsers/xccdf/Target-Object-Long-Properties-xccdf.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1925,7 +1925,7 @@ describe('xccdf - generated by Eval-STIG ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/eval-stig-w-sm-resultEngine.xml'
+      './test-files/parsers/xccdf/eval-stig-w-sm-resultEngine.xml'
 
     const review = await generateReviewObject(
       filePath,
@@ -1989,7 +1989,7 @@ describe('xccdf - generated by Eval-STIG ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/xccdf/eval-stig-w-sm-resultEngine.xml'
+      './test-files/parsers/xccdf/eval-stig-w-sm-resultEngine.xml'
 
     const review = await generateReviewObject(
       filePath,

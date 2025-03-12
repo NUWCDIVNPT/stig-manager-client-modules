@@ -44,7 +44,7 @@ describe('Testing that the Target object returned by the ckl review parser is ac
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/TargetObjectBasic.ckl'
+    const filePath = './test-files/parsers/ckl/TargetObjectBasic.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -91,7 +91,7 @@ describe('Testing that the Target object returned by the ckl review parser is ac
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/TargetObjectMinimal.ckl'
+    const filePath = './test-files/parsers/ckl/TargetObjectMinimal.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -138,7 +138,7 @@ describe('Testing that the Target object returned by the ckl review parser is ac
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/TargetObjectMetaData.ckl'
+    const filePath = './test-files/parsers/ckl/TargetObjectMetaData.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -190,7 +190,7 @@ describe('Testing that the Target object returned by the ckl review parser is ac
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/Target-Object-Long-Properties'
+      './test-files/parsers/ckl/Target-Object-Long-Properties'
 
     const review = await generateReviewObject(
       filePath,

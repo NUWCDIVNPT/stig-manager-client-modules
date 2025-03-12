@@ -46,7 +46,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -94,7 +94,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -142,7 +142,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -189,7 +189,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -236,7 +236,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -284,7 +284,7 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/GoodStatistics.ckl'
+    const filePath = './test-files/parsers/ckl/GoodStatistics.ckl'
 
     const review = await generateReviewObject(
       filePath,

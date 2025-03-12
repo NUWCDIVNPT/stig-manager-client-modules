@@ -49,7 +49,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -122,7 +122,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -191,7 +191,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -264,7 +264,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -337,7 +337,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -401,7 +401,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -476,7 +476,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -571,7 +571,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -666,7 +666,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -761,7 +761,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -856,7 +856,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -949,7 +949,7 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/MultiStig-Simple.ckl'
+    const filePath = './test-files/parsers/ckl/MultiStig-Simple.ckl'
 
     const review = await generateReviewObject(
       filePath,

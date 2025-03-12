@@ -82,7 +82,7 @@ describe('testing cklb errors', () => {
 
     const allowAccept = true
 
-    const data = await fs.readFile('WATCHER-test-files/WATCHER/cklb/NoTargetHostName.cklb', 'utf8')
+    const data = await fs.readFile('test-files/parsers/cklb/NoTargetHostName.cklb', 'utf8')
 
     expect(() =>
       reviewsFromCklb({
@@ -116,7 +116,7 @@ describe('testing cklb errors', () => {
 
     const allowAccept = true
 
-    const data = await fs.readFile('WATCHER-test-files/WATCHER/cklb/NoStigsArray.cklb', 'utf8')
+    const data = await fs.readFile('test-files/parsers/cklb/NoStigsArray.cklb', 'utf8')
 
     expect(() =>
       reviewsFromCklb({

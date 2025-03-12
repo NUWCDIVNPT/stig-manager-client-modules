@@ -46,7 +46,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/NoBenchMarkElement.xml'
+    const filePath = './test-files/parsers/xccdf/NoBenchMarkElement.xml'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -84,7 +84,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/NoTestResult-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/NoTestResult-xccdf.xml'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -121,7 +121,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/NoTargetElement-xccdf.xml'
+    const filePath = './test-files/parsers/xccdf/NoTargetElement-xccdf.xml'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -158,7 +158,7 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/xccdf/NoRuleResultElement-xccdf..xml'
+    const filePath = './test-files/parsers/xccdf/NoRuleResultElement-xccdf..xml'
 
     const data = await fs.readFile(filePath, 'utf8')
 

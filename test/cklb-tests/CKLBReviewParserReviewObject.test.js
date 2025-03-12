@@ -59,7 +59,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -112,7 +112,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -166,7 +166,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+      './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -254,7 +254,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -308,7 +308,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
 
     const allowAccept = true
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+      './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -401,7 +401,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
 
     const allowAccept = false
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+      './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -491,7 +491,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -550,7 +550,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -596,7 +596,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -649,7 +649,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -701,7 +701,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -745,7 +745,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -796,7 +796,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Commented-Detailed.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -847,7 +847,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -897,7 +897,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -947,7 +947,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -998,7 +998,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1048,7 +1048,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1099,7 +1099,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1149,7 +1149,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1199,7 +1199,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1252,7 +1252,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1305,7 +1305,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1358,7 +1358,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1410,7 +1410,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1464,7 +1464,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1516,7 +1516,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-With-Detail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-With-Detail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1569,7 +1569,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Pass-With-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Pass-With-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1621,7 +1621,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1673,7 +1673,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-with-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-with-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1725,7 +1725,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1778,7 +1778,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1830,7 +1830,7 @@ describe('Import Options, allowAccept for a CKLb review object in non multi-stig
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-fail-with-Comment.cklb'
+      './test-files/parsers/cklb/Single-Vuln-fail-with-Comment.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1885,7 +1885,7 @@ describe(' CKLb Tests where fieldSettings and importOptions overlap. ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-notReviewed-Empty-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1925,7 +1925,7 @@ describe('MISC CKLb. ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Single-Vuln-Long-CommentDetail.cklb'
+      './test-files/parsers/cklb/Single-Vuln-Long-CommentDetail.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -1964,7 +1964,7 @@ describe('MISC CKLb. ', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Truncate-Tests.cklb'
+      './test-files/parsers/cklb/Truncate-Tests.cklb'
 
     const review = await generateReviewObject(
       filePath,

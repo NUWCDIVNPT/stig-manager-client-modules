@@ -45,7 +45,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-checklist-xml-element.ckl'
+    const filePath = './test-files/parsers/ckl/no-checklist-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -81,7 +81,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/No-Asset-xml-element.ckl'
+    const filePath = './test-files/parsers/ckl/No-Asset-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -117,7 +117,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-Stigs-xml-element.ckl'
+    const filePath = './test-files/parsers/ckl/no-Stigs-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -153,7 +153,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-Host_Name-xml-element.ckl'
+    const filePath = './test-files/parsers/ckl/no-Host_Name-xml-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -189,7 +189,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-SID_DATA-element.ckl'
+    const filePath = './test-files/parsers/ckl/no-SID_DATA-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 

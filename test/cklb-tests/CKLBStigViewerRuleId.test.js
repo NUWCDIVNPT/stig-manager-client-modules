@@ -44,7 +44,7 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/no-suffix_rule.cklb'
+    const filePath = './test-files/parsers/cklb/no-suffix_rule.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -78,7 +78,7 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/has_suffix_rule.cklb'
+    const filePath = './test-files/parsers/cklb/has_suffix_rule.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -111,7 +111,7 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/no-Rule_ID.cklb'
+    const filePath = './test-files/parsers/cklb/no-Rule_ID.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -144,7 +144,7 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/no-rule_id_src.cklb'
+    const filePath = './test-files/parsers/cklb/no-rule_id_src.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -177,7 +177,7 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/no-rule_id_src.cklb'
+    const filePath = './test-files/parsers/cklb/no-rule_id_src.cklb'
 
     const review = await generateReviewObject(
       filePath,

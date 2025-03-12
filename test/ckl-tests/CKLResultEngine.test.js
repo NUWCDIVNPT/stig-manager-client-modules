@@ -45,7 +45,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/ResultEngineWithEvalStigModuleAndOverride.ckl'
+      './test-files/parsers/ckl/ResultEngineWithEvalStigModuleAndOverride.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -100,7 +100,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/result-engine-data-root.ckl'
+      './test-files/parsers/ckl/result-engine-data-root.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -146,7 +146,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/result-engine-invalid-comment.ckl'
+      './test-files/parsers/ckl/result-engine-invalid-comment.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -181,7 +181,7 @@ describe('CKL result engine tests', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-root-ES-comment-with-ISTIG-comment.ckl'
+    const filePath = './test-files/parsers/ckl/no-root-ES-comment-with-ISTIG-comment.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -217,7 +217,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/resultEngine-In-ISTIG-multi-stig.ckl'
+      './test-files/parsers/ckl/resultEngine-In-ISTIG-multi-stig.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -279,7 +279,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/SingleResultEngineModule.ckl'
+      './test-files/parsers/ckl/SingleResultEngineModule.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -340,7 +340,7 @@ describe('CKL result engine tests', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/Root-ES-comment-with-only-version.ckl'
+    const filePath = './test-files/parsers/ckl/Root-ES-comment-with-only-version.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -388,7 +388,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/ResultEngineRootNoVersion.ckl'
+      './test-files/parsers/ckl/ResultEngineRootNoVersion.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -437,7 +437,7 @@ describe('CKL result engine tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/Target-Object-Long-Properties'
+      './test-files/parsers/ckl/Target-Object-Long-Properties'
 
     const review = await generateReviewObject(
       filePath,

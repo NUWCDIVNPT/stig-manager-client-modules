@@ -45,7 +45,7 @@ describe('CKLB Checklist tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+      './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -85,7 +85,7 @@ describe('CKLB Checklist tests', () => {
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/Asset_b-multi-stig.cklb'
+    const filePath = './test-files/parsers/cklb/Asset_b-multi-stig.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -147,7 +147,7 @@ describe('CKLB Checklist tests', () => {
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Truncate-Tests.cklb'
+      './test-files/parsers/cklb/Truncate-Tests.cklb'
 
     const review = await generateReviewObject(
       filePath,

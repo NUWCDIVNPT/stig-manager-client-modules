@@ -47,7 +47,7 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/Asset_a-VPN_TRUNCATED-V2R5.ckl'
+      './test-files/parsers/ckl/Asset_a-VPN_TRUNCATED-V2R5.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -87,7 +87,7 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/Asset_b-multi-stig.ckl'
+    const filePath = './test-files/parsers/ckl/Asset_b-multi-stig.ckl'
 
     const review = await generateReviewObject(
       filePath,
@@ -148,7 +148,7 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/ckl/Target-Object-Long-Properties'
+      './test-files/parsers/ckl/Target-Object-Long-Properties'
 
     const review = await generateReviewObject(
       filePath,

@@ -44,7 +44,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/no-root-result-engine-object.cklb'
+    const filePath = './test-files/parsers/cklb/no-root-result-engine-object.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -80,7 +80,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/TwoResultEngineModules.cklb'
+      './test-files/parsers/cklb/TwoResultEngineModules.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -144,7 +144,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/SingleResultEngineModule.cklb'
+      './test-files/parsers/cklb/SingleResultEngineModule.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -202,7 +202,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/OnlyRootResultEngine.cklb'
+      './test-files/parsers/cklb/OnlyRootResultEngine.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -247,7 +247,7 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
     const allowAccept = true
 
     const filePath =
-      './WATCHER-test-files/WATCHER/cklb/Truncate-Tests.cklb'
+      './test-files/parsers/cklb/Truncate-Tests.cklb'
 
     const review = await generateReviewObject(
       filePath,

@@ -47,7 +47,7 @@ describe('testing that revision strings are correctly parsed', () => {
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+    const filePath = './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
@@ -81,7 +81,7 @@ describe('testing that revision strings are correctly parsed', () => {
     }
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
+    const filePath = './test-files/parsers/cklb/Asset_a-VPN_TRUNCATED-V2R5.cklb'
 
     const review = await generateReviewObject(
       filePath,
