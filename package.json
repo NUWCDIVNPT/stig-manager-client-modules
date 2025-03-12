@@ -22,5 +22,8 @@
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "rollup": "^4.8.0"
+  },
+  "dependencies": {
+    "papaparse": "^5.5.2"
   }
 }

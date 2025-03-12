@@ -1,0 +1,4 @@
+Name,Description,IP,FQDN,MAC,Non-Computing,STIGs,Labels,Metadata
+Asset 1,Asset1 Description,2001:db8:3333:4444:5555:6666:7777:8888,Asset-1.f.q.d.n,AB-12-AB-12-AB,TRUE,"MS_Windows_10_STIG
+Google_Chrome_Current_Windows
+VPN_BAD",,

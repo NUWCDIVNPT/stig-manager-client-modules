@@ -1,0 +1,10 @@
+Name,Description,IP,FQDN,MAC,Non-Computing,STIGs,Labels,Metadata
+Asset 1,Asset1 Description,1.1.1.1,Asset-1.f.q.d.n,AB-12-AB-12-AB,TRUE,"MS_Windows_10_STIG
+Google_Chrome_Current_Windows
+VPN_BAD","Label1
+Label2
+Label3 ","{""key1"":""value1"",""key2"":""value2""}"
+Asset 2,Asset2 Description,2.2.2.2,,,FALSE,"MS_Windows_10_STIG
+","Label4
+","{""key:3"":""value:3""}"
+Asset 3,"!@#$%^&*()_+={}[]|:;'<>,.?/~`""",3.3.3.3,,,TRUE,,,

@@ -1,0 +1,6 @@
+Name,Description,IP,FQDN,MAC,Non-Computing,STIGs,Labels,Metadata
+Asset 1,"Asset1, Description !
+Asset1 Line ""2""",1.1.1.1,,AB-12-AB-12-AB,TRUE,,,"{
+""!@#$%^&*:()"":""value"",
+""key2"":""valu:e2""
+}"
