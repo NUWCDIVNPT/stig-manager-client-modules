@@ -189,7 +189,7 @@ describe('testing CKL XML element errors', () => {
 
     const allowAccept = true
 
-    const filePath = './WATCHER-test-files/WATCHER/ckl/no-SID_DATA-element.ckl'
+    const filePath = './WATCHER-test-files/WATCHER/ckl/empty-stigid-SID_DATA-element.ckl'
 
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -201,5 +201,41 @@ describe('testing CKL XML element errors', () => {
         allowAccept
       })
     ).to.throw('STIG_INFO element has no SI_DATA for SID_NAME == stigId')
+  })
+  it('XML with no "SI_DATA for SID_NAME = releaseinfo", should succeed', async () => {
+    const importOptions = {
+      autoStatus: 'saved',
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './WATCHER-test-files/WATCHER/ckl/no-releaseinfo-SID_DATA-element.ckl'
+
+    const data = await fs.readFile(filePath, 'utf8')
+
+    expect(() =>
+      reviewsFromCkl({
+        data,
+        importOptions,
+        fieldSettings,
+        allowAccept
+      })
+    ).to.not.throw()
   })
 })

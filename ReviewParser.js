@@ -140,9 +140,9 @@ export function reviewsFromCkl(
       checklist.benchmarkId = truncateString(checklist.benchmarkId, 255)
       // get revision data. Extract digits from version and release fields to create revisionStr, if possible.
       const stigVersionData = iStig.STIG_INFO[0].SI_DATA.filter(d => d.SID_NAME === 'version')?.[0].SID_DATA
-      let stigVersion = stigVersionData.match(/(\d+)/)?.[1]
+      let stigVersion = stigVersionData?.match(/(\d+)/)?.[1]
       let stigReleaseInfo = iStig.STIG_INFO[0].SI_DATA.filter(d => d.SID_NAME === 'releaseinfo')?.[0].SID_DATA
-      const stigRelease = stigReleaseInfo.match(/Release:\s*(.+?)\s/)?.[1]
+      const stigRelease = stigReleaseInfo?.match(/Release:\s*(.+?)\s/)?.[1]
       const stigRevisionStr = stigVersion && stigRelease ? `V${stigVersion}R${stigRelease}` : null
       checklist.revisionStr = stigRevisionStr
       
