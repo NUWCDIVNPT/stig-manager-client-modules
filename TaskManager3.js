@@ -1,38 +1,55 @@
-import Ajv from 'https://esm.run/ajv';
-import addFormats from 'https://esm.run/ajv-formats';
-import Papa from './papaparse.min.js';
 
+import Papa from './papaparse-esm.js';
+//import * as AjvModule from './node_modules/ajv/dist/ajv.js';
+//import ajv from 'ajv';
+//import fs from 'fs'
+const Ajv = window.Ajv7
 class AssetParser {
     constructor(apiSchema, existingLabels = []) {
-        this.existingLabelsSet = new Set(existingLabels);
-        this.labelsSet = new Set();
-        this.assets = [];
-        this.rowIndex = 0;
-        
-        // Setup schema validation
-        this.ajv = new Ajv({ allErrors: true, strict: false });
-        addFormats(this.ajv);
-        this.ajv.addSchema(apiSchema, 'openapi-spec');
+        this.Papa = Papa()
+        this.existingLabelsSet = new Set(existingLabels)
+        this.labelsSet = new Set()
+        this.assets = []
+        this.errors = []
+        this.rowIndex = 0
+        this.headers
 
-        this.validate = this.ajv.getSchema('openapi-spec#/components/schemas/AssetBatchItem');
-        if (!this.validate) {
-            throw new Error('Schema not found at openapi-spec#/components/schemas/AssetBatchItem');
+       // this.ajv = new Ajv.Ajv({ allErrors: true, strict: false, code: {esm: true} })
+       this.ajv = new ajv7({ allErrors: true, strict: false });
+
+       // this.ajv = new window.ajv7({ allErrors: true, strict: false });
+        this.addFormats(this.ajv)
+        this.ajv.addSchema(apiSchema, 'openapi-spec')
+        this.validate = this.ajv.getSchema('openapi-spec#/apiSchema/apischema/components/schemas/AssetBatchItem')
+        if (!this.ajv.schemas["openapi-spec"].validate) {
+            throw new Error('Schema not found at openapi-spec#/components/schemas/AssetBatchItem')
         }
     }
 
+    addFormats(ajv) {
+        ajv.addFormat("email", /^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+        ajv.addFormat("date", /^\d{4}-\d{2}-\d{2}$/)
+        ajv.addFormat("time", /^\d{2}:\d{2}:\d{2}$/)
+        ajv.addFormat("date-time", /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/)
+        ajv.addFormat("uri", /^https?:\/\/[^\s/$.?#].[^\s]*$/)
+    }
+
     verifyMetadata(metadataString) {
-        if (!metadataString) return {};
+        if (!metadataString) return {}
         try {
             if (typeof metadataString !== 'string') {
-                throw new Error(`Metadata must be a string, received: ${typeof metadataString}`);
+                //throw new Error(`Metadata must be a string, received: ${typeof metadataString} at row ${this.rowIndex + 1}`)
+                this.errors.push(`Metadata must be a string, received: ${typeof metadataString} at row ${this.rowIndex + 1} of CSV file`)
             }
-            const metadata = JSON.parse(metadataString);
+            const metadata = JSON.parse(metadataString)
             if (!this.isValidMetadata(metadata)) {
-                throw new Error('Invalid metadata: Only string values are allowed.');
+                //throw new Error('Invalid metadata: Only string values are allowed.')
+                this.errors.push(`Invalid metadata: Only string values are allowed at row ${this.rowIndex + 1} of CSV file`)
             }
-            return metadata;
+            return metadata
         } catch (error) {
-            throw new Error(`Metadata parsing error at row ${this.rowIndex + 1}: ${error.message}`);
+            //throw new Error(`Metadata parsing error at row ${this.rowIndex + 1}: ${error.message}`)
+            this.errors.push(`Metadata parsing error at row ${this.rowIndex + 1}: ${error.message} of CSV file`)
         }
     }
 
@@ -42,19 +59,21 @@ class AssetParser {
             obj !== null &&
             !Array.isArray(obj) &&
             Object.values(obj).every(value => typeof value === 'string')
-        );
+        )
     }
 
     sanitizeText(text) {
         if (!text) return "";
         return text.replace(/[\r\n\t]+/g, " ") // replace newlines, returns, and tabs
                    .replace(/\s+/g, " ") // collapse multiple spaces into a single space
-                   .trim();
+                   .trim()
     }
 
     processRow(row) {
         if (!row["Non-Computing"]) {
-            throw new Error(`Required field "Non-Computing" missing at row ${this.rowIndex + 1}`);
+           // throw new Error(`Required field "Non-Computing" missing at row ${this.rowIndex + 1}`)
+            this.errors.push(`Required field "Non-Computing" missing at row ${this.rowIndex + 1} of CSV file`)
+            return
         }
 
         const asset = {
@@ -69,43 +88,78 @@ class AssetParser {
         if (row["MAC"]) asset.mac = row["MAC"]
         asset.labelNames = row["Labels"] ? row["Labels"].split('\n') : []
 
-        if (this.validate(asset)) {
+        if (this.ajv.validate(asset)) {
             asset.labelNames.forEach(label => {
                 if (!this.existingLabelsSet.has(label)) {
-                    this.labelsSet.add(label);
+                    this.labelsSet.add(label)
                 }
-            });
-            this.assets.push(asset);
+            })
+            this.assets.push(asset)
         } else {
-            console.error(`Validation failed for asset at row ${this.rowIndex + 1} (Name: ${asset.name}):`, this.validate.errors);
+            //throw new Error(`Validation failed for asset at row ${this.rowIndex + 1} (Name: ${asset.name}):`, this.validate.errors)
+            this.errors.push(`API shema validation failed for asset at row ${this.rowIndex + 1} of CSV file (Name: ${asset.name}): ${JSON.stringify(this.validate.errors)}`)
         }
-        this.rowIndex++;
+        this.rowIndex++
     }
+
+    checkHeaders() {
+        const requiredHeaders = [
+            "Name", "Description", "IP", "FQDN", "MAC",
+            "Non-Computing", "STIGs", "Labels", "Metadata"
+        ]
+    
+        const missing = requiredHeaders.filter(h => !this.headers.includes(h))
+        const extra = this.headers.filter(h => !requiredHeaders.includes(h))
+    
+        const error = missing.length > 0 || extra.length > 0
+        return error
+    }
+    
+    
 
     parse(fileStream) {
         return new Promise((resolve, reject) => {
             this.rowIndex = 0
+            this.errors = []
+            this.assets = []
+            this.labelsSet.clear()
+            let headersChecked = false
 
-            Papa.parse(fileStream, {
+            
+            this.Papa.parse(fileStream, {
                 header: true,
                 skipEmptyLines: true,
                 transform: (value) => typeof value === 'string' ? value.normalize('NFKC').trim() : value,
-                step: ({ data: row }) => {
-                    try {
-                        this.processRow(row);
-                    } catch (err) {
-                        console.error(`Error parsing row ${this.rowIndex + 1}: ${err.message}`);
+                step: (results) => {
+                    if (!headersChecked) {
+                        headersChecked = true
+                        this.headers = Object.keys(results.data)
+                        console.log('CSV Headers:', this.headers)
                     }
+                    this.processRow(results.data)
                 },
                 error: (err) => reject(new Error(`CSV parsing error: ${err.message}`)),
-                complete: () => resolve({ labels: Array.from(this.labelsSet), assets: this.assets }),
-            });
-        });
+                complete: (results) => {
+
+                    if (this.checkHeaders()) {
+                        this.errors = []
+                        this.errors.push(
+                            `Required headers: "Name", "Description", "IP", "FQDN", "MAC", "Non-Computing", "STIGs", "Labels", "Metadata"`
+                        )
+                    }
+                    resolve({
+                        labels: Array.from(this.labelsSet),
+                        assets: this.assets,
+                        errors: this.errors
+                    })
+                }
+            })
+        })
     }
 }
 
 
-export default AssetParser;
+export default AssetParser
 
 // async function run() {
 //     try {
@@ -119,48 +173,23 @@ export default AssetParser;
 //             }
 //         }).then(response => {
 //             if (!response.ok) {
-//                 throw new Error(`HTTP error! status: ${response.status}`);
+//                 throw new Error(`HTTP error! status: ${response.status}`)
 //             }
-//             return response.json();
+//             return response.json()
 //         })
 //         const existingLabels = ['Label1', 'Label2']
 //         const startTime = Date.now()
 //         const filePath = './test-files/parsers/csv/api_asset_sample.csv'
 //         const fileStream = fs.createReadStream(filePath, 'utf8')
-//         const parser = new AssetParser(apiSchema, existingLabels);
-//         const {labels, assets } = await parser.parse(fileStream);
+//         const parser = new AssetParser(apiSchema, existingLabels)
+//         const {labels, assets } = await parser.parse(fileStream)
 //         const endTime = Date.now()
 //         console.log(`Parsing completed in ${endTime - startTime} ms`)
 //         console.log('Labels:', labels)
 //         console.log('Assets:', assets)
 //     } catch (error) {
-//         console.error('Parsing failed:', error);
+//         console.error('Parsing failed:', error)
 //     }
 // }
 
-// function generateCSV(filePath, numberOfRows) {
-//     const header = 'Name,Description,IP,FQDN,MAC,Non-Computing,STIGs,Labels,Metadata\n';
-
-//     const createRow = (index) => 
-//         `Asset-${index},Asset Description,192.168.1.${index % 255},Asset-${index}.example.com,AB:CD:EF:12:34:56,TRUE,"VPN_SRG_TEST","label1\nlabel6","{""key:3"":""value:3""}"`;
-
-//     const stream = fs.createWriteStream(filePath, { encoding: 'utf8' });
-//     stream.write(header);
-
-//     for (let i = 1; i <= numberOfRows; i++) {
-//         stream.write(createRow(i) + '\n');
-//     }
-
-//     stream.end();
-//     stream.on('finish', () => {
-//         console.log(`CSV file generated with ${numberOfRows} rows at ${filePath}`);
-//     });
-// }
-
-// // Example usage
-
-
-// await run()
-
-
-// //generateCSV('./test-files/parsers/csv/api_asset_sample_large.csv', 10000);
+// run()

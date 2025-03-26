@@ -1,0 +1,7 @@
+Name,Description,IP,MAC,Non-Computing,STIGs,Labels
+Asset 1,Asset1 Description,1.1.1.1,Asset-1.f.q.d.n,AB-12-AB-12-AB,TRUE,"VPN_SRG_TEST","Label1
+Label2
+Label3 ","{""key1"":""value1"",""key2"":""value2""}"
+Asset 2,Asset2 Description,2.2.2.2,,,FALSE,"VPN_SRG_TEST","Label4
+","{""key:3"":""value:3""}"
+Asset 3,"",3.3.3.3,,,TRUE,,,
