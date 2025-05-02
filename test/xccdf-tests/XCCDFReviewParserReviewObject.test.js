@@ -48,7 +48,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
   
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -88,7 +92,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'autoStatus' option in 'importOptions' correctly sets the review to be empty
   
     const importOptions = {
-      autoStatus: 'null',
+      autoStatus: {
+        fail: "null",
+        notapplicable: "null",
+        pass: "null"
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -129,7 +137,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'autoStatus' option in 'importOptions' correctly sets the review status to 'submitted' if valid or 'saved' if not valid.
     
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -213,7 +225,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'autoStatus' option in 'importOptions' correctly sets the review to be empty
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -258,7 +274,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
 
 
     const importOptions = {
-      autoStatus: 'accepted',
+       autoStatus: {
+        fail: "accepted",
+        notapplicable: "accepted",
+        pass: "accepted"
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -347,7 +367,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // note: in this test we will NOT have permissions to accept reviews (we should see submitted)
    
     const importOptions = {
-      autoStatus: 'accepted',
+       autoStatus: {
+        fail: "accepted",
+        notapplicable: "accepted",
+        pass: "accepted"
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -433,7 +457,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // note this test will have a review with a comment and detail
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -475,7 +503,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // note this test will not have any reviews because there will be no comment/detail
     
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -518,7 +550,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // or detail they will be labeled as notchecked.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -568,7 +604,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // and without comment or detail to be labled as notchecked.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -616,7 +656,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'unreviewed' option in 'importOptions' ignores reviews without a compliance result (Nf/na/o)
     
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -657,7 +701,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'unreviewed' option in 'importOptions' correctly does not import the review.
     
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -697,7 +745,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'unreviewed' option in 'importOptions' correctly ignores a review without a compliance result
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -737,7 +789,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyDetail' option in 'importOptions' correctly replaces an empty detail with a static message.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -784,7 +840,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyDetail' option in 'importOptions' correctly replaces an empty detail a null value
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -831,7 +891,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyDetail' option in 'importOptions' correctly replaces an empty detail an empty string if no detail is provided
    
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -879,7 +943,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyDetail' option in 'importOptions' correctly uses the exisisitng detail if one is provided
   
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -926,7 +994,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyComment' option in 'importOptions' correctly replaces an empty comment with a dynamically created message based off the data.
    
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -975,7 +1047,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyComment' option in 'importOptions' correctly replaces an empty comment a null value
   
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1022,7 +1098,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1069,7 +1149,11 @@ describe('Testing permutations of Import Options for a review objects parsed by 
     // - Ensuring that the 'emptyComment' option in 'importOptions' correctly uses the exisisitng comment if one is provided
  
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1118,7 +1202,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // - Ensuring that the 'autoStatus' option in 'importOptions' correctly ensures that a detail is required for a review to be submitted.
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1169,7 +1257,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failing review and no detail exisiting and it will be set to 'saved'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1220,7 +1312,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
    
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1270,7 +1366,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that no detail exisitng and it will be set to 'saved'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1319,7 +1419,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that no detail exisitng and it will be set to 'submitted'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1369,7 +1473,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with detail exisitng and it will be set to 'submitted'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1419,7 +1527,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that witha passing review and a comment exisiting and it will be set to 'submitted'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1469,7 +1581,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failing review and no comment exisiting and it will be set to 'saved'
     
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1518,7 +1634,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failed review and a comment exisitng and it will be set to 'submitted'
     
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1567,7 +1687,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failed review and no comment will be set to 'saved'
     
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1617,7 +1741,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failed review and no comment will be set to 'submitted'
  
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1666,7 +1794,11 @@ describe('fieldSettings testing for a review object in non multi-stig xccdf', ()
     // Test that with a failed review and a comment will be set to 'submitted'
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1718,7 +1850,11 @@ describe('Tests where fieldSettings and importOptions overlap xccdf. ', () => {
     // Test that with a failed review and a comment will be set to 'submitted'
    
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1753,10 +1889,372 @@ describe('Tests where fieldSettings and importOptions overlap xccdf. ', () => {
   })
 })
 
+describe('Test import options status by review result. xccdf ', () => {
+
+  it('test that a passing result becomes saved, not applicable becomes submitted and fail becomes accepted', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'accepted',
+        notapplicable: 'submitted',
+        pass: 'saved'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/xccdf/all-possible-results-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-2',
+        status: 'submitted',
+        result: 'notapplicable',
+        resultEngine: undefined,
+        comment: 'xyz',
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'accepted',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      }
+      
+    ]
+    const actualReviews = review.checklists[0].reviews
+
+    for (const [index, actualReview] of actualReviews.entries()) {
+      expect(actualReview).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes accepted, not applicable becomes saved and fail becomes submitted', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'saved',
+        pass: 'accepted'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/xccdf/all-possible-results-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+     
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: undefined,
+        comment: 'xyz',
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'submitted',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'accepted',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes accepted, not applicable becomes saved and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'accepted'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/xccdf/all-possible-results-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+    
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: undefined,
+        comment: 'xyz',
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'accepted',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+     
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes no status (keep existing), not applicable becomes saved and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'null'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/xccdf/all-possible-results-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+    
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: undefined,
+        comment: 'xyz',
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+     
+      {
+        ruleId: 'SV-2',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes no status (keep existing), not applicable becomes no status (keep existing) and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'null',
+        pass: 'null'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/xccdf/all-possible-results-xccdf.xml'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      
+      {
+        ruleId: 'SV-2',
+        result: 'notapplicable',
+        resultEngine: undefined,
+        comment: 'xyz',
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-2',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: undefined,
+        detail: 'xyz'
+      },
+      
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+})
+
+
 describe('MISC. xccdf ', () => {
   it('review with result engine data', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -1813,7 +2311,11 @@ describe('MISC. xccdf ', () => {
   })
   it('review with result override', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -1859,7 +2361,11 @@ describe('MISC. xccdf ', () => {
   it('Validating that parser truncates review values to their max oas spec', async () => {
     // values tested: ruleId
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1903,7 +2409,11 @@ describe('MISC. xccdf ', () => {
 describe('xccdf - generated by Eval-STIG ', () => {
   it('review with result engine data', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -1967,7 +2477,11 @@ describe('xccdf - generated by Eval-STIG ', () => {
   })
   it('review with result override', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',

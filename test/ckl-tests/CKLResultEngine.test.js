@@ -23,7 +23,11 @@ async function generateReviewObject (
 describe('CKL result engine tests', () => {
   it('Testing result engine ckl with an expression of the Eval STIG "module" that did the evaluation  ', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -78,7 +82,11 @@ describe('CKL result engine tests', () => {
   })
   it('Testing result engine ckl with an  Eval STIG individual answer file override', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -124,7 +132,11 @@ describe('CKL result engine tests', () => {
   })
   it('Testing result engine ckl with an Eval STIG individual answer file override that is incorrect', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -160,7 +172,11 @@ describe('CKL result engine tests', () => {
   it('Giving a ckl file with no ROOT "evaluate-stig" object', async () => {
     // expected result is a null result engine
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -195,7 +211,11 @@ describe('CKL result engine tests', () => {
   it('Valid CKL with two evaluate-stig objects in the stigs checklist and a root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -257,7 +277,11 @@ describe('CKL result engine tests', () => {
   it('Valid CKL with two checklists but only one evaluate-stig object in the stigs checklist and a root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -319,7 +343,11 @@ describe('CKL result engine tests', () => {
   it('Valid CKL with only the root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -366,7 +394,11 @@ describe('CKL result engine tests', () => {
   it('Valid CKL with root module that has no version and two correct istig modules', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -415,7 +447,11 @@ describe('CKL result engine tests', () => {
   it('Validating that parser truncates result engine values to their max oas spec', async () => {
     // values tested: overrides: authority, resultEngine: version. 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

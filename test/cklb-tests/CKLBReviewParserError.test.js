@@ -26,7 +26,11 @@ async function generateReviewObject (
 describe('testing cklb errors', () => {
   it('Giving the parser "bad" json', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -61,7 +65,11 @@ describe('testing cklb errors', () => {
   })
   it('Giving the parser json with no host name ', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -95,7 +103,11 @@ describe('testing cklb errors', () => {
   })
   it('Giving the parser json with no stigs array ', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

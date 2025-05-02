@@ -20,17 +20,22 @@ async function generateReviewObject (
   })
 }
 
+const importOptions = {
+  autoStatus: {
+    fail: 'saved',
+    notapplicable: 'saved',
+    pass: 'saved'
+  },
+  unreviewed: 'commented',
+  unreviewedCommented: 'informational',
+  emptyDetail: 'replace',
+  emptyComment: 'ignore',
+  allowCustom: true
+}
 
 describe('testing CKL XML element errors', () => {
   it('XML with no "CHECKLIST, should throw "No CHECKLIST element"', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
+   
 
     const fieldSettings = {
       detail: {
@@ -59,14 +64,7 @@ describe('testing CKL XML element errors', () => {
     ).to.throw('No CHECKLIST element')
   })
   it('XML with no "ASSET", should throw "No ASSET element"', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
+  
 
     const fieldSettings = {
       detail: {
@@ -95,14 +93,7 @@ describe('testing CKL XML element errors', () => {
     ).to.throw('No ASSET element')
   })
   it('XML with no "STIGS", should throw "No STIGS element"', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
+   
 
     const fieldSettings = {
       detail: {
@@ -131,15 +122,7 @@ describe('testing CKL XML element errors', () => {
     ).to.throw('No STIGS element')
   })
   it('XML with no "host_name in ASSET", should throw "No host_name in ASSET"', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
-
+    
     const fieldSettings = {
       detail: {
         enabled: 'always',
@@ -167,14 +150,7 @@ describe('testing CKL XML element errors', () => {
     ).to.throw('No host_name in ASSET')
   })
   it('XML with no "SI_DATA for SID_NAME = stigId", should throw "STIG_INFO element has no SI_DATA for SID_NAME == stigId"', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
+   
 
     const fieldSettings = {
       detail: {
@@ -203,14 +179,7 @@ describe('testing CKL XML element errors', () => {
     ).to.throw('STIG_INFO element has no SI_DATA for SID_NAME == stigId')
   })
   it('XML with no "SI_DATA for SID_NAME = releaseinfo", should succeed', async () => {
-    const importOptions = {
-      autoStatus: 'saved',
-      unreviewed: 'commented',
-      unreviewedCommented: 'informational',
-      emptyDetail: 'replace',
-      emptyComment: 'ignore',
-      allowCustom: true
-    }
+   
 
     const fieldSettings = {
       detail: {

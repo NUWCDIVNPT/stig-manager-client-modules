@@ -23,7 +23,11 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
   it('Should Append _rule to the files ruleId', async () => {
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -57,7 +61,11 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
   it('Should not Append _rule to the files ruleId because it already has it.', async () => {
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -90,7 +98,11 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
   })
   it('Should return no review due to not containing a Rule_ID', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -123,7 +135,11 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
   })
   it('Should use the rule_id property. rule_id_src does not exit', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -156,7 +172,11 @@ describe('CKLB StigViewer 3.2 ruleID ', () => {
   })
   it('Should use the rule_id_src property. rule_id does not exit', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',

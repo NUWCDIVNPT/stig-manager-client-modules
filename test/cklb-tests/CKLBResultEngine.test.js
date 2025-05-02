@@ -23,7 +23,11 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
   it('Giving a cklb file with no ROOT "evaluate-stig" object', async () => {
     // expected result is a null result engine
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -58,7 +62,11 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
   it('Valid CKLB with two evaluate-stig objects in the stigs checklist and a root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -122,7 +130,11 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
   it('Valid CKLB with two checklists but only one evaluate-stig object in the stigs checklist and a root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -180,7 +192,11 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
   it('Valid CKLB with only the root evaluate-stig object', async () => {
     // expected result is two different result engines for each evaluate-stig object
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -225,7 +241,11 @@ describe('Testing that the CKLb Review Parser will handle parsing on result engi
   it('Validating that parser truncates resultEngine values to their max oas spec', async () => {
   
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

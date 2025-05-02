@@ -1,6 +1,7 @@
 import chai from 'chai';
 import { reviewsFromCkl } from '../../ReviewParser.js'; 
 import fs from 'fs/promises';
+import { stat } from 'fs';
 
 const expect = chai.expect;
 
@@ -28,7 +29,11 @@ async function generateReviewObject (
 describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
   it('testing stats and review objects with default settings for object accuracy', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -99,9 +104,13 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
     }
   })
 
-  it('testing stats and review objects autoStatus = null for accuracy', async () => {
+  it('testing stats and review objects autoStatus = null for accuracy ', async () => {
     const importOptions = {
-      autoStatus: 'null',
+      autoStatus: {
+        fail: 'null',
+        notapplicable: 'saved',
+        pass: 'null'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -151,6 +160,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
         result: 'notapplicable',
         detail: 'There is no detail provided for the assessment',
         comment: 'xyz',
+        status: 'saved',
         resultEngine: null
       },
       undefined,
@@ -159,6 +169,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
         result: 'informational',
         detail: 'There is no detail provided for the assessment',
         comment: 'xyz',
+        status: 'saved',
         resultEngine: null
       }
     ]
@@ -170,7 +181,11 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
   it('testing stats and review objects autoStatus = submitted, testing object for accuracy', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -243,7 +258,11 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
   it("testing stats and review objects 'unreviewed = commented' testing that we only import unreviwred rules that contain a comment or detail   ", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -316,7 +335,11 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
   it(" testing stats and review objects'unreviewed = never' testing to never import an unreviewed item ", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -381,7 +404,11 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 
   it(" testing stats and review objects 'unreviewedComment = informational' testing that an unreviewed item with a comment has a result of informational", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -455,7 +482,11 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
 describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
   it('testing stats and review objects with default settings for object accuracy', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -548,9 +579,13 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
     }
   })
 
-  it('testing stats and review objects autoStatus = null for accuracy', async () => {
+  it('testing stats and objects autoStatus = null for accuracy', async () => {
     const importOptions = {
-      autoStatus: 'null',
+      autoStatus: {
+        fail: 'null',
+        notapplicable: 'null',
+        pass: 'null'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -645,7 +680,11 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
   it('testing stats and review objects autoStatus = submitted, testing object for accuracy', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -740,7 +779,11 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
   it("testing stats and review objects 'unreviewed = commented' testing that we only import unreviwred rules that contain a comment or detail   ", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -835,7 +878,11 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
   it(" testing stats and review objects'unreviewed = never' testing to never import an unreviewed item ", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -929,7 +976,11 @@ describe('Object Value Testing CKL Stats Objects with Multi-Stig. ', () => {
 
   it(" testing stats and review objects 'unreviewedComment = informational' testing that an unreviewed item with a comment has a result of informational", async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',

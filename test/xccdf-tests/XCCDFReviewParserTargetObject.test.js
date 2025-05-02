@@ -42,7 +42,11 @@ async function generateReviewObject (
 describe('Target Object Tests xccdf', () => {
   it('minimal target object', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -87,7 +91,11 @@ describe('Target Object Tests xccdf', () => {
 
   it('TargetObject with full metadata', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -135,7 +143,11 @@ describe('Target Object Tests xccdf', () => {
   })
   it('General Target Object', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -179,7 +191,11 @@ describe('Target Object Tests xccdf', () => {
   it('Validating that parser truncates asset target values to their max oas spec', async () => {
     // values tested: target.description, target.ip, target.fqdn, target.mac
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

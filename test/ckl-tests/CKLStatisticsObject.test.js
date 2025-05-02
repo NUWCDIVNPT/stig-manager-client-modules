@@ -25,7 +25,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
     // will import commented unreviewed findings as informational
     // expecting to see 1 informational finding
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -73,7 +77,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   it('unreviewed: commented, unreviewedCommented: notchecked, has comments/detail', async () => {
      // will import commented unreviewed findings as notchecked
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',
@@ -121,7 +129,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   it('unreviewed: always, unreviewedCommented: informational, has comments/detail', async () => {
     // will always import unreviewed findings and unreviewed with a commment/detail is informational
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -168,7 +180,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   it('unreviewed: always, unreviewedCommented: notchecked, has comments/detail', async () => {
       // will always import unreviewed findings and unreviewed with a commment/detail is notchecked
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',
@@ -215,7 +231,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   it(' unreviewed: never, unreviewedCommented: informational, has comments/detail', async () => {
     // will never import unreviewed findings
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -263,7 +283,11 @@ describe('Testing that the CKL Review Parser will return the correct figures in 
   it(' unreviewed: never, unreviewedCommented: notchecked', async () => {
     // will never import unreviewed findings
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',

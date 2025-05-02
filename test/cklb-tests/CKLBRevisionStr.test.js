@@ -27,7 +27,11 @@ describe('testing that revision strings are correctly parsed', () => {
   it('Testing a v2r5 revison str is currently being returned as v2r5', async () => {
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -61,7 +65,11 @@ describe('testing that revision strings are correctly parsed', () => {
   it('Testing a v2r5 revison str is not being returned as V0R5', async () => {
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',

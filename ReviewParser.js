@@ -313,9 +313,24 @@ export function reviewsFromCkl(
   }
 
   function bestStatusForReview(review) {
-    if (importOptions.autoStatus === 'null') return null
-    if (importOptions.autoStatus === 'saved') return 'saved'
 
+    // always return saved for these
+    if(review.result === "notchecked" || review.result === "informational"){
+      return "saved"
+    }
+
+    let autoStatusSetting
+    // backward compatibility for old style autoStatus = "string"
+    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
+    if (isLegacyAutoStatus) {
+      autoStatusSetting = importOptions.autoStatus
+    } else {
+      autoStatusSetting = importOptions.autoStatus[review.result]
+    }
+    
+    if (autoStatusSetting === 'null') return null
+    if (autoStatusSetting === 'saved') return 'saved'
+  
     let detailSubmittable = false
     switch (fieldSettings.detail.required) {
       case 'optional':
@@ -349,25 +364,26 @@ export function reviewsFromCkl(
         }
         break
     }
-
+  
     const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
-
+  
     let status
     if (detailSubmittable && commentSubmittable && resultSubmittable) {
-      switch (importOptions.autoStatus) {
+      switch (autoStatusSetting) {
         case 'submitted':
           status = 'submitted'
           break
         case 'accepted':
-        status = allowAccept ? 'accepted' : 'submitted'
+          status = allowAccept ? 'accepted' : 'submitted'
           break
       }
-    }
-    else {
+    } else {
       status = 'saved'
     }
+  
     return status
   }
+  
 
 // process the Evaluate-STIG XML coments for each "Checklist" (iSTIG)
   function processIstigXmlComments(iStigComment) {
@@ -732,8 +748,23 @@ export function reviewsFromXccdf(
   }
 
   function bestStatusForReview(review) {
-    if (importOptions.autoStatus === 'null') return undefined
-    if (importOptions.autoStatus === 'saved') return 'saved'
+    
+    // always return saved for these
+    if(review.result === "notchecked" || review.result === "informational"){
+      return "saved"
+    }
+
+    let autoStatusSetting
+    // backward compatibility for old style autoStatus = "string"
+    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
+    if (isLegacyAutoStatus) {
+      autoStatusSetting = importOptions.autoStatus
+    } else {
+      autoStatusSetting = importOptions.autoStatus[review.result]
+    }
+ 
+    if (autoStatusSetting === 'null') return null
+    if (autoStatusSetting === 'saved') return 'saved'
 
     const fields = ['detail', 'comment']
     let commentsSubmittable
@@ -756,7 +787,7 @@ export function reviewsFromXccdf(
 
     let status
     if (commentsSubmittable && resultSubmittable) {
-      switch (importOptions.autoStatus) {
+      switch (autoStatusSetting) {
         case 'submitted':
           status = 'submitted'
           break
@@ -1047,8 +1078,22 @@ export function reviewsFromCklb(
     return review
   }
   function bestStatusForReview(review) {
-    if (importOptions.autoStatus === 'null') return null
-    if (importOptions.autoStatus === 'saved') return 'saved'
+    // always return saved for these
+    if(review.result === "notchecked" || review.result === "informational"){
+      return "saved"
+    }
+    
+    let autoStatusSetting
+    // backward compatibility for old style autoStatus = "string"
+    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
+    if (isLegacyAutoStatus) {
+      autoStatusSetting = importOptions.autoStatus
+    } else {
+      autoStatusSetting = importOptions.autoStatus[review.result]
+    }
+  
+    if (autoStatusSetting === 'null') return null
+    if (autoStatusSetting === 'saved') return 'saved'
 
     let detailSubmittable = false
     switch (fieldSettings.detail.required) {
@@ -1066,7 +1111,7 @@ export function reviewsFromCklb(
         }
         break
     }
-
+  
     let commentSubmittable = false
     switch (fieldSettings.comment.required) {
       case 'optional':
@@ -1088,7 +1133,7 @@ export function reviewsFromCklb(
 
     let status
     if (detailSubmittable && commentSubmittable && resultSubmittable) {
-      switch (importOptions.autoStatus) {
+      switch (autoStatusSetting) {
         case 'submitted':
           status = 'submitted'
           break
@@ -1102,7 +1147,6 @@ export function reviewsFromCklb(
     }
     return status
   }
-
  // process evaluate-stig module for each "Checklist" (STIGs array)
  function processStigEvalStigModule(stigModule){
     let resultEngineIStig

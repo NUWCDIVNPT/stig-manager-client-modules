@@ -25,7 +25,11 @@ const scapBenchmarkMap = new Map(
 describe('Testing handled errors in reviewsFromXccdf()', () => {
   it('should throw an error if there is no BenchMark xml element.', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -63,7 +67,11 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
 
   it('should throw an error if there is no TestResult xml element.', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -100,7 +108,11 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
   })
   it('should throw an error if there is no Target xml element.', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -137,7 +149,11 @@ describe('Testing handled errors in reviewsFromXccdf()', () => {
   })
   it('should throw an error if there is no Rule Result xml element.', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

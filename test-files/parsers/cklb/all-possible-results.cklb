@@ -1,0 +1,234 @@
+{
+  "title": "Asset-VPN_TRUNCATED-V2R5",
+  "id": "2f6fe9e0-8242-11ee-8b44-13c1c13d16bb",
+  "active": false,
+  "mode": 1,
+  "has_path": true,
+  "target_data": {
+    "target_type": "Non-Computing",
+    "host_name": "Asset",
+    "ip_address": "1.1.1.1",
+    "mac_address": "00:00:00:00:00:00",
+    "fqdn": "asset.com",
+    "comments": "xyz",
+    "role": null,
+    "is_web_database": false,
+    "technology_area": null,
+    "web_db_site": null,
+    "web_db_instance": null
+  },
+  "stigs": [
+    {
+      "stig_name": "Virtual Private Network (VPN) TRUNCATED",
+      "display_name": "Virtual Private Network (VPN) TRUNCATED",
+      "stig_id": "VPN_TRUNCATED",
+      "version": 2,
+      "release_info": "Release: 5 Benchmark Date: 07 Jun 2023",
+      "uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+      "reference_identifier": "0000",
+      "size": 10,
+      "rules": [
+        {
+          "uuid": "2f7281f0-8242-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207184",
+          "rule_id": "SV-207184r695317",
+          "rule_id_src": "SV-257777r925317_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000019-VPN-000040",
+          "group_title": "SRG-NET-000019",
+          "rule_title": "The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.",
+          "fix_text": "Configure the VPN Gateway to ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies (e.g., IPsec policy configuration). Also, configure the VPN gateway to forward encapsulated or encrypted traffic received from other enclaves with different security policies to the perimeter firewall and IDPS before traffic is passed to the private network.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unrestricted traffic may contain malicious traffic which poses a threat to an enclave or to other connected networks. Additionally, unrestricted traffic may transit a network, which uses bandwidth and other resources.\n\nVPN traffic received from another enclave with different security policy or level of trust must not bypass be inspected by the firewall before being forwarded to the private network.",
+          "check_content": "Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).\n\nReview network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.\n\nIf the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207184",
+              "title": "SRG-NET-000019",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:30:36.000Z",
+          "updatedAt": "2023-11-13T16:30:36.000Z",
+          "STIGUuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "xyz",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001414"
+          ]
+        },
+        {
+          "uuid": "2f7281f0-8242-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207184",
+          "rule_id": "SV-207184r695317",
+          "rule_id_src": "SV-257777r925317_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000019-VPN-000040",
+          "group_title": "SRG-NET-000019",
+          "rule_title": "The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.",
+          "fix_text": "Configure the VPN Gateway to ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies (e.g., IPsec policy configuration). Also, configure the VPN gateway to forward encapsulated or encrypted traffic received from other enclaves with different security policies to the perimeter firewall and IDPS before traffic is passed to the private network.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unrestricted traffic may contain malicious traffic which poses a threat to an enclave or to other connected networks. Additionally, unrestricted traffic may transit a network, which uses bandwidth and other resources.\n\nVPN traffic received from another enclave with different security policy or level of trust must not bypass be inspected by the firewall before being forwarded to the private network.",
+          "check_content": "Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).\n\nReview network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.\n\nIf the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207184",
+              "title": "SRG-NET-000019",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:30:36.000Z",
+          "updatedAt": "2023-11-13T16:30:36.000Z",
+          "STIGUuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "status": "not_applicable",
+          "overrides": {},
+          "comments": "xyz",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001414"
+          ]
+        },
+        {
+          "uuid": "2f7281f0-8242-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207184",
+          "rule_id": "SV-207184r695317",
+          "rule_id_src": "SV-257777r925317_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000019-VPN-000040",
+          "group_title": "SRG-NET-000019",
+          "rule_title": "The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.",
+          "fix_text": "Configure the VPN Gateway to ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies (e.g., IPsec policy configuration). Also, configure the VPN gateway to forward encapsulated or encrypted traffic received from other enclaves with different security policies to the perimeter firewall and IDPS before traffic is passed to the private network.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unrestricted traffic may contain malicious traffic which poses a threat to an enclave or to other connected networks. Additionally, unrestricted traffic may transit a network, which uses bandwidth and other resources.\n\nVPN traffic received from another enclave with different security policy or level of trust must not bypass be inspected by the firewall before being forwarded to the private network.",
+          "check_content": "Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).\n\nReview network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.\n\nIf the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207184",
+              "title": "SRG-NET-000019",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:30:36.000Z",
+          "updatedAt": "2023-11-13T16:30:36.000Z",
+          "STIGUuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "status": "open",
+          "overrides": {},
+          "comments": "xyz",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001414"
+          ]
+        },
+        {
+          "uuid": "2f7281f0-8242-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207184",
+          "rule_id": "SV-207184r695317",
+          "rule_id_src": "SV-257777r925317_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000019-VPN-000040",
+          "group_title": "SRG-NET-000019",
+          "rule_title": "The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.",
+          "fix_text": "Configure the VPN Gateway to ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies (e.g., IPsec policy configuration). Also, configure the VPN gateway to forward encapsulated or encrypted traffic received from other enclaves with different security policies to the perimeter firewall and IDPS before traffic is passed to the private network.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unrestricted traffic may contain malicious traffic which poses a threat to an enclave or to other connected networks. Additionally, unrestricted traffic may transit a network, which uses bandwidth and other resources.\n\nVPN traffic received from another enclave with different security policy or level of trust must not bypass be inspected by the firewall before being forwarded to the private network.",
+          "check_content": "Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).\n\nReview network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.\n\nIf the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207184",
+              "title": "SRG-NET-000019",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:30:36.000Z",
+          "updatedAt": "2023-11-13T16:30:36.000Z",
+          "STIGUuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "xyz",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001414"
+          ]
+        }
+      ]
+    }
+  ]
+}

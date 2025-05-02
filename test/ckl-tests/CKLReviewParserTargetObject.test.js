@@ -24,7 +24,11 @@ async function generateReviewObject (
 describe('Testing that the Target object returned by the ckl review parser is accurate', () => {
   it('Testing a target asset with with a cklRole and normal data', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -71,7 +75,11 @@ describe('Testing that the Target object returned by the ckl review parser is ac
 
   it('testing a target asset with the minimum amount of fields', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -118,7 +126,11 @@ describe('Testing that the Target object returned by the ckl review parser is ac
 
   it('testing a target asset with a complete set of metadata.', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -168,7 +180,11 @@ describe('Testing that the Target object returned by the ckl review parser is ac
   it('Validating that parser truncates asset target values to their max oas spec', async () => {
     // values tested: target.description, target.ip, target.fqdn, target.mac
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

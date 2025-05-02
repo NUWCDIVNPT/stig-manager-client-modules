@@ -21,6 +21,19 @@ async function generateReviewObject (
 }
 
 
+const defaultImportOptions = {
+  autoStatus: {
+    fail: 'saved',
+    notapplicable: 'saved',
+    pass: 'saved'
+  },
+  unreviewed: 'commented',
+  unreviewedCommented: 'informational',
+  emptyDetail: 'replace',
+  emptyComment: 'ignore',
+  allowCustom: true
+}
+
 describe('Import Options, allowAccept for a CKL review object in non multi-stig', () => {
   it('DEFAULT SETTINGS: Primarily testing review "status = saved"', async () => {
     // Test: DEFAULT SETTINGS
@@ -34,7 +47,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -86,7 +103,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'null',
+      autoStatus: {
+        fail: 'null',
+        notapplicable: 'null',
+        pass: 'null'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -121,12 +142,12 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
       ruleId: 'SV-257777r925318_rule',
       result: 'informational',
       comment: 'xyz',
+      status: "saved",
       detail: 'xyz'
     }
 
     expect(review.checklists[0].reviews[0]).to.include(expectedReview)
 
-    expect(review.checklists[0].reviews[0].status).to.not.exist
   })
 
   it('autoStatus = submitted, testing if reviews are set to "submitted" if valid or "saved" if not valid. Determined by field settings and result', async () => {
@@ -140,7 +161,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -228,7 +253,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -283,7 +312,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // The test utilizes a sample CKL file ('Asset_a-VPN_TRUNCATED-V2R5.ckl'') to simulate a real-world scenario.
 
     const importOptions = {
-      autoStatus: 'accepted',
+      autoStatus: {
+        fail: 'accepted',
+        notapplicable: 'accepted',
+        pass: 'accepted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -375,7 +408,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Asset_a-VPN_TRUNCATED-V2R5.ckl'') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'accepted',
+      autoStatus: {
+        fail: 'accepted',
+        notapplicable: 'accepted',
+        pass: 'accepted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -464,7 +501,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -523,7 +564,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -569,7 +614,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -621,7 +670,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // These checks ensure that not only is the 'status' property set as expected, but also that
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Empty-CommentDetail.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -671,7 +724,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Empty-CommentDetail.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -716,7 +773,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -767,7 +828,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-notReviewed-Commented-Detailed.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'ignore',
@@ -817,7 +882,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Comment.ckl') to simulate a real-world scenario.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -866,7 +935,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Comment.ckl') to simulate a real-world scenario.
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -916,7 +989,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Comment.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -967,7 +1044,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1017,7 +1098,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1067,7 +1152,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Comment.ckl') to simulate a real-world scenario.
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1116,7 +1205,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl')
 
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -1165,7 +1258,11 @@ describe('Import Options, allowAccept for a CKL review object in non multi-stig'
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1217,7 +1314,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1270,7 +1371,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1323,7 +1428,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // The test utilizes a sample CKL file ('Single-Vuln-Pass-With-Detail.ckl')
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1375,7 +1484,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-Empty-CommentDetail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1429,7 +1542,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-Empty-CommentDetail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1481,7 +1598,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -1534,7 +1655,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1586,7 +1711,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-With-Detail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1638,7 +1767,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-with-Comment.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1690,7 +1823,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-Empty-CommentDetail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1743,7 +1880,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-Empty-CommentDetail.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1795,7 +1936,11 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-with-Comment.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1838,7 +1983,7 @@ describe('fieldSettings testing for a CKL review object in non multi-stig', () =
   })
 })
 
-describe(' CKL Tests where fieldSettings and importOptions overlap. ', () => {
+describe('CKL Tests where fieldSettings and importOptions overlap. ', () => {
   it("Testing where emptyDetail: 'ignore', emptyComment: 'ignore', aswell as requiring a comment and detail  ", async () => {
     // TEST: emptyDetail: 'ignore', emptyComment: 'ignore', fieldSettings.detail.required = always, fieldSettings.comment.required = always
     // This test validates the behavior of the ckl parser function under above settings with a non compliance resilt and no comment or detail.
@@ -1850,7 +1995,11 @@ describe(' CKL Tests where fieldSettings and importOptions overlap. ', () => {
     // other related properties in the review object reflect the correct values as per the given 'importOptions' and 'fieldSettings'.
     // The test utilizes a sample CKL file ('Single-Vuln-fail-with-Comment.ckl')
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1885,12 +2034,401 @@ describe(' CKL Tests where fieldSettings and importOptions overlap. ', () => {
   })
 })
 
+describe('Test import options status by review result. ', () => {
+
+  it('test that a passing result becomes saved, not applicable becomes submitted and fail becomes accepted', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'accepted',
+        notapplicable: 'submitted',
+        pass: 'saved'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/ckl/all-possible-results.ckl'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'accepted',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'informational',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'submitted',
+        result: 'notapplicable',
+        resultEngine: null,
+        comment: 'xyz',
+        detail: 'xyz'
+      }
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes accepted, not applicable becomes saved and fail becomes submitted', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'saved',
+        pass: 'accepted'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/ckl/all-possible-results.ckl'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'submitted',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'informational',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'accepted',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: null,
+        comment: 'xyz',
+        detail: 'xyz'
+      }
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes accepted, not applicable becomes saved and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'accepted'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/ckl/all-possible-results.ckl'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'informational',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'accepted',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: null,
+        comment: 'xyz',
+        detail: 'xyz'
+      }
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes no status (keep existing), not applicable becomes saved and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'null'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/ckl/all-possible-results.ckl'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'informational',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'notapplicable',
+        resultEngine: null,
+        comment: 'xyz',
+        detail: 'xyz'
+      }
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+
+  it('test that a passing result becomes no status (keep existing), not applicable becomes no status (keep existing) and fail becomes saved', async () => {
+
+    const importOptions = {
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'null',
+        pass: 'null'
+      },
+      unreviewed: 'commented',
+      unreviewedCommented: 'informational',
+      emptyDetail: 'replace',
+      emptyComment: 'ignore',
+      allowCustom: true
+    }
+
+    const fieldSettings = {
+      detail: {
+        enabled: 'always',
+        required: 'always'
+      },
+      comment: {
+        enabled: 'findings',
+        required: 'findings'
+      }
+    }
+
+    const allowAccept = true
+
+    const filePath = './test-files/parsers/ckl/all-possible-results.ckl'
+
+    const review = await generateReviewObject(
+      filePath,
+      importOptions,
+      fieldSettings,
+      allowAccept
+    )
+
+    const expectedReviews = [
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'fail',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        status: 'saved',
+        result: 'informational',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        result: 'pass',
+        comment: 'xyz',
+        resultEngine: null,
+        detail: 'xyz'
+      },
+      {
+        ruleId: 'SV-257777r925318_rule',
+        result: 'notapplicable',
+        resultEngine: null,
+        comment: 'xyz',
+        detail: 'xyz'
+      }
+    ]
+    for (const [index, expected] of review.checklists.entries()) {
+      expect(expected.reviews[0]).to.deep.equal(expectedReviews[index])
+    }
+
+  })
+})
+
 describe('MISC CKL. ', () => {
   it('Testing that long comment.detail is truncated ', async () => {
     // NOTE: the input comment and detail are '32768' characters long
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1931,7 +2469,11 @@ describe('MISC CKL. ', () => {
     // NOTE: the input comment and detail are '32768' characters long
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -1966,7 +2508,11 @@ describe('MISC CKL. ', () => {
   it('Testing no RuleID value in a ckl ', async () => {
 
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'ignore',
@@ -2001,7 +2547,11 @@ describe('MISC CKL. ', () => {
   it('Validating that parser truncates review values to their max oas spec', async () => {
     // values tested: ruleId
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

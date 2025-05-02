@@ -26,7 +26,11 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
   it("testing that 'checklist' xml elements benchmarkId and revisionStr are parsed", async () => {
     // TEST: ensure that the checklist array is populated with the correct benchmarkId and revisionStr
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -67,7 +71,11 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
   it('A multi-stig Checklist array testing for correct benchmarkId and revisionStr', async () => {
     // TEST: ensure that the checklist array is populated with the correct benchmarkId and revisionStr
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -126,7 +134,11 @@ describe('CKL Checklist array testing for correct benchmarkId and revisionStr', 
   it('Validating that parser truncates checklist values to their max oas spec', async () => {
     // values tested: checklist[i].benchmarkId
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',

@@ -22,7 +22,11 @@ async function generateReviewObject (
 describe('CKL html decoding tests', () => {
   it('Testing that the value processor functiion in ReviewParser.js can decode html elements correctly in a stig.', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',

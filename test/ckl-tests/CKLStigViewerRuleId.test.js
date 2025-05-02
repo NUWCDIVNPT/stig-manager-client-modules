@@ -22,7 +22,11 @@ async function generateReviewObject (
 describe('CKL StigViewer 3.2 ruleID ', () => {
   it('Should Append _rule to the files ruleId', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -56,7 +60,11 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
   })
   it('Should not append _rule because file already contains stigDatum.ATTRIBUTE_DATA + _rule', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -90,7 +98,11 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
   })
   it('Should return no review due to not containing a VULN_ATTRIBUTE = Rule_ID', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',
@@ -123,7 +135,11 @@ describe('CKL StigViewer 3.2 ruleID ', () => {
   })
   it('Should return no review due to not containing a ATTRIBUTE_DATA for a RULE_ID', async () => {
     const importOptions = {
-      autoStatus: 'submitted',
+      autoStatus: {
+        fail: 'submitted',
+        notapplicable: 'submitted',
+        pass: 'submitted'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'import',

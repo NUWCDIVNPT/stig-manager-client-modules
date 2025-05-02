@@ -43,7 +43,11 @@ async function generateReviewObject (
 describe('Testing that the xccdf Review Parser will return the correct figures in the Statistics object', () => {
   it('unreviewed: commented, unreviewedCommented: informational, has comments/detail', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -90,7 +94,11 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
   it('unreviewed: commented, unreviewedCommented: notchecked, has comments/detail', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'commented',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',
@@ -137,7 +145,11 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
   it('unreviewed: always, unreviewedCommented: informational, has comments/detail', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -183,7 +195,11 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
   it('unreviewed: always, unreviewedCommented: notchecked, has comments/detail', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'always',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',
@@ -229,7 +245,11 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
   it(' unreviewed: never, unreviewedCommented: informational, has comments/detail', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'informational',
       emptyDetail: 'replace',
@@ -276,7 +296,11 @@ describe('Testing that the xccdf Review Parser will return the correct figures i
 
   it(' unreviewed: never, unreviewedCommented: notchecked', async () => {
     const importOptions = {
-      autoStatus: 'saved',
+      autoStatus: {
+        fail: 'saved',
+        notapplicable: 'saved',
+        pass: 'saved'
+      },
       unreviewed: 'never',
       unreviewedCommented: 'notchecked',
       emptyDetail: 'replace',
