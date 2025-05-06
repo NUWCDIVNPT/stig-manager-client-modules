@@ -290,7 +290,7 @@ export function reviewsFromCkl(
       review.resultEngine = null
     }
 
-    const status = bestStatusForReview(review)
+    const status = bestStatusForReview(review, importOptions, fieldSettings, allowAccept)
     if (status) {
       review.status = status
     }
@@ -311,79 +311,6 @@ export function reviewsFromCkl(
     })
     return ruleId
   }
-
-  function bestStatusForReview(review) {
-
-    // always return saved for these
-    if(review.result === "notchecked" || review.result === "informational"){
-      return "saved"
-    }
-
-    let autoStatusSetting
-    // backward compatibility for old style autoStatus = "string"
-    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
-    if (isLegacyAutoStatus) {
-      autoStatusSetting = importOptions.autoStatus
-    } else {
-      autoStatusSetting = importOptions.autoStatus[review.result]
-    }
-    
-    if (autoStatusSetting === 'null') return null
-    if (autoStatusSetting === 'saved') return 'saved'
-  
-    let detailSubmittable = false
-    switch (fieldSettings.detail.required) {
-      case 'optional':
-        detailSubmittable = true
-        break
-      case 'findings':
-        if ((review.result !== 'fail') || (review.result === 'fail' && review.detail)) {
-          detailSubmittable = true
-        }
-        break
-      case 'always':
-        if (review.detail) {
-          detailSubmittable = true
-        }
-        break
-    }
-
-    let commentSubmittable = false
-    switch (fieldSettings.comment.required) {
-      case 'optional':
-        commentSubmittable = true
-        break
-      case 'findings':
-        if ((review.result !== 'fail') || (review.result === 'fail' && review.comment)) {
-          commentSubmittable = true
-        }
-        break
-      case 'always':
-        if (review.comment) {
-          commentSubmittable = true
-        }
-        break
-    }
-  
-    const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
-  
-    let status
-    if (detailSubmittable && commentSubmittable && resultSubmittable) {
-      switch (autoStatusSetting) {
-        case 'submitted':
-          status = 'submitted'
-          break
-        case 'accepted':
-          status = allowAccept ? 'accepted' : 'submitted'
-          break
-      }
-    } else {
-      status = 'saved'
-    }
-  
-    return status
-  }
-  
 
 // process the Evaluate-STIG XML coments for each "Checklist" (iSTIG)
   function processIstigXmlComments(iStigComment) {
@@ -446,7 +373,6 @@ export function reviewsFromCkl(
     return resultEngineRoot || null
   }
 }
-
 
 /**
  * Parses data from a XCCDF format into a format suitable for further processing.
@@ -739,67 +665,12 @@ export function reviewsFromXccdf(
       comment
     }
 
-    const status = bestStatusForReview(review)
+    const status = bestStatusForReview(review, importOptions, fieldSettings, allowAccept)
     if (status) {
       review.status = status
     }
 
     return review
-  }
-
-  function bestStatusForReview(review) {
-    
-    // always return saved for these
-    if(review.result === "notchecked" || review.result === "informational"){
-      return "saved"
-    }
-
-    let autoStatusSetting
-    // backward compatibility for old style autoStatus = "string"
-    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
-    if (isLegacyAutoStatus) {
-      autoStatusSetting = importOptions.autoStatus
-    } else {
-      autoStatusSetting = importOptions.autoStatus[review.result]
-    }
- 
-    if (autoStatusSetting === 'null') return null
-    if (autoStatusSetting === 'saved') return 'saved'
-
-    const fields = ['detail', 'comment']
-    let commentsSubmittable
-    for (const field of fields) {
-      switch (fieldSettings[field].required) {
-        case 'optional':
-          commentsSubmittable = true
-          break
-        case 'findings':
-          commentsSubmittable = ((review.result !== 'fail') || (review.result === 'fail' && review[field]))
-          break
-        case 'always':
-          commentsSubmittable = !!review[field]
-          break
-      }
-      if (!commentsSubmittable) break // can end loop if commentsSubmittable becomes false
-    }
-
-    const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
-
-    let status
-    if (commentsSubmittable && resultSubmittable) {
-      switch (autoStatusSetting) {
-        case 'submitted':
-          status = 'submitted'
-          break
-        case 'accepted':
-          status = allowAccept ? 'accepted' : 'submitted'
-          break
-      }
-    }
-    else {
-      status = 'saved'
-    }
-    return status
   }
 
   function processTargetFacts(targetFacts) {
@@ -845,7 +716,6 @@ export function reviewsFromXccdf(
     }
   }
 }
-
 
 /**
  * Parses data from a cklb format into a format suitable for further processing.
@@ -1070,83 +940,14 @@ export function reviewsFromCklb(
       review.resultEngine = null
     }
 
-    const status = bestStatusForReview(review)
+    const status = bestStatusForReview(review, importOptions, fieldSettings, allowAccept)
     if (status) {
       review.status = status
     }
 
     return review
   }
-  function bestStatusForReview(review) {
-    // always return saved for these
-    if(review.result === "notchecked" || review.result === "informational"){
-      return "saved"
-    }
-    
-    let autoStatusSetting
-    // backward compatibility for old style autoStatus = "string"
-    const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
-    if (isLegacyAutoStatus) {
-      autoStatusSetting = importOptions.autoStatus
-    } else {
-      autoStatusSetting = importOptions.autoStatus[review.result]
-    }
-  
-    if (autoStatusSetting === 'null') return null
-    if (autoStatusSetting === 'saved') return 'saved'
-
-    let detailSubmittable = false
-    switch (fieldSettings.detail.required) {
-      case 'optional':
-        detailSubmittable = true
-        break
-      case 'findings':
-        if ((review.result !== 'fail') || (review.result === 'fail' && review.detail)) {
-          detailSubmittable = true
-        }
-        break
-      case 'always':
-        if (review.detail) {
-          detailSubmittable = true
-        }
-        break
-    }
-  
-    let commentSubmittable = false
-    switch (fieldSettings.comment.required) {
-      case 'optional':
-        commentSubmittable = true
-        break
-      case 'findings':
-        if ((review.result !== 'fail') || (review.result === 'fail' && review.comment)) {
-          commentSubmittable = true
-        }
-        break
-      case 'always':
-        if (review.comment) {
-          commentSubmittable = true
-        }
-        break
-    }
-
-    const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
-
-    let status
-    if (detailSubmittable && commentSubmittable && resultSubmittable) {
-      switch (autoStatusSetting) {
-        case 'submitted':
-          status = 'submitted'
-          break
-        case 'accepted':
-          status = allowAccept ? 'accepted' : 'submitted'
-          break
-      }
-    }
-    else {
-      status = 'saved'
-    }
-    return status
-  }
+ 
  // process evaluate-stig module for each "Checklist" (STIGs array)
  function processStigEvalStigModule(stigModule){
     let resultEngineIStig
@@ -1174,5 +975,75 @@ export function reviewsFromCklb(
     return resultEngineCommon
   }
 }
+
+export function bestStatusForReview(review, importOptions, fieldSettings, allowAccept) {
+
+  let autoStatusSetting
+  // backward compatibility for old style autoStatus = "string"
+  const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
+  if (isLegacyAutoStatus) {
+    autoStatusSetting = importOptions.autoStatus
+  } else if (review.result in importOptions.autoStatus) {
+    autoStatusSetting = importOptions.autoStatus[review.result]
+  } else {
+    autoStatusSetting = 'saved' // default to saved for values not pass, fail, notapplicable
+  }
+  
+  if (autoStatusSetting === 'null') return null
+  if (autoStatusSetting === 'saved') return 'saved'
+
+  let detailSubmittable = false
+  switch (fieldSettings.detail.required) {
+    case 'optional':
+      detailSubmittable = true
+      break
+    case 'findings':
+      if ((review.result !== 'fail') || (review.result === 'fail' && review.detail)) {
+        detailSubmittable = true
+      }
+      break
+    case 'always':
+      if (review.detail) {
+        detailSubmittable = true
+      }
+      break
+  }
+
+  let commentSubmittable = false
+  switch (fieldSettings.comment.required) {
+    case 'optional':
+      commentSubmittable = true
+      break
+    case 'findings':
+      if ((review.result !== 'fail') || (review.result === 'fail' && review.comment)) {
+        commentSubmittable = true
+      }
+      break
+    case 'always':
+      if (review.comment) {
+        commentSubmittable = true
+      }
+      break
+  }
+
+  const resultSubmittable = review.result === 'pass' || review.result === 'fail' || review.result === 'notapplicable'
+
+  let status
+  if (detailSubmittable && commentSubmittable && resultSubmittable) {
+    switch (autoStatusSetting) {
+      case 'submitted':
+        status = 'submitted'
+        break
+      case 'accepted':
+        status = allowAccept ? 'accepted' : 'submitted'
+        break
+    }
+  } else {
+    status = 'saved'
+  }
+
+  return status
+}
+
 
 export const reviewsFromScc = reviewsFromXccdf

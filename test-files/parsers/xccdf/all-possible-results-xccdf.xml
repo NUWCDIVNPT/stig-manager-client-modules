@@ -64,6 +64,42 @@
                 </check-content>
             </check>
         </rule-result>
+        <rule-result idref="xccdf_mil.disa.stig_rule_SV-2" time="2023-11-13T16:41:49.000Z">
+            <result>unknown</result>
+            <check>
+                <check-content>
+                    <sm:detail>xyz</sm:detail>
+                    <sm:comment>xyz</sm:comment>
+                </check-content>
+            </check>
+        </rule-result>
+        <rule-result idref="xccdf_mil.disa.stig_rule_SV-2" time="2023-11-13T16:41:49.000Z">
+            <result>error</result>
+            <check>
+                <check-content>
+                    <sm:detail>xyz</sm:detail>
+                    <sm:comment>xyz</sm:comment>
+                </check-content>
+            </check>
+        </rule-result>
+        <rule-result idref="xccdf_mil.disa.stig_rule_SV-2" time="2023-11-13T16:41:49.000Z">
+            <result>notselected</result>
+            <check>
+                <check-content>
+                    <sm:detail>xyz</sm:detail>
+                    <sm:comment>xyz</sm:comment>
+                </check-content>
+            </check>
+        </rule-result>
+        <rule-result idref="xccdf_mil.disa.stig_rule_SV-2" time="2023-11-13T16:41:49.000Z">
+            <result>fixed</result>
+            <check>
+                <check-content>
+                    <sm:detail>xyz</sm:detail>
+                    <sm:comment>xyz</sm:comment>
+                </check-content>
+            </check>
+        </rule-result>
         <score>1.0</score>
     </TestResult>
 </Benchmark>
