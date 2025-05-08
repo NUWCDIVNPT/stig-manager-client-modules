@@ -979,14 +979,22 @@ export function reviewsFromCklb(
 export function bestStatusForReview(review, importOptions, fieldSettings, allowAccept) {
 
   let autoStatusSetting
-  // backward compatibility for old style autoStatus = "string"
+  
+  // Determine if the autoStatus setting is using the legacy string-based format.
+  // In the legacy format, autoStatus is a single string value (e.g., "submitted").
   const isLegacyAutoStatus = typeof importOptions.autoStatus === 'string'
   if (isLegacyAutoStatus) {
+    // Use the legacy string value directly as the autoStatus setting.
     autoStatusSetting = importOptions.autoStatus
   } else if (review.result in importOptions.autoStatus) {
+    // In the new object-based format, autoStatus is a mapping of review results
+    // (e.g., "pass", "fail") to specific status values. Use the status corresponding
+    // to the current review result.
     autoStatusSetting = importOptions.autoStatus[review.result]
   } else {
-    autoStatusSetting = 'saved' // default to saved for values not pass, fail, notapplicable
+    // Fallback: If the review result is not explicitly mapped in the new format,
+    // default to "saved" for unrecognized or unsupported results.
+    autoStatusSetting = 'saved'
   }
   
   if (autoStatusSetting === 'null') return null
