@@ -20,20 +20,6 @@ async function generateReviewObject (
   })
 }
 
-
-const defaultImportOptions = {
-  autoStatus: {
-    fail: 'saved',
-    notapplicable: 'saved',
-    pass: 'saved'
-  },
-  unreviewed: 'commented',
-  unreviewedCommented: 'informational',
-  emptyDetail: 'replace',
-  emptyComment: 'ignore',
-  allowCustom: true
-}
-
 describe('Import Options, allowAccept for a CKL review object in non multi-stig', () => {
   it('DEFAULT SETTINGS: Primarily testing review "status = saved"', async () => {
     // Test: DEFAULT SETTINGS

@@ -108,7 +108,7 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
     const importOptions = {
       autoStatus: {
         fail: 'null',
-        notapplicable: 'saved',
+        notapplicable: 'null',
         pass: 'null'
       },
       unreviewed: 'commented',
@@ -160,7 +160,6 @@ describe('Object Value Testing CKL Review Objects with Multi-Stig. ', () => {
         result: 'notapplicable',
         detail: 'There is no detail provided for the assessment',
         comment: 'xyz',
-        status: 'saved',
         resultEngine: null
       },
       undefined,

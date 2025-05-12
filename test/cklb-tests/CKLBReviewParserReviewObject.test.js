@@ -2033,7 +2033,7 @@ describe(' CKLb Tests where fieldSettings and importOptions overlap. ', () => {
   })
 })
 
-describe('Test import options status by review result. CKL ', () => {
+describe('Test import options status by review result. CKLB ', () => {
 
   it('test that a passing result becomes saved, not applicable becomes submitted and fail becomes accepted', async () => {
 
