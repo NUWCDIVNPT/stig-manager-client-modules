@@ -76,17 +76,14 @@ export default class TaskObject {
       return this.#assetNameMap.get(target.name.toLowerCase())
     }
 
-    // get the array of apiAssets (if any) having the given target.metadata.cklHostName
-    const matchedByCklHostname = this.#cklHostnameMap.get(target.metadata.cklHostName.toLowerCase())
-    // return null if no matches
-    if (!matchedByCklHostname) return null
-    
-    // find the first apiAsset that matches all the CKL metadata , or null
-    const matchedByAllCklMetadata = matchedByCklHostname.find(
-      asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
-        && asset.metadata.cklWebDbSite?.toLowerCase() === target.metadata.cklWebDbSite?.toLowerCase())
-    if (!matchedByAllCklMetadata) return null
-    return matchedByAllCklMetadata
+    // build the effeective cname
+    const compositeKey = `${target.metadata.cklHostName.toLowerCase()}-${target.metadata.cklWebDbSite?.toLowerCase() ?? 'na'}-${target.metadata.cklWebDbInstance?.toLowerCase() ?? 'na'}`
+
+    // check if we have a matching asset
+    if (this.#assetNameMap.has(compositeKey)) {
+      return this.#assetNameMap.get(compositeKey)
+    }
+    return null
   }
 
   #createTaskAssets(options) {
@@ -153,6 +150,13 @@ export default class TaskObject {
           else {
             taskAsset.assetProps = { ...parsedResult.target, name: mapKey, collectionId: options.collectionId, stigs: [] }
           }
+          // instert the asset into the assetNameMap
+          this.#assetNameMap.set(mapKey.toLowerCase(), taskAsset.assetProps)
+          // instert the asset into the cklHostnameMap
+          if (tMeta.cklHostName) {
+            addItemToMapArrayValue(this.#cklHostnameMap, tMeta.cklHostName.toLowerCase(), taskAsset.assetProps)
+          }
+      
         }
         else {
           // The asset exists in the API. Set assetProps from the apiAsset.
