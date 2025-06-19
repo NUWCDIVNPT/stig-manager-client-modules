@@ -70,13 +70,33 @@ export default class TaskObject {
     this.taskAssets = this.#createTaskAssets(options)
   }
 
+
+  // #findAssetFromParsedTarget(target) {
+  //   // If there's no target.metadata.cklHostName, return the apiAsset (if any) matching the target.name
+  //   if (!target.metadata.cklHostName) {
+  //     return this.#assetNameMap.get(target.name.toLowerCase())
+  //   }
+
+  //   // get the array of apiAssets (if any) having the given target.metadata.cklHostName
+  //   const matchedByCklHostname = this.#cklHostnameMap.get(target.metadata.cklHostName.toLowerCase())
+  //   // return null if no matches
+  //   if (!matchedByCklHostname) return null
+    
+  //   // find the first apiAsset that matches all the CKL metadata , or null
+  //   const matchedByAllCklMetadata = matchedByCklHostname.find(
+  //     asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
+  //       && asset.metadata.cklWebDbSite?.toLowerCase() === target.metadata.cklWebDbSite?.toLowerCase())
+  //   if (!matchedByAllCklMetadata) return null
+  //   return matchedByAllCklMetadata
+  //}
+
   #findAssetFromParsedTarget(target) {
     // If there's no target.metadata.cklHostName, return the apiAsset (if any) matching the target.name
     if (!target.metadata.cklHostName) {
       return this.#assetNameMap.get(target.name.toLowerCase())
     }
 
-    // build the effeective cname
+    // build the effective name
     const compositeKey = `${target.metadata.cklHostName.toLowerCase()}-${target.metadata.cklWebDbSite?.toLowerCase() ?? 'na'}-${target.metadata.cklWebDbInstance?.toLowerCase() ?? 'na'}`
 
     // check if we have a matching asset
@@ -105,11 +125,14 @@ export default class TaskObject {
     for (const parsedResult of this.parsedResults) {
       // Generate mapping key
       let mapKey, tMeta = parsedResult.target.metadata
+      let assetName
       if (!tMeta.cklHostName) {
         mapKey = parsedResult.target.name.toLowerCase()
+        assetName = parsedResult.target.name
       }
       else {
-        mapKey = `${tMeta.cklHostName}-${tMeta.cklWebDbSite ?? 'NA'}-${tMeta.cklWebDbInstance ?? 'NA'}`
+        assetName = `${tMeta.cklHostName}-${tMeta.cklWebDbSite ?? 'NA'}-${tMeta.cklWebDbInstance ?? 'NA'}`
+        mapKey = assetName.toLowerCase()
       }
 
       // Try to find the asset in apiAssets
@@ -148,7 +171,7 @@ export default class TaskObject {
             taskAsset.assetProps = { ...parsedResult.target, collectionId: options.collectionId, stigs: [] }
           }
           else {
-            taskAsset.assetProps = { ...parsedResult.target, name: mapKey, collectionId: options.collectionId, stigs: [] }
+            taskAsset.assetProps = { ...parsedResult.target, name: assetName, collectionId: options.collectionId, stigs: [] }
           }
           // instert the asset into the assetNameMap
           this.#assetNameMap.set(mapKey.toLowerCase(), taskAsset.assetProps)
@@ -164,7 +187,7 @@ export default class TaskObject {
           taskAsset.assetProps = apiAsset
         }
         // Insert the asset into taskAssets
-        taskAssets.set(mapKey, taskAsset)
+        taskAssets.set(mapKey.toLowerCase(), taskAsset)
       }
       // add any parsedResult.sourceRef to this asset's sourceRefs
       parsedResult.sourceRef !== undefined && taskAsset.sourceRefs.push(parsedResult.sourceRef)
