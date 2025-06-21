@@ -510,13 +510,13 @@ function generateTaskAssets ({
 
 describe('Tests General Task Object Correctness.', () => {
 
-  describe('Test all TaskObject class variables for correct initalization ', () => {
+  let taskAssets
+  before(async () => {
+    // Generate the task assets before running the tests
+    taskAssets = generateTaskAssets({ parsedResults, apiStigs, apiAssets, options })
+  })
 
-    let taskAssets
-    before(async () => {
-      // Generate the task assets before running the tests
-      taskAssets = generateTaskAssets({ parsedResults, apiStigs, apiAssets, options })
-    })
+  describe('Test all TaskObject class variables for correct initalization ', () => {
 
     it('should create a TaskObject with the correct properties', async () => {
       expect(taskAssets).to.have.property('parsedResults').that.is.an('array')
