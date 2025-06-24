@@ -1,5 +1,5 @@
 import chai from 'chai'
-import TaskObject from '../../TaskObject.js'
+import TaskObject from '../../TaskObject2.js'
 import fs from 'fs/promises'
 const expect = chai.expect
 
@@ -108,7 +108,7 @@ visible to lvl1`,
       metadata: {
         cklWebOrDatabase: "true",
         cklHostName: "NewAssetWithMetadataCklHostname",
-        cklWebDbInstance: "web_db_instance",
+        cklWebDbInstance: "web_DB_instance",
       },
     },
     checklists: [
@@ -550,7 +550,7 @@ describe('Tests General Task Object Correctness.', () => {
       expect(taskAsset).to.not.exist
     })
 
-    // should fail rn TDD
+    // should fail rn TDD all map keys should be lower case
     it('all map keys should be lower case', async () => {
       for (const key of taskAssets.taskAssets.keys()) {
         expect(key).to.equal(key.toLowerCase())
@@ -565,7 +565,7 @@ describe('Tests General Task Object Correctness.', () => {
       expect(taskAsset.checklistsIgnored[0].ignored).to.equal('Not installed')
     })
 
-    // should fail TDD because we arent checking name + metadata correctly
+    // should fail TDD because we arent checking name + metadata correctly 
     it('should recognize that "HostName-NA-web_db_instance" already exists in the API', async () => {
       const taskAsset = taskAssets.taskAssets.get('hostname-na-web_db_instance')
       expect(taskAsset).to.exist
@@ -610,6 +610,27 @@ describe('Tests General Task Object Correctness.', () => {
       const taskAsset = taskAssets.taskAssets.get('testasset4nostigs')
       expect(taskAsset.checklists.size).to.equal(1)
       expect(taskAsset.checklists.has('VPN_SRG_TEST')).to.be.true
+    })
+  })
+
+  describe('Random nit-picky tests', () => {
+
+    it('should lowercase all metadata cklHostName and cklWebDbInstance when making the name', async () => {
+      const taskAsset = taskAssets.taskAssets.get('newassetwithmetadatacklhostname-na-web_db_instance')
+      expect(taskAsset).to.exist
+      expect(taskAsset.assetProps.metadata.cklHostName).to.equal('NewAssetWithMetadataCklHostname')
+      expect(taskAsset.assetProps.metadata.cklWebDbInstance).to.equal('web_DB_instance')
+    })
+  })
+
+  describe('createObjects false tests', () => {
+    it('should not assign stig to asset "TestAsset4NoStigs" when createObjects is false', async () => {
+      const taskAssetsNoCreate = generateTaskAssets({ parsedResults, apiStigs, apiAssets, options: { ...options, createObjects: false } })
+      const taskAsset = taskAssetsNoCreate.taskAssets.get('testasset4nostigs')
+      expect(taskAsset).to.exist
+      expect(taskAsset.checklists.size).to.equal(0)
+      expect(taskAsset.hasNewAssignment).to.be.false
+      expect(taskAsset.knownAsset).to.be.true
     })
   })
 })
