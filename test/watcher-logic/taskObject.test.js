@@ -1,5 +1,5 @@
 import chai from 'chai'
-import TaskObject from '../../TaskObject2.js'
+import TaskObject from '../../TaskObject.js'
 import fs from 'fs/promises'
 const expect = chai.expect
 
