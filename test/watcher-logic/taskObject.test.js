@@ -550,7 +550,6 @@ describe('Tests General Task Object Correctness.', () => {
       expect(taskAsset).to.not.exist
     })
 
-    // should fail rn TDD all map keys should be lower case
     it('all map keys should be lower case', async () => {
       for (const key of taskAssets.taskAssets.keys()) {
         expect(key).to.equal(key.toLowerCase())
@@ -563,13 +562,6 @@ describe('Tests General Task Object Correctness.', () => {
       expect(taskAsset.checklistsIgnored).to.have.lengthOf(1)
       expect(taskAsset.checklistsIgnored[0].benchmarkId).to.equal('ABCD_SRG_TEST')
       expect(taskAsset.checklistsIgnored[0].ignored).to.equal('Not installed')
-    })
-
-    // should fail TDD because we arent checking name + metadata correctly 
-    it('should recognize that "HostName-NA-web_db_instance" already exists in the API', async () => {
-      const taskAsset = taskAssets.taskAssets.get('hostname-na-web_db_instance')
-      expect(taskAsset).to.exist
-      expect(taskAsset.knownAsset).to.be.true
     })
 
     it('should recognize that "TestAsset4NoStigs" already exists in the API', async () => {

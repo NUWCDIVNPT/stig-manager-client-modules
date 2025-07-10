@@ -76,16 +76,29 @@ export default class TaskObject {
       return this.#assetNameMap.get(target.name.toLowerCase())
     }
 
-    // build the effective name
-    const effectiveName = `${target.metadata.cklHostName.toLowerCase()}-${target.metadata.cklWebDbSite?.toLowerCase() ?? 'na'}-${target.metadata.cklWebDbInstance?.toLowerCase() ?? 'na'}`
+    // get the array of apiAssets (if any) having the given target.metadata.cklHostName
+    const matchedByCklHostname = this.#cklHostnameMap.get(target.metadata.cklHostName.toLowerCase())
+    // return null if no matches
+    if (!matchedByCklHostname) return null
+    
+    // find the first apiAsset that matches all the CKL metadata , or null
+    const matchedByAllCklMetadata = matchedByCklHostname.find(
+      asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
+        && asset.metadata.cklWebDbSite?.toLowerCase() === target.metadata.cklWebDbSite?.toLowerCase())
+    if (!matchedByAllCklMetadata) return null
 
-    // check if we have a matching asset
-    if (this.#assetNameMap.has(effectiveName)) {
-      return this.#assetNameMap.get(effectiveName)
+     const effectiveName = this.#buildEffectiveName(target)
+    if(this.#assetNameMap.has(effectiveName.toLowerCase())) {
+      return this.#assetNameMap.get(effectiveName.toLowerCase())
     }
+   
     return null
   }
 
+  #buildEffectiveName(target) {
+    const effectiveName = `${target.metadata.cklHostName.toLowerCase()}-${target.metadata.cklWebDbSite?.toLowerCase() ?? 'NA'}-${target.metadata.cklWebDbInstance?.toLowerCase() ?? 'NA'}`
+    return effectiveName
+  }
   #createTaskAssets(options) {
     // taskAssets is a Map() keyed by lowercase asset name (or CKL metadata), the value is an object:
     // {
