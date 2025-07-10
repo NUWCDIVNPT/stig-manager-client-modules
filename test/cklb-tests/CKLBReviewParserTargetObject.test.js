@@ -65,7 +65,8 @@ describe('Testing that the Target object returned by the cklb review parser is a
       fqdn: 'asset.com',
       mac: '00:00:00:00:00:00',
       noncomputing: true,
-      metadata: {}
+      metadata: {},
+      classification: '',
     }
 
     expect(review.target).to.deep.equal(expectedTarget)
@@ -114,7 +115,8 @@ describe('Testing that the Target object returned by the cklb review parser is a
       fqdn: null,
       mac: null,
       noncomputing: false,
-      metadata: {}
+      metadata: {},
+      classification: ''
     }
 
     expect(review.target).to.deep.equal(expectedTarget)
@@ -169,7 +171,8 @@ describe('Testing that the Target object returned by the cklb review parser is a
         cklWebDbInstance: 'TestWebDBInstance',
         cklWebDbSite: 'TestWebDBSite',
         cklWebOrDatabase: 'true'
-      }
+      },
+      classification: ''
     }
     expect(review.target).to.deep.equal(expectedTarget)
   })

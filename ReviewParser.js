@@ -12,7 +12,12 @@ const truncateString = function (str, max) {
   return str.length > max ? str.slice(0, max) : str
 }
 
-const maxCommentLength = 32767
+
+const maxFieldLengths = {
+  comment: 32767,
+  classification: 64,
+}
+
 /**
  * Parses data from a CKL format into a format suitable for further processing.
  * 
@@ -216,7 +221,7 @@ export function reviewsFromCkl(
       }
     }
 
-    let detail = vuln.FINDING_DETAILS.length > maxCommentLength ? truncateString(vuln.FINDING_DETAILS, maxCommentLength) : vuln.FINDING_DETAILS
+    let detail = vuln.FINDING_DETAILS.length > maxFieldLengths.comment ? truncateString(vuln.FINDING_DETAILS, maxFieldLengths.comment) : vuln.FINDING_DETAILS
     if (!vuln.FINDING_DETAILS) {
       switch (importOptions.emptyDetail) {
         case 'ignore':
@@ -231,7 +236,7 @@ export function reviewsFromCkl(
       }
     }
 
-    let comment = vuln.COMMENTS.length > maxCommentLength ? truncateString(vuln.COMMENTS, maxCommentLength) : vuln.COMMENTS
+    let comment = vuln.COMMENTS.length > maxFieldLengths.comment ? truncateString(vuln.COMMENTS, maxFieldLengths.comment) : vuln.COMMENTS
     if (!vuln.COMMENTS) {
       switch (importOptions.emptyComment) {
         case 'ignore':
@@ -631,7 +636,7 @@ export function reviewsFromXccdf(
     }
 
     // if detail is still too long after removing the override remark, truncate it
-    detail = truncateString(detail, maxCommentLength)
+    detail = truncateString(detail, maxFieldLengths.comment)
 
     if (!comment) {
       switch (importOptions.emptyComment) {
@@ -646,7 +651,7 @@ export function reviewsFromXccdf(
           break
       }
     }
-    comment = truncateString(comment, maxCommentLength)
+    comment = truncateString(comment, maxFieldLengths.comment)
 
     // Override Remark in Eval-STIG XCCDF preserved in Review Comment, replace Remark with "Evaluate-STIG Answer File", otherwise truncate to 255 characters
     if (resultEngine?.overrides) {
@@ -801,6 +806,7 @@ export function reviewsFromCklb(
       fqdn: td.fqdn ? truncateString(td.fqdn, 255) : null,
       mac: td.mac_address ? truncateString(td.mac_address, 255) : null,
       noncomputing: td.target_type === 'Non-Computing',
+      classification: td.classification ? truncateString(td.classification, maxFieldLengths.classification) : "",
       metadata: {}
     }
     if (td.role) {
@@ -893,7 +899,20 @@ export function reviewsFromCklb(
       }
     }
 
-    let detail = rule.finding_details?.length > maxCommentLength ? truncateString(rule.finding_details, maxCommentLength) : rule.finding_details
+    let detail = rule.finding_details?.length > maxFieldLengths.comment ? truncateString(rule.finding_details, maxFieldLengths.comment) : rule.finding_details
+    // if detail is not an empty string, record its classification if available otherwise set detailClassification to ""
+    let detailClassification = ""
+    if (detail) {
+      detailClassification = rule.finding_details_classification ? truncateString(rule.finding_details_classification, maxFieldLengths.classification) : ""
+    } else {
+      // if detail is empty, set detailClassification to null or empty string based on importOptions.emptyDetail
+      if (importOptions.emptyDetail === 'ignore') {
+        detailClassification = null
+      } else {
+        detailClassification = ""
+      }
+    }
+
     if (!rule.finding_details) {
       switch (importOptions.emptyDetail) {
         case 'ignore':
@@ -908,7 +927,20 @@ export function reviewsFromCklb(
       }
     }
 
-    let comment = rule.comments?.length > maxCommentLength ? truncateString(rule.comments, maxCommentLength) : rule.comments
+    let comment = rule.comments?.length > maxFieldLengths.comment ? truncateString(rule.comments, maxFieldLengths.comment) : rule.comments
+    // if comment is not an empty string, record its classification if available otherwise set CommentClassification to ""
+    let commentClassification = ""
+    if (comment) {
+      commentClassification = rule.comments_classification ? truncateString(rule.comments_classification, maxFieldLengths.classification) : ""
+    } else {
+      // if comment is empty, set commentClassification to null or empty string based on importOptions
+      if (importOptions.emptyComment === 'ignore') {
+        commentClassification = null
+      } else {
+        commentClassification = ""
+      }
+    }
+
     if (!rule.comments) {
       switch (importOptions.emptyComment) {
         case 'ignore':
@@ -927,7 +959,9 @@ export function reviewsFromCklb(
       ruleId,
       result,
       detail,
-      comment
+      comment,
+      detailClassification,
+      commentClassification
     }
 
     const iStigCommentProcessed = processStigEvalStigModule(evalStigResultEngine)
