@@ -922,9 +922,6 @@ export function reviewsFromCklb(
       if (importOptions.emptyDetail === 'ignore') {
         detailClassification = null
       }
-      // else {
-      //   detailClassification = ""
-      // }
     }
 
     if (!rule.finding_details) {
@@ -950,9 +947,6 @@ export function reviewsFromCklb(
       // if comment is empty, set commentClassification to null or empty string based on importOptions
       if (importOptions.emptyComment === 'ignore') {
         commentClassification = null
-      }
-      else {
-        commentClassification = ""
       }
     }
 
