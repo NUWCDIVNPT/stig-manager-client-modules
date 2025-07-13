@@ -166,9 +166,9 @@ export default class TaskObject {
           else {
             taskAsset.assetProps = { ...parsedResult.target, name: assetName, collectionId: options.collectionId, stigs: [] }
           }
-          // instert the asset into the assetNameMap
+          // insert the asset into the assetNameMap
           this.#assetNameMap.set(mapKey.toLowerCase(), taskAsset.assetProps)
-          // instert the asset into the cklHostnameMap if it has a cklHostName
+          // insert the asset into the cklHostnameMap if it has a cklHostName
           if (tMeta.cklHostName) {
             addItemToMapArrayValue(this.#cklHostnameMap, tMeta.cklHostName.toLowerCase(), taskAsset.assetProps)
           }
