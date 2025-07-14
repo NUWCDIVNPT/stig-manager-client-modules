@@ -5,6 +5,12 @@ JavaScript modules for STIG Manager clients. This README and other documentation
 
 These modules are used by the [STIGMan Watcher](https://github.com/nuwcdivnpt/stigman-watcher) and the [STIG Manager GUI](https://github.com/nuwcdivnpt/stig-manager) clients to parse STIG checklist data (ReviewParser.js) and to define the tasks (TaskObject.js) that will be required to import that checklist data into a STIG Manager API instance. 
 
+The ReviewParser supports multiple STIG checklist formats:
+- **CKL** (Checklist format) - Standard STIG Manager checklist files
+- **CKLB** (Checklist Binary) - Binary/JSON format checklists  
+- **XCCDF** (eXtensible Configuration Checklist Description Format) - SCAP compliance results
+- **ARF** (Asset Reporting Format) - OpenSCAP/Red Hat Satellite compliance scan results 
+
 The modules are offered here to help keep the STIG Manager clients in sync, and as a resource to developers that may want to build their own STIG Manager clients or have a need to parse checklist data, etc.
 Please check those client repos and the STIG Manager API documentation for examples of how to use these modules. 
 
@@ -31,6 +37,7 @@ import * as StigmanLib from `stig-manager-client-modules`
 const result = StigmanLib.reviewsFromCkl( ... )
 const result = StigmanLib.reviewsFromCklb( ... )
 const result = StigmanLib.reviewsFromXccdf( ... )
+const result = StigmanLib.reviewsFromArf( ... )
 
 const tasks = new StigmanLib.TaskObject ( ... )
 
@@ -39,8 +46,9 @@ const tasks = new StigmanLib.TaskObject ( ... )
 Importing an individual module into ESM code
 
 ```
-import { reviewsFromCkl } from `stig-manager-client-modules`
+import { reviewsFromCkl, reviewsFromArf } from `stig-manager-client-modules`
 const result = reviewsFromCkl( ... )
+const arfResult = reviewsFromArf( ... )
 ```
 
 Requiring all modules into CJS code
@@ -51,13 +59,15 @@ const StigmanLib = require('stig-manager-client-modules')
 const result = StigmanLib.reviewsFromCkl( ... )
 const result = StigmanLib.reviewsFromCklb( ... )
 const result = StigmanLib.reviewsFromXccdf( ... )
+const result = StigmanLib.reviewsFromArf( ... )
 
 const tasks = new StigmanLib.TaskObject ( ... )
 ```
 
 Requiring an individual module into CJS code
 ```
-const { reviewsFromCkl } = require('stig-manager-client-modules')
+const { reviewsFromCkl, reviewsFromArf } = require('stig-manager-client-modules')
 
 const result = reviewsFromCkl( ... )
+const arfResult = reviewsFromArf( ... )
 ```
