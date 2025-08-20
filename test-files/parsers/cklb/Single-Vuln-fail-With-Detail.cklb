@@ -22,7 +22,7 @@
       "stig_name": "Virtual Private Network (VPN) TRUNCATED",
       "display_name": "Virtual Private Network (VPN) TRUNCATED",
       "stig_id": "VPN_TRUNCATED",
-      "version": 2,
+      "version": "2",
       "release_info": "Release: 5 Benchmark Date: 07 Jun 2023",
       "uuid": "2f714970-8242-11ee-8b44-13c1c13d16bb",
       "reference_identifier": "0000",
