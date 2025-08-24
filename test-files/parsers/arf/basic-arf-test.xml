@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset-report-collection xmlns="http://scap.nist.gov/schema/asset-reporting-format/1.1" 
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <reports>
+    <report id="report1" type="xccdf">
+      <content>
+        <Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" 
+                  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+                  id="xccdf_mil.disa.stig_benchmark_test_arf">
+          <status date="2023-09-13">accepted</status>
+          <title>Test ARF STIG</title>
+          <description>Test Description for ARF</description>
+          <version>V1R1</version>
+          <TestResult id="xccdf_test_arf_result" 
+                     test-system="OpenSCAP:1.3.0" 
+                     end-time="2024-01-15T10:30:00">
+            <target>testhost.example.com</target>
+            <target-address>192.168.1.100</target-address>
+            <rule-result idref="xccdf_mil.disa.stig_rule_SV-123456r789_rule" 
+                        time="2024-01-15T10:05:00">
+              <result>pass</result>
+              <check system="urn:xccdf:fix:script:sh">
+                <check-content-ref href="#scap_mil.disa.stig_comp_test" 
+                                  name="oval:mil.disa.stig.test_comp:123"/>
+                <check-content>
+                  <comment>ARF test comment</comment>
+                  <detail>ARF test detail</detail>
+                </check-content>
+              </check>
+            </rule-result>
+            <rule-result idref="xccdf_mil.disa.stig_rule_SV-234567r890_rule" 
+                        time="2024-01-15T10:10:00">
+              <result>fail</result>
+              <check system="urn:xccdf:fix:script:sh">
+                <check-content-ref href="#scap_mil.disa.stig_comp_test2" 
+                                  name="oval:mil.disa.stig.test_comp:124"/>
+                <check-content>
+                  <comment>ARF test fail comment</comment>
+                  <detail>ARF test fail detail</detail>
+                </check-content>
+              </check>
+            </rule-result>
+          </TestResult>
+        </Benchmark>
+      </content>
+    </report>
+  </reports>
+</asset-report-collection>

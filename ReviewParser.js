@@ -1055,3 +1055,74 @@ export function bestStatusForReview(review, importOptions, fieldSettings, allowA
 
 
 export const reviewsFromScc = reviewsFromXccdf
+
+/**
+ * Parses data from an ARF (Asset Reporting Format) format into a format suitable for further processing.
+ * ARF is a wrapper format that contains embedded XCCDF TestResult data.
+ * 
+ * @param {ParserXccdfParams} ReviewsFromArfParams - The parameters object containing:
+ * @param {string} ReviewsFromArfParams.data - The ARF data to be processed.
+ * @param {FieldSettings} ReviewsFromArfParams.fieldSettings - Settings related to detail and comment fields.
+ * @param {boolean} ReviewsFromArfParams.allowAccept - Flag indicating whether accepting a review is allowed.
+ * @param {ImportOptions} ReviewsFromArfParams.importOptions - Options for handling import behavior.
+ * @param {ScapBenchmarkMap} ReviewsFromArfParams.scapBenchmarkMap - A map of SCAP benchmark IDs to their corresponding STIG IDs.
+ * @param {*} ReviewsFromArfParams.sourceRef - A reference to the source of the ARF data.
+ * 
+ * @returns {ParseResult} An object containing parsed ARF data
+ * 
+ * @throws {Error} 
+ */
+export function reviewsFromArf(
+  {
+    data,
+    fieldSettings,
+    allowAccept,
+    importOptions,
+    scapBenchmarkMap,
+    sourceRef
+  }) {
+
+  // Extract the XCCDF content from the ARF by finding the embedded TestResult or Benchmark
+  // Use regex to find and extract the XCCDF content, which is more efficient than
+  // parsing the entire ARF document and reconstructing it
+  
+  // First look for Benchmark element (which may contain TestResult)
+  let xccdfContent = null
+  const benchmarkMatch = data.match(/<Benchmark[^>]*>[\s\S]*?<\/Benchmark>/i)
+  if (benchmarkMatch) {
+    xccdfContent = benchmarkMatch[0]
+  } else {
+    // If no Benchmark, look for standalone TestResult element
+    const testResultMatch = data.match(/<TestResult[^>]*>[\s\S]*?<\/TestResult>/i)
+    if (testResultMatch) {
+      xccdfContent = testResultMatch[0]
+    }
+  }
+
+  if (!xccdfContent) {
+    // Try a more permissive approach - look for any XCCDF namespace content
+    const xccdfNsMatch = data.match(/<[^>]*xmlns[^>]*checklists\.nist\.gov\/xccdf[^>]*>[\s\S]*?<\/[^>]+>/i)
+    if (xccdfNsMatch) {
+      xccdfContent = xccdfNsMatch[0]
+    }
+  }
+
+  if (!xccdfContent) {
+    throw new Error("No XCCDF content found in ARF file. ARF must contain embedded TestResult or Benchmark elements.")
+  }
+
+  // Add XML declaration if not present
+  if (!xccdfContent.startsWith('<?xml')) {
+    xccdfContent = '<?xml version="1.0" encoding="UTF-8"?>\n' + xccdfContent
+  }
+
+  // Delegate to the existing XCCDF parser
+  return reviewsFromXccdf({
+    data: xccdfContent,
+    fieldSettings,
+    allowAccept,
+    importOptions,
+    scapBenchmarkMap,
+    sourceRef
+  })
+}
