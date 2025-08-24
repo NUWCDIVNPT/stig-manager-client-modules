@@ -2079,7 +2079,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'informational',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2087,7 +2089,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'notapplicable',
         resultEngine: null,
         comment: 'xyz',
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2095,7 +2099,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'fail',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2103,7 +2109,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'pass',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       }
     ]
     const actualReviews = review.checklists[0].reviews
@@ -2158,7 +2166,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'informational',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2166,7 +2176,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'notapplicable',
         resultEngine: null,
         comment: 'xyz',
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2174,7 +2186,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'fail',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2182,7 +2196,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'pass',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       
     ]
@@ -2236,7 +2252,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'informational',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2244,7 +2262,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'notapplicable',
         resultEngine: null,
         comment: 'xyz',
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2252,7 +2272,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'fail',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2260,7 +2282,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'pass',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
      
     ]
@@ -2314,7 +2338,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'informational',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2322,7 +2348,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'notapplicable',
         resultEngine: null,
         comment: 'xyz',
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2330,7 +2358,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'fail',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
      
       {
@@ -2338,7 +2368,9 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'pass',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       
     ]
@@ -2392,14 +2424,18 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'informational',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
         result: 'notapplicable',
         resultEngine: null,
         comment: 'xyz',
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
@@ -2407,14 +2443,18 @@ describe('Test import options status by review result. CKLB ', () => {
         result: 'fail',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       {
         ruleId: 'SV-257777r925317_rule',
         result: 'pass',
         comment: 'xyz',
         resultEngine: null,
-        detail: 'xyz'
+        detail: 'xyz',
+        commentClassification: '',
+        detailClassification: ''
       },
       
     ]

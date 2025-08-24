@@ -1,0 +1,88 @@
+{
+  "title": "New Checklist",
+  "id": "a609ab31-6873-4bcf-b9fe-0a2afa9c2454",
+  "stigs": [
+    {
+      "stig_name": "Red Hat Enterprise Linux 9 Security Technical Implementation Guide",
+      "display_name": "Red Hat Enterprise Linux 9",
+      "stig_id": "RHEL_9_STIG",
+      "release_info": "Release: 4 Benchmark Date: 02 Apr 2025",
+      "version": "2",
+      "uuid": "830f0927-3c12-4623-be2c-fa5e0487e9be",
+      "reference_identifier": "5551",
+      "size": 452,
+      "rules": [
+        {
+          "group_id_src": "V-272496",
+          "group_tree": [
+            {
+              "id": "V-272496",
+              "title": "SRG-OS-000445-GPOS-00199",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id": "V-272496",
+          "severity": "medium",
+          "group_title": "RHEL 9 must elevate the SELinux context when an administrator calls the sudo command.",
+          "rule_id_src": "SV-272496r1082184_rule",
+          "rule_id": "SV-272496r1082184",
+          "rule_version": "RHEL-09-431016",
+          "rule_title": "RHEL 9 must elevate the SELinux context when an administrator calls the sudo command.",
+          "fix_text": "Configure RHEL 9 to elevate the SELinux context when an administrator calls the sudo command.\n\nEdit a file in the \"/etc/sudoers.d\" directory with the following command:\n\n$ sudo visudo -f /etc/sudoers.d/<customfile>\n\nUse the following example to build the <customfile> in the /etc/sudoers.d directory to allow any administrator belonging to a designated sudoers admin group to elevate their SELinux context with the use of the sudo command:\n\n%{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL\n\nRemove any configurations that conflict with the above from the following locations:\n \n/etc/sudoers\n/etc/sudoers.d/",
+          "weight": "10.0",
+          "check_content": "Verify that RHEL 9 elevates the SELinux context when an administrator calls the sudo command with the following command:\n\nThis command must be run as root:\n\n# grep -r sysadm_r /etc/sudoers /etc/sudoers.d\n%{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL\n\nIf conflicting results are returned, this is a finding.\n\nIf a designated sudoers administrator group or account(s) is not configured to elevate the SELinux type and role to \"sysadm_t\" and \"sysadm_r\" with the use of the sudo command, this is a finding.",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "classification": "Unclassified",
+          "discussion": "Without verification of the security functions, security functions may not operate correctly and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.\n\nThis requirement applies to operating systems performing security function verification/testing and/or systems and environments that require this functionality.\n\nPreventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.\n\nPrivileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.",
+          "false_positives": "",
+          "false_negatives": "",
+          "documentable": "false",
+          "security_override_guidance": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "ia_controls": "",
+          "responsibility": "",
+          "mitigations": "",
+          "mitigation_control": "",
+          "legacy_ids": [
+            "SV-70979",
+            "V-56719"
+          ],
+          "ccis": [
+            "CCI-002235"
+          ],
+          "reference_identifier": "5551",
+          "uuid": "86d3d3e7-3178-42e7-a40b-2d1566cbe853",
+          "stig_uuid": "830f0927-3c12-4623-be2c-fa5e0487e9be",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "comment",
+          "finding_details": "detail",
+          "comments_classification": "CUI",
+          "finding_details_classification": "FOUO"
+        }
+      ]
+    }
+  ],
+  "active": true,
+  "mode": 2,
+  "has_path": false,
+  "target_data": {
+    "target_type": "Non-Computing",
+    "host_name": "hostname",
+    "ip_address": "1.1.1.1",
+    "mac_address": "ad:12:ef:ef:ef",
+    "fqdn": "test.domain.com",
+    "comments": "comment",
+    "role": "None",
+    "is_web_database": true,
+    "technology_area": "None",
+    "web_db_site": "MyWebSite",
+    "web_db_instance": "",
+    "classification": "TEST"
+  },
+  "cklb_version": "1.0"
+}

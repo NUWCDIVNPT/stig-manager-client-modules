@@ -12,7 +12,25 @@ const truncateString = function (str, max) {
   return str.length > max ? str.slice(0, max) : str
 }
 
-const maxCommentLength = 32767
+
+const maxFieldLengths = {
+  name: 255,
+  comment: 32767,
+  classification: 64,
+  ip: 255,
+  mac: 255,
+  description: 255,
+  fqdn: 255,
+  benchmarkId: 255,
+  ruleId: 45,
+  authority: 255,
+  resultEngine: 255,
+  resultEngineVersion: 255,
+  resultEngineProduct: 255,
+  resultEngineCheckContent: 255,
+  overrideRemark: 255
+}
+
 /**
  * Parses data from a CKL format into a format suitable for further processing.
  * 
@@ -104,9 +122,9 @@ export function reviewsFromCkl(
     let obj = {
       name: assetElement.HOST_NAME,
       description: null,
-      ip: assetElement?.HOST_IP ? truncateString(assetElement.HOST_IP, 255) : null,
-      fqdn: assetElement.HOST_FQDN ? truncateString(assetElement.HOST_FQDN, 255) : null,
-      mac: assetElement.HOST_MAC ? truncateString(assetElement.HOST_MAC, 255) : null,
+      ip: assetElement?.HOST_IP ? truncateString(assetElement.HOST_IP, maxFieldLengths.ip) : null,
+      fqdn: assetElement.HOST_FQDN ? truncateString(assetElement.HOST_FQDN, maxFieldLengths.fqdn) : null,
+      mac: assetElement.HOST_MAC ? truncateString(assetElement.HOST_MAC, maxFieldLengths.mac) : null,
       noncomputing: assetElement.ASSET_TYPE === 'Non-Computing'
     }
     const metadata = {}
@@ -137,7 +155,7 @@ export function reviewsFromCkl(
       // get benchmarkId
       let stigIdElement = iStig.STIG_INFO[0].SI_DATA.filter(d => d.SID_NAME === 'stigid')?.[0]
       checklist.benchmarkId = stigIdElement.SID_DATA.replace('xccdf_mil.disa.stig_benchmark_', '')
-      checklist.benchmarkId = truncateString(checklist.benchmarkId, 255)
+      checklist.benchmarkId = truncateString(checklist.benchmarkId, maxFieldLengths.benchmarkId)
       // get revision data. Extract digits from version and release fields to create revisionStr, if possible.
       const stigVersionData = iStig.STIG_INFO[0].SI_DATA.filter(d => d.SID_NAME === 'version')?.[0].SID_DATA
       let stigVersion = stigVersionData?.match(/(\d+)/)?.[1]
@@ -197,7 +215,7 @@ export function reviewsFromCkl(
     let result = resultMap[vuln.STATUS]
     if (!result) return
     let ruleId = getRuleIdFromVuln(vuln)
-    ruleId = truncateString(ruleId, 45)
+    ruleId = truncateString(ruleId, maxFieldLengths.ruleId)
     if (!ruleId) return
 
     const hasComments = !!vuln.FINDING_DETAILS || !!vuln.COMMENTS
@@ -216,7 +234,7 @@ export function reviewsFromCkl(
       }
     }
 
-    let detail = vuln.FINDING_DETAILS.length > maxCommentLength ? truncateString(vuln.FINDING_DETAILS, maxCommentLength) : vuln.FINDING_DETAILS
+    let detail = vuln.FINDING_DETAILS.length > maxFieldLengths.comment ? truncateString(vuln.FINDING_DETAILS, maxFieldLengths.comment) : vuln.FINDING_DETAILS
     if (!vuln.FINDING_DETAILS) {
       switch (importOptions.emptyDetail) {
         case 'ignore':
@@ -231,7 +249,7 @@ export function reviewsFromCkl(
       }
     }
 
-    let comment = vuln.COMMENTS.length > maxCommentLength ? truncateString(vuln.COMMENTS, maxCommentLength) : vuln.COMMENTS
+    let comment = vuln.COMMENTS.length > maxFieldLengths.comment ? truncateString(vuln.COMMENTS, maxFieldLengths.comment) : vuln.COMMENTS
     if (!vuln.COMMENTS) {
       switch (importOptions.emptyComment) {
         case 'ignore':
@@ -273,7 +291,7 @@ export function reviewsFromCkl(
             override = normalizeKeys(override)
             if (override.afmod?.toLowerCase() === 'true') {
               overrides.push({
-                authority: truncateString(override?.answerfile, 255),  
+                authority: truncateString(override?.answerfile, maxFieldLengths.authority),  
                 oldResult: resultMap[override.oldstatus] ?? 'unknown',
                 newResult: result,
                 remark: 'Evaluate-STIG Answer File'
@@ -359,7 +377,7 @@ export function reviewsFromCkl(
         resultEngineRoot = {
           type: 'script',
           product: 'Evaluate-STIG',
-          version: truncateString(version, 255),
+          version: truncateString(version, maxFieldLengths.resultEngineVersion),
           time: esRootComment?.global?.[0]?.time,
           checkContent: {
             location: (esRootComment?.module?.[0]?.name ?? '') + 
@@ -459,25 +477,25 @@ export function reviewsFromXccdf(
   if (scapBenchmarkMap?.has(benchmarkId)) {
     benchmarkId = scapBenchmarkMap.get(benchmarkId)
   }
-  benchmarkId = truncateString(benchmarkId, 255)
+  benchmarkId = truncateString(benchmarkId, maxFieldLengths.benchmarkId)
   const target = processTarget(testResult)
   if (!target.name) {
     throw (new Error('No value for <target>'))
   }
-  if(target.name.length > 255){
+  if(target.name.length > maxFieldLengths.name){
     throw (new Error('Asset hostname cannot be more than 255 characters', target.name))
   }
   if(target.fqdn){
-    target.fqdn = truncateString(target.fqdn, 255) 
+    target.fqdn = truncateString(target.fqdn, maxFieldLengths.fqdn) 
   }
   if(target.mac){
-    target.mac = truncateString(target.mac, 255)
+    target.mac = truncateString(target.mac, maxFieldLengths.mac)
   }
   if(target.ip){
-    target.ip = truncateString(target.ip, 255)
+    target.ip = truncateString(target.ip, maxFieldLengths.ip)
   }
   if(target.description){
-    target.description = truncateString(target.description, 255)
+    target.description = truncateString(target.description, maxFieldLengths.description)
   }
   
   // resultEngine info
@@ -497,8 +515,8 @@ export function reviewsFromXccdf(
     version
   }
   
-  resultEngineTpl.version = truncateString(resultEngineTpl.version, 255)
-  resultEngineTpl.product = truncateString(resultEngineTpl.product, 255)
+  resultEngineTpl.version = truncateString(resultEngineTpl.version, maxFieldLengths.resultEngineVersion)
+  resultEngineTpl.product = truncateString(resultEngineTpl.product, maxFieldLengths.resultEngineProduct)
 
   const r = processRuleResults(testResult['rule-result'], resultEngineTpl)
 
@@ -542,7 +560,7 @@ export function reviewsFromXccdf(
     let result = ruleResult.result
     if (!result) return
     let ruleId = ruleResult.idref.replace('xccdf_mil.disa.stig_rule_', '')
-    ruleId = truncateString(ruleId, 45)
+    ruleId = truncateString(ruleId, maxFieldLengths.ruleId)
     if (!ruleId) return
 
     const hasComments = false // or look for <remark>
@@ -579,7 +597,7 @@ export function reviewsFromXccdf(
         if (checkContentHref || checkContentName) {
           resultEngine.checkContent = {
             location: checkContentHref,
-            component: truncateString(checkContentName, 255)
+            component: truncateString(checkContentName, maxFieldLengths.resultEngineCheckContent)
           }
         }
 
@@ -587,10 +605,10 @@ export function reviewsFromXccdf(
           const overrides = []
           for (const override of ruleResult.override) {
             overrides.push({
-              authority: truncateString(override?.authority,255),
+              authority: truncateString(override?.authority, maxFieldLengths.authority),
               oldResult: override['old-result'],
               newResult: override['new-result'],
-              remark: truncateString(override['remark'],255)
+              remark: truncateString(override['remark'], maxFieldLengths.overrideRemark)
             })
           }
           if (overrides.length) {
@@ -631,7 +649,7 @@ export function reviewsFromXccdf(
     }
 
     // if detail is still too long after removing the override remark, truncate it
-    detail = truncateString(detail, maxCommentLength)
+    detail = truncateString(detail, maxFieldLengths.comment)
 
     if (!comment) {
       switch (importOptions.emptyComment) {
@@ -646,7 +664,7 @@ export function reviewsFromXccdf(
           break
       }
     }
-    comment = truncateString(comment, maxCommentLength)
+    comment = truncateString(comment, maxFieldLengths.comment)
 
     // Override Remark in Eval-STIG XCCDF preserved in Review Comment, replace Remark with "Evaluate-STIG Answer File", otherwise truncate to 255 characters
     if (resultEngine?.overrides) {
@@ -796,11 +814,12 @@ export function reviewsFromCklb(
   function processTargetData(td) {
     const obj = {
       name: td.host_name,
-      description: td.comments ? truncateString(td.comments, 255): null,
-      ip: td.ip_address ? truncateString(td.ip_address, 255) : null,
-      fqdn: td.fqdn ? truncateString(td.fqdn, 255) : null,
-      mac: td.mac_address ? truncateString(td.mac_address, 255) : null,
+      description: td.comments ? truncateString(td.comments, maxFieldLengths.description) : null,
+      ip: td.ip_address ? truncateString(td.ip_address, maxFieldLengths.ip) : null,
+      fqdn: td.fqdn ? truncateString(td.fqdn, maxFieldLengths.fqdn) : null,
+      mac: td.mac_address ? truncateString(td.mac_address, maxFieldLengths.mac) : null,
       noncomputing: td.target_type === 'Non-Computing',
+      classification: td.classification ? truncateString(td.classification, maxFieldLengths.classification) : "",
       metadata: {}
     }
     if (td.role) {
@@ -832,7 +851,7 @@ export function reviewsFromCklb(
       // }
       const checklist = { sourceRef }
       checklist.benchmarkId = typeof stig?.stig_id === 'string' ? stig.stig_id.replace('xccdf_mil.disa.stig_benchmark_', '') : ''
-      checklist.benchmarkId = truncateString(checklist.benchmarkId, 255)
+      checklist.benchmarkId = truncateString(checklist.benchmarkId, maxFieldLengths.benchmarkId)
       const stigVersion = stig.version ?? '0'
       const stigRelease = typeof stig?.release_info === 'string' ? stig.release_info.match(/Release:\s*(.+?)\s/)?.[1] : ''
       checklist.revisionStr = checklist.benchmarkId && stigRelease ? `V${stigVersion}R${stigRelease}` : null
@@ -875,7 +894,7 @@ export function reviewsFromCklb(
     let ruleId = rule.rule_id_src ?? rule.rule_id
     if (!ruleId) return
     ruleId = ruleId.endsWith('_rule') ? ruleId : ruleId + '_rule'
-    ruleId = truncateString(ruleId, 45)
+    ruleId = truncateString(ruleId, maxFieldLengths.ruleId)
 
     const hasComments = !!rule.finding_details || !!rule.comments
 
@@ -893,7 +912,18 @@ export function reviewsFromCklb(
       }
     }
 
-    let detail = rule.finding_details?.length > maxCommentLength ? truncateString(rule.finding_details, maxCommentLength) : rule.finding_details
+    let detail = rule.finding_details?.length > maxFieldLengths.comment ? truncateString(rule.finding_details, maxFieldLengths.comment) : rule.finding_details
+    // if detail is not an empty string, record its classification if available otherwise set detailClassification to ""
+    let detailClassification = ""
+    if (detail) {
+      detailClassification = rule.finding_details_classification ? truncateString(rule.finding_details_classification, maxFieldLengths.classification) : ""
+    } else {
+      // if detail is empty, set detailClassification to null or empty string based on importOptions.emptyDetail
+      if (importOptions.emptyDetail === 'ignore') {
+        detailClassification = null
+      }
+    }
+
     if (!rule.finding_details) {
       switch (importOptions.emptyDetail) {
         case 'ignore':
@@ -908,7 +938,18 @@ export function reviewsFromCklb(
       }
     }
 
-    let comment = rule.comments?.length > maxCommentLength ? truncateString(rule.comments, maxCommentLength) : rule.comments
+    let comment = rule.comments?.length > maxFieldLengths.comment ? truncateString(rule.comments, maxFieldLengths.comment) : rule.comments
+    // if comment is not an empty string, record its classification if available otherwise set CommentClassification to ""
+    let commentClassification = ""
+    if (comment) {
+      commentClassification = rule.comments_classification ? truncateString(rule.comments_classification, maxFieldLengths.classification) : ""
+    } else {
+      // if comment is empty, set commentClassification to null or empty string based on importOptions
+      if (importOptions.emptyComment === 'ignore') {
+        commentClassification = null
+      }
+    }
+
     if (!rule.comments) {
       switch (importOptions.emptyComment) {
         case 'ignore':
@@ -927,7 +968,9 @@ export function reviewsFromCklb(
       ruleId,
       result,
       detail,
-      comment
+      comment,
+      detailClassification,
+      commentClassification
     }
 
     const iStigCommentProcessed = processStigEvalStigModule(evalStigResultEngine)
@@ -970,7 +1013,7 @@ export function reviewsFromCklb(
     resultEngineCommon = {
       type: 'script',
       product: 'Evaluate-STIG',
-      version: truncateString(module.version, 255),
+      version: truncateString(module.version, maxFieldLengths.resultEngineVersion),
     }
     return resultEngineCommon
   }
