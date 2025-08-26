@@ -302,10 +302,7 @@ export function reviewsFromCkl(
     let ruleId
     vuln.STIG_DATA.some(stigDatum => {
       if (stigDatum.VULN_ATTRIBUTE == "Rule_ID") {
-        if (!stigDatum.ATTRIBUTE_DATA) {
-          return false
-        }
-        ruleId = stigDatum.ATTRIBUTE_DATA.endsWith('_rule') ? stigDatum.ATTRIBUTE_DATA : stigDatum.ATTRIBUTE_DATA + '_rule'
+        ruleId = stigDatum.ATTRIBUTE_DATA
         return true
       }
     })
@@ -872,10 +869,8 @@ export function reviewsFromCklb(
   function generateReview(rule, evalStigResultEngine) {
     let result = resultMap[rule.status]
     if (!result) return
-    let ruleId = rule.rule_id_src ?? rule.rule_id
+    const ruleId = rule.rule_id_src
     if (!ruleId) return
-    ruleId = ruleId.endsWith('_rule') ? ruleId : ruleId + '_rule'
-    ruleId = truncateString(ruleId, 45)
 
     const hasComments = !!rule.finding_details || !!rule.comments
 
