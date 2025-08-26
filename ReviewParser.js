@@ -869,7 +869,7 @@ export function reviewsFromCklb(
   function generateReview(rule, evalStigResultEngine) {
     let result = resultMap[rule.status]
     if (!result) return
-    const ruleId = rule.rule_id_src
+    const ruleId = truncateString(rule.rule_id_src, 45)
     if (!ruleId) return
 
     const hasComments = !!rule.finding_details || !!rule.comments
