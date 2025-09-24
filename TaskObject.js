@@ -75,14 +75,12 @@ export default class TaskObject {
     if (!target.metadata.cklHostName) {  
       return this.#assetNameMap.get(target.name.toLowerCase())
     }
-
     // get the array of apiAssets (if any) having the given target.metadata.cklHostName
     const matchedByCklHostname = this.#cklHostnameMap.get(target.metadata.cklHostName.toLowerCase())
     // return null if no matches for cklHostName or calculated effectiveName (in case metadata was removed, from asset that follows effectiveName convention)
     if (!matchedByCklHostname) {
       return this.#assetNameMap.get(this.#buildEffectiveName(target).toLowerCase()) ?? null
     }
-
     // find the first apiAsset that matches all the CKL metadata 
     const matchedByAllCklMetadata = matchedByCklHostname.find(
       asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
