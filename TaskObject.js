@@ -72,34 +72,24 @@ export default class TaskObject {
 
   #findAssetFromParsedTarget(target) {
     // If there's no target.metadata.cklHostName, return the apiAsset (if any) matching the target.name
-    if (!target.metadata.cklHostName) {  // will only happen with non-CKL results 
+    if (!target.metadata.cklHostName) {  
       return this.#assetNameMap.get(target.name.toLowerCase())
     }
 
     // get the array of apiAssets (if any) having the given target.metadata.cklHostName
     const matchedByCklHostname = this.#cklHostnameMap.get(target.metadata.cklHostName.toLowerCase())
     // return null if no matches for cklHostName or calculated effectiveName (in case metadata was removed, from asset that follows effectiveName convention)
-    const effectiveName = this.#buildEffectiveName(target)
     if (!matchedByCklHostname) {
-      // try to find by effectiveName, since we know we can't match all metadata in matchedByAllCklMetadata block
-      if(this.#assetNameMap.has(effectiveName.toLowerCase())) {  
-        return this.#assetNameMap.get(effectiveName.toLowerCase())
-      }
-      // no matches
-      return null
+      return this.#assetNameMap.get(this.#buildEffectiveName(target).toLowerCase()) ?? null
     }
 
-    // find the first apiAsset that matches all the CKL metadata , otherwise return effectiveName match (if any)
+    // find the first apiAsset that matches all the CKL metadata 
     const matchedByAllCklMetadata = matchedByCklHostname.find(
       asset => asset.metadata.cklWebDbInstance?.toLowerCase() === target.metadata.cklWebDbInstance?.toLowerCase()
         && asset.metadata.cklWebDbSite?.toLowerCase() === target.metadata.cklWebDbSite?.toLowerCase())
     if (matchedByAllCklMetadata) return matchedByAllCklMetadata
-    // if no match by all CKL metadata, try to match by effectiveName (in case metadata was removed from asset that follows effectiveName convention)
-    if(this.#assetNameMap.has(effectiveName.toLowerCase())) {
-      return this.#assetNameMap.get(effectiveName.toLowerCase())
-    }
-    // no matches
-    return null
+    // if no match by all CKL metadata, try to match by effectiveName (in case metadata was removed from asset that follows effectiveName convention), or null
+    return this.#assetNameMap.get(this.#buildEffectiveName(target).toLowerCase()) ?? null
   }
 
   #buildEffectiveName(target) {
@@ -131,7 +121,7 @@ export default class TaskObject {
         assetName = parsedResult.target.name
       }
       else {
-        assetName = `${tMeta.cklHostName}-${tMeta.cklWebDbSite ?? 'NA'}-${tMeta.cklWebDbInstance ?? 'NA'}`
+        assetName = this.#buildEffectiveName(parsedResult.target)
         mapKey = assetName.toLowerCase()
       }
 
