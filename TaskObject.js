@@ -82,7 +82,7 @@ export default class TaskObject {
     const effectiveName = this.#buildEffectiveName(target)
     if (!matchedByCklHostname) {
       // try to find by effectiveName, since we know we can't match all metadata in matchedByAllCklMetadata block
-      if(this.#assetNameMap.has(effectiveName.toLowerCase())) {  
+      if (this.#assetNameMap.has(effectiveName.toLowerCase())) {  
         return this.#assetNameMap.get(effectiveName.toLowerCase())
       }
       // no matches
