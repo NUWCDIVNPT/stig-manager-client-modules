@@ -10,17 +10,37 @@
   },
   "scripts": {
     "test": "c8 --reporter=html --reporter=text mocha './test/**/*.test.js'",
-    "install": "npx rollup index.js --file index.cjs --format cjs"
+    "build": "rollup index.js --file index.cjs --format cjs",
+    "prepublishOnly": "rollup index.js --file index.cjs --format cjs"
   },
   "exports": {
     "import": "./index.js",
     "require": "./index.cjs"
   },
+  "files": [
+    "index.js",
+    "index.cjs",
+    "index.d.ts",
+    "ReviewParser.js",
+    "TaskObject.js",
+    "AssetCsvParser.js",
+    "fxp.esm.js",
+    "papaparse-esm.js",
+    "decode.js",
+    "LICENSE.md",
+    "README.md",
+    "INTENT.md",
+    "CONTRIBUTING.md"
+  ],
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "c8": "^8.0.1",
     "chai": "^4.3.10",
+    "fast-xml-parser": "5.3.5",
     "mocha": "^10.2.0",
+    "papaparse": "5.5.2",
     "rollup": "^4.8.0"
   }
 }

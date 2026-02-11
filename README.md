@@ -16,6 +16,12 @@ For example, the `ApiAsset` object defined in these modules is identical to the 
 Check the index.d.ts file for the full list of objects and their properties, the inline comments in the modules themselves, and the [STIG Manager Api Definition](https://github.com/NUWCDIVNPT/stig-manager/blob/main/api/source/specification/stig-manager.yaml).
 
 
+## Development
+
+The CJS bundle (`index.cjs`) is generated from `index.js` using rollup. It is no longer built during `npm install` — instead, it is built on demand via `npm run build` or automatically before publishing via the `prepublishOnly` script. Consumers of this package do not need rollup installed.
+
+See [VENDORING.md](VENDORING.md) for details on how the vendored dependencies (`fxp.esm.js` and `papaparse-esm.js`) are maintained.
+
 ## Using the modules in Node.js
 In the root of a project, open a terminal and execute:
 
