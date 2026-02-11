@@ -5,21 +5,9 @@ on:
   push:
     branches:
         - main
-    paths:
-        - "ReviewParser.js"
-        - "TaskObject.js"
-        - "test/**"
-        - "test-files/**"
-        - '.github/workflows/unit-testing.yml'
   pull_request:
     branches:
         - main
-    paths:
-        - "ReviewParser.js"
-        - "TaskObject.js"
-        - "test/**"
-        - "test-files/**"
-        - '.github/workflows/unit-testing.yml'
 jobs:
   build_test:
     runs-on: ubuntu-latest
