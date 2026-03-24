@@ -63,6 +63,10 @@ export function reviewsFromCkl(
     ignoreAttributes: false,
     parseTagValue: false,
     parseAttributeValue: false,
+    // fxp 5.5+ defaults maxTotalExpansions to 1000, which counts every standard
+    // entity replacement (&lt; &gt; &amp; etc.) across the entire document.
+    // STIG checklists routinely exceed that in encoded rule descriptions.
+    processEntities: { enabled: true, maxTotalExpansions: 200000 },
     removeNSPrefix: true,
     trimValues: true,
     tagValueProcessor: decodeHTML,
@@ -404,6 +408,10 @@ export function reviewsFromXccdf(
     cdataPropName: "__cdata", //default is 'false'
     ignoreAttributes: false,
     parseTagValue: false,
+    // fxp 5.5+ defaults maxTotalExpansions to 1000, which counts every standard
+    // entity replacement (&lt; &gt; &amp; etc.) across the entire document.
+    // STIG checklists routinely exceed that in encoded rule descriptions.
+    processEntities: { enabled: true, maxTotalExpansions: 200000 },
     removeNSPrefix: true,
     trimValues: true,
     tagValueProcessor: decodeHTML,
