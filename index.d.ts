@@ -193,16 +193,6 @@ interface ParserParams {
   sourceRef: any;
 }
 
-interface ImportOptions {
-  autoStatus: AutoStatus;
-  unreviewed: Unreviewed;
-  unreviewedCommented: UnreviewedCommented;
-  emptyDetail: EmptyCommentDetailType;
-  emptyComment: EmptyCommentDetailType;
-  allowCustom: boolean;
-  updateAssetProps?: boolean;
-}
-
 interface ScapBenchmarkMap {
   [key: string]: string;
 }
