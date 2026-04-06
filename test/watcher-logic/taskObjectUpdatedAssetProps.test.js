@@ -333,7 +333,7 @@ describe('TaskObject hasUpdatedAssetProps tests', () => {
     })
   })
 
-  describe('metadata.cklRole merge', () => {
+  describe('metadata.cklRole and metadata.cklTechArea merge', () => {
     it('should merge cklRole when parsed value is populated and differs', () => {
       const apiAssets = [{
         assetId: '1',
@@ -398,6 +398,72 @@ describe('TaskObject hasUpdatedAssetProps tests', () => {
       const taskAsset = to.taskAssets.get('testasset')
       expect(taskAsset.hasUpdatedAssetProps).to.be.false
       expect(taskAsset.assetProps.metadata.cklRole).to.equal('Member Server')
+    })
+
+    it('should merge cklTechArea when parsed value is populated and differs', () => {
+      const apiAssets = [{
+        assetId: '1',
+        name: 'TestAsset',
+        fqdn: '',
+        description: '',
+        ip: '',
+        mac: '',
+        noncomputing: false,
+        metadata: {},
+        collection: { name: 'testCollection', collectionId: '1' },
+        labelIds: [],
+        stigs: [{ benchmarkId: 'VPN_SRG_TEST', revisionStr: 'V1R1', benchmarkDate: '2019-07-19', revisionPinned: false, ruleCount: 81 }],
+      }]
+      const parsedResults = [{
+        target: {
+          name: 'TestAsset',
+          description: null,
+          ip: null,
+          fqdn: null,
+          mac: null,
+          noncomputing: false,
+          metadata: { cklTechArea: 'Database' },
+        },
+        checklists: [makeChecklist()],
+        sourceRef: 'test.ckl',
+      }]
+      const to = new TaskObject({ parsedResults, apiAssets, apiStigs, options })
+      const taskAsset = to.taskAssets.get('testasset')
+      expect(taskAsset.hasUpdatedAssetProps).to.be.true
+      expect(taskAsset.assetProps.metadata.cklTechArea).to.equal('Database')
+    })
+
+    it('should not overwrite cklTechArea when parsed value is empty', () => {
+      const apiAssets = [{
+        assetId: '1',
+        name: 'TestAsset',
+        fqdn: '',
+        description: '',
+        ip: '',
+        mac: '',
+        noncomputing: false,
+        metadata: { cklTechArea: 'Web Review' },
+        collection: { name: 'testCollection', collectionId: '1' },
+        labelIds: [],
+        stigs: [{ benchmarkId: 'VPN_SRG_TEST', revisionStr: 'V1R1', benchmarkDate: '2019-07-19', revisionPinned: false, ruleCount: 81 }],
+      }]
+      const parsedResults = [{
+        target: {
+          name: 'TestAsset',
+          description: null,
+          ip: null,
+          fqdn: null,
+          mac: null,
+          noncomputing: false,
+          metadata: {},
+        },
+        checklists: [makeChecklist()],
+        sourceRef: 'test.ckl',
+      }]
+      const to = new TaskObject({ parsedResults, apiAssets, apiStigs, options })
+      const taskAsset = to.taskAssets.get('testasset')
+      expect(taskAsset.hasUpdatedAssetProps).to.be.false
+      expect(taskAsset.assetProps.metadata.cklTechArea).to.equal('Web Review')
     })
   })
 })
