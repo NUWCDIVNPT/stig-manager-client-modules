@@ -714,7 +714,7 @@ export function reviewsFromXccdf(
     return {
       name: testResult.target[0],
       description: '',
-      ip: testResult['target-address']?.[0] || '',
+      ip: testResult['target-address']?.join(' ') || '',
       noncomputing: false,
       metadata: {},
       ...assetFromFacts

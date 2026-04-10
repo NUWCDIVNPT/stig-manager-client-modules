@@ -199,12 +199,16 @@ export default class TaskObject {
           props.noncomputing = target.noncomputing
           taskAsset.hasUpdatedAssetProps = true
         }
-        // metadata.cklRole and metadata.cklTechArea: only update if parsed value is populated
-        for (const field of ['cklRole', 'cklTechArea']) {
-          if (target.metadata?.[field] && target.metadata[field] !== props.metadata?.[field]) {
-            if (!props.metadata) props.metadata = {}
-            props.metadata[field] = target.metadata[field]
-            taskAsset.hasUpdatedAssetProps = true
+        // Metadata: merge all populated keys except identity fields used for asset matching
+        const identityMetadataKeys = ['cklHostName', 'cklWebDbSite', 'cklWebDbInstance', 'cklWebOrDatabase']
+        if (target.metadata) {
+          for (const field of Object.keys(target.metadata)) {
+            if (identityMetadataKeys.includes(field)) continue
+            if (target.metadata[field] && target.metadata[field] !== props.metadata?.[field]) {
+              if (!props.metadata) props.metadata = {}
+              props.metadata[field] = target.metadata[field]
+              taskAsset.hasUpdatedAssetProps = true
+            }
           }
         }
       }

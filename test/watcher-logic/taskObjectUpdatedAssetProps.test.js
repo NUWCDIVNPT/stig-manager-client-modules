@@ -333,7 +333,7 @@ describe('TaskObject hasUpdatedAssetProps tests', () => {
     })
   })
 
-  describe('metadata.cklRole and metadata.cklTechArea merge', () => {
+  describe('metadata merge', () => {
     it('should merge cklRole when parsed value is populated and differs', () => {
       const apiAssets = [{
         assetId: '1',
@@ -464,6 +464,89 @@ describe('TaskObject hasUpdatedAssetProps tests', () => {
       const taskAsset = to.taskAssets.get('testasset')
       expect(taskAsset.hasUpdatedAssetProps).to.be.false
       expect(taskAsset.assetProps.metadata.cklTechArea).to.equal('Web Review')
+    })
+
+    it('should merge arbitrary XCCDF metadata keys', () => {
+      const apiAssets = [{
+        assetId: '1',
+        name: 'TestAsset',
+        fqdn: '',
+        description: '',
+        ip: '',
+        mac: '',
+        noncomputing: false,
+        metadata: {},
+        collection: { name: 'testCollection', collectionId: '1' },
+        labelIds: [],
+        stigs: [{ benchmarkId: 'VPN_SRG_TEST', revisionStr: 'V1R1', benchmarkDate: '2019-07-19', revisionPinned: false, ruleCount: 81 }],
+      }]
+      const parsedResults = [{
+        target: {
+          name: 'TestAsset',
+          description: null,
+          ip: null,
+          fqdn: null,
+          mac: null,
+          noncomputing: false,
+          metadata: {
+            customKey: 'customValue',
+            'urn:scap:fact:asset:identifier:os_version': 'Windows Server 2019',
+          },
+        },
+        checklists: [makeChecklist()],
+        sourceRef: 'test.xccdf',
+      }]
+      const to = new TaskObject({ parsedResults, apiAssets, apiStigs, options })
+      const taskAsset = to.taskAssets.get('testasset')
+      expect(taskAsset.hasUpdatedAssetProps).to.be.true
+      expect(taskAsset.assetProps.metadata.customKey).to.equal('customValue')
+      expect(taskAsset.assetProps.metadata['urn:scap:fact:asset:identifier:os_version']).to.equal('Windows Server 2019')
+    })
+
+    it('should NOT merge identity metadata keys (cklHostName, cklWebDbSite, cklWebDbInstance, cklWebOrDatabase)', () => {
+      // Asset matched by simple name (no cklHostName in parsed target).
+      // Parsed target has identity metadata keys that should be excluded from merge.
+      const apiAssets = [{
+        assetId: '1',
+        name: 'TestAsset',
+        fqdn: '',
+        description: '',
+        ip: '',
+        mac: '',
+        noncomputing: false,
+        metadata: {},
+        collection: { name: 'testCollection', collectionId: '1' },
+        labelIds: [],
+        stigs: [{ benchmarkId: 'VPN_SRG_TEST', revisionStr: 'V1R1', benchmarkDate: '2019-07-19', revisionPinned: false, ruleCount: 81 }],
+      }]
+      const parsedResults = [{
+        target: {
+          name: 'TestAsset',
+          description: null,
+          ip: null,
+          fqdn: null,
+          mac: null,
+          noncomputing: false,
+          metadata: {
+            cklWebDbSite: 'NewSite',
+            cklWebDbInstance: 'NewInstance',
+            cklWebOrDatabase: 'true',
+            cklRole: 'Domain Controller',
+          },
+        },
+        checklists: [makeChecklist()],
+        sourceRef: 'test.ckl',
+      }]
+      const to = new TaskObject({ parsedResults, apiAssets, apiStigs, options })
+      const taskAsset = to.taskAssets.get('testasset')
+      expect(taskAsset.knownAsset).to.be.true
+      // Identity fields should NOT be merged
+      expect(taskAsset.assetProps.metadata.cklWebDbSite).to.be.undefined
+      expect(taskAsset.assetProps.metadata.cklWebDbInstance).to.be.undefined
+      expect(taskAsset.assetProps.metadata.cklWebOrDatabase).to.be.undefined
+      // cklRole should still be merged
+      expect(taskAsset.assetProps.metadata.cklRole).to.equal('Domain Controller')
+      expect(taskAsset.hasUpdatedAssetProps).to.be.true
     })
   })
 })
